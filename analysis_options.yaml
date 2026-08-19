@@ -9,3 +9,22 @@ analyzer:
     - windows/**
     - macos/**
     - linux/**
+
+linter:
+  rules:
+    # === GOOD PRACTICES ===
+    prefer_const_constructors: true
+    avoid_print: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    always_declare_return_types: true
+    use_key_in_widget_constructors: true
+    avoid_unused_constructor_parameters: true
+    prefer_const_literals_to_create_immutables: true
+
+    # === CLEAN AND STYLE ===
+    always_specify_types: false
+    sort_constructors_first: true
+    sort_child_properties_last: true
+    unnecessary_this: false
+    prefer_single_quotes: true
