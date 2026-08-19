@@ -28,15 +28,33 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (value) => setState(() => selectedIndex = value),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.account_balance_wallet),
+            icon: Icon(
+              selectedIndex == 0
+                  ? Icons.account_balance_wallet
+                  : Icons.account_balance_wallet_outlined,
+            ),
             label: 'Balance',
           ),
-          NavigationDestination(icon: Icon(Icons.savings), label: 'Bolsillos'),
-          NavigationDestination(icon: Icon(Icons.money_off), label: 'Gastos'),
           NavigationDestination(
-            icon: Icon(Icons.account_balance),
+            icon: Icon(
+              selectedIndex == 1 ? Icons.savings : Icons.savings_outlined,
+            ),
+            label: 'Bolsillos',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              selectedIndex == 2 ? Icons.money_off : Icons.money_off_outlined,
+            ),
+            label: 'Gastos',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              selectedIndex == 3
+                  ? Icons.account_balance
+                  : Icons.account_balance_outlined,
+            ),
             label: 'Plazos Fijos',
           ),
         ],
