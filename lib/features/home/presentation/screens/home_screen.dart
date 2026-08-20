@@ -1,3 +1,5 @@
+import 'package:expense_control_app/features/balance/presentation/screens/balance_screen.dart';
+import 'package:expense_control_app/features/home/presentation/widgets/home_navigator_side_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,10 +11,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final screens = <Widget>[
-    const Center(child: Text('Balance Screen')),
+    const BalanceScreen(),
+    const Center(child: Text('Money Pockets Screen')),
     const Center(child: Text('Expenses Screen')),
     const Center(child: Text('Fixed Term Deposit Screen')),
-    const Center(child: Text('Money Pockets Screen')),
     // ExpensesScreen(),
     // FixedTermDeposit(),
     // MoneyPockets(),
@@ -23,40 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const Text('titulo')),
-      body: screens[selectedIndex],
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: selectedIndex,
-        onDestinationSelected: (value) => setState(() => selectedIndex = value),
-        destinations: [
-          NavigationDestination(
-            icon: Icon(
-              selectedIndex == 0
-                  ? Icons.account_balance_wallet
-                  : Icons.account_balance_wallet_outlined,
-            ),
-            label: 'Balance',
+      body: Row(
+        children: [
+          HomeNavigatorSideBar(
+            onChanged: (newSelectedIndex) =>
+                setState(() => selectedIndex = newSelectedIndex),
           ),
-          NavigationDestination(
-            icon: Icon(
-              selectedIndex == 1 ? Icons.savings : Icons.savings_outlined,
-            ),
-            label: 'Bolsillos',
-          ),
-          NavigationDestination(
-            icon: Icon(
-              selectedIndex == 2 ? Icons.money_off : Icons.money_off_outlined,
-            ),
-            label: 'Gastos',
-          ),
-          NavigationDestination(
-            icon: Icon(
-              selectedIndex == 3
-                  ? Icons.account_balance
-                  : Icons.account_balance_outlined,
-            ),
-            label: 'Plazos Fijos',
-          ),
+          const VerticalDivider(),
+          Expanded(child: screens[selectedIndex]),
         ],
       ),
     );
