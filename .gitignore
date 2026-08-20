@@ -49,3 +49,6 @@ app.*.map.json
 
 # Freezed files
 *.freezed.dart
+
+# devtools_options file
+devtools_options.yaml
