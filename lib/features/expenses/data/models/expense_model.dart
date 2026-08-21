@@ -22,6 +22,13 @@ abstract class ExpenseModel with _$ExpenseModel {
     isFixed: expenseRow.isFixed as bool,
   );
 
+  factory ExpenseModel.fromEntity(ExpenseEntity entity) => ExpenseModel(
+    id: entity.id,
+    name: entity.name,
+    payMethod: entity.payMethod,
+    isFixed: entity.isFixed,
+  );
+
   ExpenseEntity toEntity() =>
       ExpenseEntity(id: id, name: name, payMethod: payMethod, isFixed: isFixed);
 }
