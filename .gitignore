@@ -52,3 +52,6 @@ app.*.map.json
 
 # devtools_options file
 devtools_options.yaml
+
+# Generated code files
+*.g.dart
