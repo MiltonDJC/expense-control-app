@@ -1,1 +1,1 @@
-enum PayMethod { mercadoPago, bank, cash }
+enum PayMethod { mercadoPago, creditCard, debitCard, cash }
