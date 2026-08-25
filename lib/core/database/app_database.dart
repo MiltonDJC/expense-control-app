@@ -2,6 +2,8 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:expense_control_app/features/expenses/data/tables/expense.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 
 part 'app_database.g.dart';
 
