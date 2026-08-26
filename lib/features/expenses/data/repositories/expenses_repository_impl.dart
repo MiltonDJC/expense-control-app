@@ -16,9 +16,8 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
   }
 
   @override
-  Future<void> deleteExpense({required int id}) {
-    // TODO: implement deleteExpense
-    throw UnimplementedError();
+  Future<void> deleteExpense({required int id}) async {
+    await dataSource.deleteExpense(id: id);
   }
 
   @override
