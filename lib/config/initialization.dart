@@ -23,7 +23,7 @@ class Initialization {
           const ExpenseCompanion(
             name: Value('Gasto de prueba 2'),
             bank: Value(Bank.bancoComafi),
-            payMethod: Value(PayMethod.cash),
+            payMethod: Value(PayMethod.creditCard),
             isFixed: Value(true),
           ),
         );
