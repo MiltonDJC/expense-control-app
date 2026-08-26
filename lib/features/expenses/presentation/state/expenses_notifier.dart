@@ -8,11 +8,8 @@ part 'expenses_notifier.g.dart';
 
 @freezed
 abstract class ExpensesState with _$ExpensesState {
-  const factory ExpensesState({
-    required List<ExpenseEntity> expenses,
-    required bool isLoading,
-    String? errorMessage,
-  }) = _ExpensesState;
+  const factory ExpensesState({@Default([]) List<ExpenseEntity> expenses}) =
+      _ExpensesState;
 }
 
 @riverpod
@@ -20,10 +17,10 @@ class ExpensesNotifier extends _$ExpensesNotifier {
   @override
   Future<ExpensesState> build() async {
     final expenses = await ref.read(getAllExpensesUseCaseProvider)();
-    return ExpensesState(
-      expenses: expenses,
-      isLoading: false,
-      errorMessage: null,
-    );
+    return ExpensesState(expenses: expenses);
+  }
+
+  Future<void> deleteExpense({required int id}) async {
+    await ref.read(deleteExpenseUseCaseProvider)(id: id);
   }
 }
