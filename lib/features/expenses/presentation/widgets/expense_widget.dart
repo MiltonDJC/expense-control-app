@@ -1,5 +1,5 @@
-import 'package:expense_control_app/features/expenses/utils/get_bank_name.dart';
-import 'package:expense_control_app/features/expenses/utils/get_pay_method_name.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/get_bank_name.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/get_pay_method_name.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseWidget extends StatelessWidget {
