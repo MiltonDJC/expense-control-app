@@ -41,4 +41,18 @@ class ExpensesNotifier extends _$ExpensesNotifier {
       isFixed: isFixed,
     );
   }
+
+  Future<void> addExpense({
+    required String name,
+    required PayMethod payMethod,
+    Bank? bank,
+    required bool isFixed,
+  }) async {
+    await ref.read(addExpenseProvider)(
+      name: name,
+      payMethod: payMethod,
+      bank: bank,
+      isFixed: isFixed,
+    );
+  }
 }
