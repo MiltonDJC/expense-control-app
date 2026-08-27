@@ -12,4 +12,10 @@ abstract class ExpensesRepository {
     Bank? bank,
     bool? isFixed,
   });
+  Future<void> addExpense({
+    required String name,
+    required PayMethod payMethod,
+    Bank? bank,
+    required bool isFixed,
+  });
 }
