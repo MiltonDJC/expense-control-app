@@ -29,8 +29,13 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
-  }) {
-    // TODO: implement updateExpense
-    throw UnimplementedError();
+  }) async {
+    await dataSource.updateExpense(
+      id: id,
+      name: name,
+      payMethod: payMethod,
+      bank: bank,
+      isFixed: isFixed,
+    );
   }
 }
