@@ -41,4 +41,20 @@ class ExpensesLocalDataSource {
           ),
         );
   }
+
+  Future<void> addExpense({
+    required String name,
+    required PayMethod payMethod,
+    Bank? bank,
+    required bool isFixed,
+  }) async {
+    await appDatabase.managers.expense.create(
+      (o) => o(
+        name: name,
+        payMethod: payMethod,
+        bank: Value.absentIfNull(bank),
+        isFixed: isFixed,
+      ),
+    );
+  }
 }
