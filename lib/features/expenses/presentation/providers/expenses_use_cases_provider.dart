@@ -1,3 +1,4 @@
+import 'package:expense_control_app/features/expenses/domain/use_cases/add_expense_use_case.dart';
 import 'package:expense_control_app/features/expenses/domain/use_cases/delete_expense_use_case.dart';
 import 'package:expense_control_app/features/expenses/domain/use_cases/get_all_expenses_use_case.dart';
 import 'package:expense_control_app/features/expenses/domain/use_cases/update_expense_use_case.dart';
@@ -21,4 +22,10 @@ DeleteExpenseUseCase deleteExpenseUseCase(Ref ref) {
 UpdateExpenseUseCase updateExpenseUseCase(Ref ref) {
   final repository = ref.read(expensesRepositoryProvider);
   return UpdateExpenseUseCase(expensesRepository: repository);
+}
+
+@riverpod
+AddExpenseUseCase addExpense(Ref ref) {
+  final respository = ref.read(expensesRepositoryProvider);
+  return AddExpenseUseCase(expensesRepository: respository);
 }
