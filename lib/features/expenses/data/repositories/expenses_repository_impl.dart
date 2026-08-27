@@ -38,4 +38,19 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
       isFixed: isFixed,
     );
   }
+
+  @override
+  Future<void> addExpense({
+    required String name,
+    required PayMethod payMethod,
+    Bank? bank,
+    required bool isFixed,
+  }) async {
+    await dataSource.addExpense(
+      name: name,
+      payMethod: payMethod,
+      bank: bank,
+      isFixed: isFixed,
+    );
+  }
 }
