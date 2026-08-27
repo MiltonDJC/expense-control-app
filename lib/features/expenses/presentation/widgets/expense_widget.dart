@@ -9,26 +9,32 @@ class ExpenseWidget extends StatelessWidget {
     this.bankName,
     required this.isFixed,
     required this.payMethod,
-    required this.onPressed,
+    required this.onDeleted,
+    required this.onEdited,
   });
 
   final String expenseName;
   final String? bankName;
   final bool isFixed;
   final String payMethod;
-  final VoidCallback onPressed;
+  final VoidCallback onDeleted;
+  final VoidCallback onEdited;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: [
-          Text(expenseName),
+          Row(children: [Text(expenseName)]),
           if (bankName != null) Text(getBankName(bankName!)),
           if (isFixed) const Text('Gasto Fijo'),
           Text(getPayMethodName(payMethod)),
           ElevatedButton.icon(
-            onPressed: onPressed,
+            onPressed: onEdited,
+            label: const Icon(Icons.edit),
+          ),
+          ElevatedButton.icon(
+            onPressed: onDeleted,
             label: const Icon(Icons.delete),
           ),
         ],
