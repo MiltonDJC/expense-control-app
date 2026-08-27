@@ -21,11 +21,12 @@ class ExpensesScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : ListView.builder(
-                itemCount: state.expenses.length,
-                itemBuilder: (context, index) {
-                  return Center(
-                    child: ExpenseWidget(
+            : Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ListView.builder(
+                  itemCount: state.expenses.length,
+                  itemBuilder: (context, index) {
+                    return ExpenseWidget(
                       expenseName: state.expenses[index].name,
                       bankName: state.expenses[index].bank?.name,
                       isFixed: state.expenses[index].isFixed,
@@ -48,26 +49,16 @@ class ExpensesScreen extends ConsumerWidget {
                             .deleteExpense(id: state.expenses[index].id);
                         ref.invalidate(expensesProvider);
                       },
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await ref
-              .read(expensesProvider.notifier)
-              .updateExpense(
-                id: 0,
-                name: 'Tarea actualizada',
-                bank: Bank.bancoProvincia,
-                isFixed: false,
-                payMethod: PayMethod.mercadoPago,
-              );
-        },
+        onPressed: () async {},
         tooltip: 'Agregar nuevo gasto',
         child: const Icon(Icons.add, size: 32),
       ),
