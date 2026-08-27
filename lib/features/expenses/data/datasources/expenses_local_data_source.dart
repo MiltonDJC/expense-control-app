@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:expense_control_app/core/database/app_database.dart';
 import 'package:expense_control_app/features/expenses/data/models/expense_model.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 
 class ExpensesLocalDataSource {
   ExpensesLocalDataSource({required this.appDatabase});
@@ -19,5 +21,24 @@ class ExpensesLocalDataSource {
     await appDatabase.expense.deleteWhere(
       (expenseTable) => expenseTable.id.equals(id),
     );
+  }
+
+  Future<void> updateExpense({
+    required int id,
+    String? name,
+    PayMethod? payMethod,
+    Bank? bank,
+    bool? isFixed,
+  }) async {
+    await appDatabase.managers.expense
+        .filter((f) => f.id(id))
+        .update(
+          (o) => o(
+            name: Value.absentIfNull(name),
+            payMethod: Value.absentIfNull(payMethod),
+            bank: Value.absentIfNull(bank),
+            isFixed: Value.absentIfNull(isFixed),
+          ),
+        );
   }
 }
