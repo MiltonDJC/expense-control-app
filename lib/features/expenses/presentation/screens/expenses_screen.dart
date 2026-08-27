@@ -1,4 +1,5 @@
-import 'package:expense_control_app/features/expenses/presentation/providers/expenses_use_cases_provider.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +30,22 @@ class ExpensesScreen extends ConsumerWidget {
                       bankName: state.expenses[index].bank?.name,
                       isFixed: state.expenses[index].isFixed,
                       payMethod: state.expenses[index].payMethod.name,
-                      onPressed: () async {
-                        await ref.read(deleteExpenseUseCaseProvider)(
-                          id: state.expenses[index].id,
-                        );
+                      onEdited: () async {
+                        await ref
+                            .read(expensesProvider.notifier)
+                            .updateExpense(
+                              id: state.expenses[index].id,
+                              name: 'Tarea actualizada',
+                              bank: Bank.bancoProvincia,
+                              isFixed: false,
+                              payMethod: PayMethod.mercadoPago,
+                            );
+                        ref.invalidate(expensesProvider);
+                      },
+                      onDeleted: () async {
+                        await ref
+                            .read(expensesProvider.notifier)
+                            .deleteExpense(id: state.expenses[index].id);
                         ref.invalidate(expensesProvider);
                       },
                     ),
@@ -44,7 +57,17 @@ class ExpensesScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          await ref
+              .read(expensesProvider.notifier)
+              .updateExpense(
+                id: 0,
+                name: 'Tarea actualizada',
+                bank: Bank.bancoProvincia,
+                isFixed: false,
+                payMethod: PayMethod.mercadoPago,
+              );
+        },
         tooltip: 'Agregar nuevo gasto',
         child: const Icon(Icons.add, size: 32),
       ),
