@@ -58,7 +58,17 @@ class ExpensesScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {},
+        onPressed: () async {
+          await ref
+              .read(expensesProvider.notifier)
+              .addExpense(
+                name: 'Gasto agregado',
+                payMethod: PayMethod.debitCard,
+                bank: Bank.bancoComafi,
+                isFixed: false,
+              );
+          ref.invalidate(expensesProvider);
+        },
         tooltip: 'Agregar nuevo gasto',
         child: const Icon(Icons.add, size: 32),
       ),
