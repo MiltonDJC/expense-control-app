@@ -1,0 +1,98 @@
+import 'package:flutter/material.dart';
+
+class FixedTermDepositWidget extends StatelessWidget {
+  const new({
+    super.key,
+    required this.id,
+    required this.fixedTermDepositName,
+    required this.depositAmount,
+    required this.depositDate,
+    required this.depositDueDate,
+    required this.dolarPrice,
+    required this.onDeleted,
+    required this.onEdited,
+  });
+
+  final int id;
+  final String fixedTermDepositName;
+  final double depositAmount;
+  final DateTime depositDate;
+  final DateTime depositDueDate;
+  final double dolarPrice;
+  final VoidCallback onDeleted;
+  final VoidCallback onEdited;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          spacing: 10,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  fixedTermDepositName,
+                  style: const TextStyle(fontSize: 26, fontWeight: .w600),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 12,
+                  children: [
+                    Text(
+                      'Fecha de depósito: ${depositDate.day}\\${depositDate.month}\\${depositDate.year}',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      'Fecha de vencimiento: ${depositDueDate.day}\\${depositDueDate.month}\\${depositDueDate.year}',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      'Monto depositado: \$$depositAmount',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      'Precio del dólar: \$$dolarPrice',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              spacing: 12,
+              children: [
+                OutlinedButton.icon(
+                  onPressed: onEdited,
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Color(0xFF2F3776),
+                    size: 22,
+                  ),
+                  label: const Text('Editar', style: TextStyle(fontSize: 22)),
+                ),
+                OutlinedButton.icon(
+                  onPressed: onDeleted,
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Color(0xFFFF0033),
+                    size: 22,
+                  ),
+                  label: const Text('Eliminar', style: TextStyle(fontSize: 22)),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
