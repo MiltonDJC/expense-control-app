@@ -41,7 +41,19 @@ class FixedTermDepositScreen extends ConsumerWidget {
                             );
                         ref.invalidate(fixedTermDepositProvider);
                       },
-                      onEdited: () {},
+                      onEdited: () async {
+                        await ref
+                            .read(fixedTermDepositProvider.notifier)
+                            .updateFixedTermDeposit(
+                              id: state.fixedTermDeposits[index].id,
+                              depositAmount: 6,
+                              depositDate: DateTime(2000, 1, 1),
+                              depositDueDate: DateTime(2001, 1, 1),
+                              dolarPrice: 1.0,
+                              name: 'Depósito actualizado',
+                            );
+                        ref.invalidate(fixedTermDepositProvider);
+                      },
                     );
                   },
                 ),
@@ -59,7 +71,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                 depositDate: DateTime(2030, 1, 10),
                 depositDueDate: DateTime(2030, 2, 12),
                 dolarPrice: 10.0,
-                name: 'Deposito agregado',
+                name: 'Depósito agregado',
               );
           ref.invalidate(fixedTermDepositProvider);
         },
