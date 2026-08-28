@@ -1,3 +1,5 @@
+import 'package:expense_control_app/core/presentation/widgets/delete_action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/edit_action_button_widget.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/get_bank_name.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/get_pay_method_name.dart';
 import 'package:flutter/material.dart';
@@ -42,30 +44,8 @@ class ExpenseWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   spacing: 12,
                   children: [
-                    OutlinedButton.icon(
-                      onPressed: onEdited,
-                      icon: const Icon(
-                        Icons.edit,
-                        color: Color(0xFF2F3776),
-                        size: 22,
-                      ),
-                      label: const Text(
-                        'Editar',
-                        style: TextStyle(fontSize: 22),
-                      ),
-                    ),
-                    OutlinedButton.icon(
-                      onPressed: onDeleted,
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Color(0xFFFF0033),
-                        size: 22,
-                      ),
-                      label: const Text(
-                        'Eliminar',
-                        style: TextStyle(fontSize: 22),
-                      ),
-                    ),
+                    EditActionButtonWidget(onEdited: onEdited),
+                    DeleteActionButtonWidget(onDeleted: onDeleted),
                   ],
                 ),
               ],
