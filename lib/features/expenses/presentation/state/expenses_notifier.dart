@@ -48,7 +48,7 @@ class ExpensesNotifier extends _$ExpensesNotifier {
     Bank? bank,
     required bool isFixed,
   }) async {
-    await ref.read(addExpenseProvider)(
+    await ref.read(addExpenseUseCaseProvider)(
       name: name,
       payMethod: payMethod,
       bank: bank,

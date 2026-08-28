@@ -25,7 +25,7 @@ UpdateExpenseUseCase updateExpenseUseCase(Ref ref) {
 }
 
 @riverpod
-AddExpenseUseCase addExpense(Ref ref) {
+AddExpenseUseCase addExpenseUseCase(Ref ref) {
   final respository = ref.read(expensesRepositoryProvider);
   return AddExpenseUseCase(expensesRepository: respository);
 }
