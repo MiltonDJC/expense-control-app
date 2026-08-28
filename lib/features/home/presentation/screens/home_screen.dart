@@ -1,5 +1,6 @@
 import 'package:expense_control_app/features/balance/presentation/screens/balance_screen.dart';
 import 'package:expense_control_app/features/expenses/presentation/screens/expenses_screen.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/screens/fixed_term_deposit_screen.dart';
 import 'package:expense_control_app/features/home/presentation/widgets/home_navigator_side_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const BalanceScreen(),
     const Center(child: Text('Money Pockets Screen')),
     const ExpensesScreen(),
-    const Center(child: Text('Fixed Term Deposit Screen')),
-    // FixedTermDeposit(),
+    const FixedTermDepositScreen(),
     // MoneyPockets(),
   ];
 
