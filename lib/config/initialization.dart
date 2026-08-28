@@ -27,6 +27,17 @@ class Initialization {
             isFixed: Value(true),
           ),
         );
+    database
+        .into(database.fixedTermDeposit)
+        .insert(
+          FixedTermDepositCompanion(
+            depositAmount: const Value(120.0),
+            depositDate: Value(DateTime.now()),
+            depositDueDate: Value(DateTime.now()),
+            dolarPrice: const Value(100.0),
+            name: const Value('Plazo fijo Comafi'),
+          ),
+        );
     return database;
   }
 }
