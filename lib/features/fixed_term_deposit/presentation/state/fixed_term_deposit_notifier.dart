@@ -24,6 +24,7 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
 
   Future<void> addFixedTermDeposit({
     required double depositAmount,
+    required double depositAmountReceived,
     required DateTime depositDate,
     required DateTime depositDueDate,
     required double dolarPrice,
@@ -31,6 +32,7 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
   }) async {
     await ref.read(addFixedTermDepositUseCaseProvider)(
       depositAmount: depositAmount,
+      depositAmountReceived: depositAmountReceived,
       depositDate: depositDate,
       depositDueDate: depositDueDate,
       dolarPrice: dolarPrice,
@@ -41,6 +43,7 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
   Future<void> updateFixedTermDeposit({
     required int id,
     double? depositAmount,
+    double? depositAmountReceived,
     DateTime? depositDate,
     DateTime? depositDueDate,
     double? dolarPrice,
@@ -49,6 +52,7 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
     await ref.read(updateExpenseUseCaseProvider)(
       id: id,
       depositAmount: depositAmount,
+      depositAmountReceived: depositAmountReceived,
       depositDate: depositDate,
       depositDueDate: depositDueDate,
       dolarPrice: dolarPrice,

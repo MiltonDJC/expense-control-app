@@ -9,6 +9,7 @@ class FixedTermDepositLocalDataSource {
 
   Future<void> addFixedTermDeposit({
     required double depositAmount,
+    required double depositAmountReceived,
     required DateTime depositDate,
     required DateTime depositDueDate,
     required double dolarPrice,
@@ -17,6 +18,7 @@ class FixedTermDepositLocalDataSource {
     await appDatabase.managers.fixedTermDeposit.create(
       (o) => o(
         depositAmount: depositAmount,
+        depositAmountReceived: depositAmountReceived,
         depositDate: depositDate,
         depositDueDate: depositDueDate,
         dolarPrice: dolarPrice,
@@ -28,6 +30,7 @@ class FixedTermDepositLocalDataSource {
   Future<void> updateFixedTermDeposit({
     required int id,
     double? depositAmount,
+    double? depositAmountReceived,
     DateTime? depositDate,
     DateTime? depositDueDate,
     double? dolarPrice,
@@ -38,6 +41,7 @@ class FixedTermDepositLocalDataSource {
         .update(
           (o) => o(
             depositAmount: Value.absentIfNull(depositAmount),
+            depositAmountReceived: Value.absentIfNull(depositAmountReceived),
             depositDate: Value.absentIfNull(depositDate),
             depositDueDate: Value.absentIfNull(depositDueDate),
             dolarPrice: Value.absentIfNull(dolarPrice),

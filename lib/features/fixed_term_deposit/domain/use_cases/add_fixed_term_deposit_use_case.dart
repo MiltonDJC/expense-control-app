@@ -7,12 +7,14 @@ class AddFixedTermDepositUseCase {
 
   Future<void> call({
     required double depositAmount,
+    required double depositAmountReceived,
     required DateTime depositDate,
     required DateTime depositDueDate,
     required double dolarPrice,
     required String name,
   }) => fixedTermDepositRepository.addFixedTermDeposit(
     depositAmount: depositAmount,
+    depositAmountReceived: depositAmountReceived,
     depositDate: depositDate,
     depositDueDate: depositDueDate,
     dolarPrice: dolarPrice,

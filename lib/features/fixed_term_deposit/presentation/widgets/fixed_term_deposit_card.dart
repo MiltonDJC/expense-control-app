@@ -8,6 +8,7 @@ class FixedTermDepositCard extends StatelessWidget {
     required this.id,
     required this.fixedTermDepositName,
     required this.depositAmount,
+    required this.depositAmountReceived,
     required this.depositDate,
     required this.depositDueDate,
     required this.dolarPrice,
@@ -18,6 +19,7 @@ class FixedTermDepositCard extends StatelessWidget {
   final int id;
   final String fixedTermDepositName;
   final double depositAmount;
+  final double depositAmountReceived;
   final DateTime depositDate;
   final DateTime depositDueDate;
   final double dolarPrice;
@@ -66,6 +68,10 @@ class FixedTermDepositCard extends StatelessWidget {
                     ),
                     Text(
                       'Monto depositado: \$$depositAmount',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                    Text(
+                      'Monto a recibir: \$$depositAmountReceived',
                       style: const TextStyle(fontSize: 24),
                     ),
                     Text(

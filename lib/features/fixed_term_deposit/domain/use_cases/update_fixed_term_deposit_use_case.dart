@@ -8,6 +8,7 @@ class UpdateFixedTermDepositUseCase {
   Future<void> call({
     required int id,
     double? depositAmount,
+    double? depositAmountReceived,
     DateTime? depositDate,
     DateTime? depositDueDate,
     double? dolarPrice,
@@ -15,6 +16,7 @@ class UpdateFixedTermDepositUseCase {
   }) => fixedTermDepositRepository.updateFixedTermDeposit(
     id: id,
     depositAmount: depositAmount,
+    depositAmountReceived: depositAmountReceived,
     depositDate: depositDate,
     depositDueDate: depositDueDate,
     dolarPrice: dolarPrice,

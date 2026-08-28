@@ -29,6 +29,8 @@ class FixedTermDepositScreen extends ConsumerWidget {
                       fixedTermDepositName: state.fixedTermDeposits[index].name,
                       depositAmount:
                           state.fixedTermDeposits[index].depositAmount,
+                      depositAmountReceived:
+                          state.fixedTermDeposits[index].depositAmountReceived,
                       depositDate: state.fixedTermDeposits[index].depositDate,
                       depositDueDate:
                           state.fixedTermDeposits[index].depositDueDate,
@@ -47,6 +49,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                             .updateFixedTermDeposit(
                               id: state.fixedTermDeposits[index].id,
                               depositAmount: 6,
+                              depositAmountReceived: 100,
                               depositDate: DateTime(2000, 1, 1),
                               depositDueDate: DateTime(2001, 1, 1),
                               dolarPrice: 1.0,
@@ -68,6 +71,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
               .read(fixedTermDepositProvider.notifier)
               .addFixedTermDeposit(
                 depositAmount: 50.0,
+                depositAmountReceived: 50.0,
                 depositDate: DateTime(2030, 1, 10),
                 depositDueDate: DateTime(2030, 2, 12),
                 dolarPrice: 10.0,

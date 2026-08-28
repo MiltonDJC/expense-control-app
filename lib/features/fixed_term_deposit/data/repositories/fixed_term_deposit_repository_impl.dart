@@ -10,6 +10,7 @@ class FixedTermDepositRepositoryImpl implements FixedTermDepositRepository {
   @override
   Future<void> addFixedTermDeposit({
     required double depositAmount,
+    required double depositAmountReceived,
     required DateTime depositDate,
     required DateTime depositDueDate,
     required double dolarPrice,
@@ -17,6 +18,7 @@ class FixedTermDepositRepositoryImpl implements FixedTermDepositRepository {
   }) async {
     await dataSource.addFixedTermDeposit(
       depositAmount: depositAmount,
+      depositAmountReceived: depositAmountReceived,
       depositDate: depositDate,
       depositDueDate: depositDueDate,
       dolarPrice: dolarPrice,
@@ -33,6 +35,7 @@ class FixedTermDepositRepositoryImpl implements FixedTermDepositRepository {
   Future<void> updateFixedTermDeposit({
     required int id,
     double? depositAmount,
+    double? depositAmountReceived,
     DateTime? depositDate,
     DateTime? depositDueDate,
     double? dolarPrice,
@@ -41,6 +44,7 @@ class FixedTermDepositRepositoryImpl implements FixedTermDepositRepository {
     await dataSource.updateFixedTermDeposit(
       id: id,
       depositAmount: depositAmount,
+      depositAmountReceived: depositAmountReceived,
       depositDate: depositDate,
       depositDueDate: depositDueDate,
       dolarPrice: dolarPrice,

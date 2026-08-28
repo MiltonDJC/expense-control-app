@@ -10,6 +10,7 @@ abstract class FixedTermDepositModel with _$FixedTermDepositModel {
   const factory FixedTermDepositModel({
     required int id,
     required double depositAmount,
+    required double depositAmountReceived,
     required DateTime depositDate,
     required DateTime depositDueDate,
     required double dolarPrice,
@@ -21,6 +22,7 @@ abstract class FixedTermDepositModel with _$FixedTermDepositModel {
   ) => FixedTermDepositModel(
     id: fixedTermDepositRow.id,
     depositAmount: fixedTermDepositRow.depositAmount,
+    depositAmountReceived: fixedTermDepositRow.depositAmountReceived,
     depositDate: fixedTermDepositRow.depositDate,
     depositDueDate: fixedTermDepositRow.depositDueDate,
     dolarPrice: fixedTermDepositRow.dolarPrice,
@@ -31,6 +33,7 @@ abstract class FixedTermDepositModel with _$FixedTermDepositModel {
       FixedTermDepositModel(
         id: entity.id,
         depositAmount: entity.depositAmount,
+        depositAmountReceived: entity.depositAmountReceived,
         depositDate: entity.depositDate,
         depositDueDate: entity.depositDueDate,
         dolarPrice: entity.dolarPrice,
@@ -40,6 +43,7 @@ abstract class FixedTermDepositModel with _$FixedTermDepositModel {
   FixedTermDepositEntity toEntity() => FixedTermDepositEntity(
     id: id,
     depositAmount: depositAmount,
+    depositAmountReceived: depositAmountReceived,
     depositDate: depositDate,
     depositDueDate: depositDueDate,
     dolarPrice: dolarPrice,
