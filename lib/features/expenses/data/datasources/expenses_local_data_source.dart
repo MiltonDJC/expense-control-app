@@ -18,9 +18,7 @@ class ExpensesLocalDataSource {
   }
 
   Future<void> deleteExpense({required int id}) async {
-    await appDatabase.expense.deleteWhere(
-      (expenseTable) => expenseTable.id.equals(id),
-    );
+    await appDatabase.managers.expense.filter((f) => f.id(id)).delete();
   }
 
   Future<void> updateExpense({
