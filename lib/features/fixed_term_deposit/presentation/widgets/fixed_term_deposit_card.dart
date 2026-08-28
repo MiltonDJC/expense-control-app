@@ -73,6 +73,7 @@ class FixedTermDepositCard extends StatelessWidget {
             Row(
               children: [
                 Column(
+                  spacing: 16,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
