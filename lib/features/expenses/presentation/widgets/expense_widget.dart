@@ -27,15 +27,63 @@ class ExpenseWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 10,
+          spacing: 28,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   expenseName,
-                  style: const TextStyle(fontSize: 26, fontWeight: .w600),
+                  style: const TextStyle(fontSize: 28, fontWeight: .w600),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  spacing: 12,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: onEdited,
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Color(0xFF2F3776),
+                        size: 22,
+                      ),
+                      label: const Text(
+                        'Editar',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: onDeleted,
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Color(0xFFFF0033),
+                        size: 22,
+                      ),
+                      label: const Text(
+                        'Eliminar',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
+                Text(
+                  getPayMethodName(payMethod),
+                  style: const TextStyle(fontSize: 24),
+                ),
+                if (bankName != null)
+                  Text(
+                    ' (${getBankName(bankName!)})',
+                    style: const TextStyle(fontSize: 24),
+                  ),
+              ],
+            ),
+            Row(
+              children: [
                 if (isFixed)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -48,44 +96,6 @@ class ExpenseWidget extends StatelessWidget {
                       style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
                   ),
-              ],
-            ),
-            Row(
-              children: [
-                const Text('Pagado con: ', style: TextStyle(fontSize: 20)),
-                Text(
-                  getPayMethodName(payMethod),
-                  style: const TextStyle(fontSize: 20),
-                ),
-                if (bankName != null)
-                  Text(
-                    ' (${getBankName(bankName!)})',
-                    style: const TextStyle(fontSize: 20),
-                  ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              spacing: 12,
-              children: [
-                OutlinedButton.icon(
-                  onPressed: onEdited,
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Color(0xFF2F3776),
-                    size: 22,
-                  ),
-                  label: const Text('Editar', style: TextStyle(fontSize: 22)),
-                ),
-                OutlinedButton.icon(
-                  onPressed: onDeleted,
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Color(0xFFFF0033),
-                    size: 22,
-                  ),
-                  label: const Text('Eliminar', style: TextStyle(fontSize: 22)),
-                ),
               ],
             ),
           ],
