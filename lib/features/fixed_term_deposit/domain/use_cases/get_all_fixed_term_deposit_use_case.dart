@@ -1,8 +1,8 @@
 import 'package:expense_control_app/features/fixed_term_deposit/domain/entities/fixed_term_deposit_entity.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/domain/repositories/fixed_term_deposit_repository.dart';
 
-class GetAllFixedTermDeposit {
-  GetAllFixedTermDeposit({required this.fixedTermDepositRepository});
+class GetAllFixedTermDepositsUseCase {
+  GetAllFixedTermDepositsUseCase({required this.fixedTermDepositRepository});
 
   final FixedTermDepositRepository fixedTermDepositRepository;
 
