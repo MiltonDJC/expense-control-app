@@ -10,11 +10,17 @@ class ExpensesLocalDataSource {
   final AppDatabase appDatabase;
 
   Future<List<ExpenseModel>> getAllExpenses() async {
-    final expensesRows = await appDatabase.managers.expense.get();
-    final expensesModels = expensesRows
-        .map((expenseRow) => ExpenseModel.fromDrift(expenseRow))
-        .toList();
-    return expensesModels;
+    try {
+      final expensesRows = await appDatabase.managers.expense.get();
+      final expensesModels = expensesRows
+          .map((expenseRow) => ExpenseModel.fromDrift(expenseRow))
+          .toList();
+      return expensesModels;
+    } catch (e) {
+      throw Exception(
+        'No se pudo obtener los gastos registrados en la base de datos.',
+      );
+    }
   }
 
   Future<void> deleteExpense({required int id}) async {
