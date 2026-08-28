@@ -1,5 +1,5 @@
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_widget.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +24,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                 child: ListView.builder(
                   itemCount: state.fixedTermDeposits.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return FixedTermDepositWidget(
+                    return FixedTermDepositCard(
                       id: state.fixedTermDeposits[index].id,
                       fixedTermDepositName: state.fixedTermDeposits[index].name,
                       depositAmount:
