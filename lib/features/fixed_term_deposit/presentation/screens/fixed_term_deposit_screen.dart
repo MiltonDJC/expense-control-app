@@ -46,6 +46,22 @@ class FixedTermDepositScreen extends ConsumerWidget {
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await ref
+              .read(fixedTermDepositProvider.notifier)
+              .addFixedTermDeposit(
+                depositAmount: 50.0,
+                depositDate: DateTime(2030, 1, 1),
+                depositDueDate: DateTime(2030, 2, 2),
+                dolarPrice: 10.0,
+                name: 'Deposito agregado',
+              );
+          ref.invalidate(fixedTermDepositProvider);
+        },
+        tooltip: 'Agregar nuevo gasto',
+        child: const Icon(Icons.add, size: 32),
+      ),
     );
   }
 }
