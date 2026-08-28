@@ -19,28 +19,32 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : ListView.builder(
-                itemCount: state.fixedTermDeposits.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return FixedTermDepositWidget(
-                    id: state.fixedTermDeposits[index].id,
-                    fixedTermDepositName: state.fixedTermDeposits[index].name,
-                    depositAmount: state.fixedTermDeposits[index].depositAmount,
-                    depositDate: state.fixedTermDeposits[index].depositDate,
-                    depositDueDate:
-                        state.fixedTermDeposits[index].depositDueDate,
-                    dolarPrice: state.fixedTermDeposits[index].dolarPrice,
-                    onDeleted: () async {
-                      await ref
-                          .read(fixedTermDepositProvider.notifier)
-                          .deleteFixedTermDeposit(
-                            id: state.fixedTermDeposits[index].id,
-                          );
-                      ref.invalidate(fixedTermDepositProvider);
-                    },
-                    onEdited: () {},
-                  );
-                },
+            : Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ListView.builder(
+                  itemCount: state.fixedTermDeposits.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FixedTermDepositWidget(
+                      id: state.fixedTermDeposits[index].id,
+                      fixedTermDepositName: state.fixedTermDeposits[index].name,
+                      depositAmount:
+                          state.fixedTermDeposits[index].depositAmount,
+                      depositDate: state.fixedTermDeposits[index].depositDate,
+                      depositDueDate:
+                          state.fixedTermDeposits[index].depositDueDate,
+                      dolarPrice: state.fixedTermDeposits[index].dolarPrice,
+                      onDeleted: () async {
+                        await ref
+                            .read(fixedTermDepositProvider.notifier)
+                            .deleteFixedTermDeposit(
+                              id: state.fixedTermDeposits[index].id,
+                            );
+                        ref.invalidate(fixedTermDepositProvider);
+                      },
+                      onEdited: () {},
+                    );
+                  },
+                ),
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
@@ -52,8 +56,8 @@ class FixedTermDepositScreen extends ConsumerWidget {
               .read(fixedTermDepositProvider.notifier)
               .addFixedTermDeposit(
                 depositAmount: 50.0,
-                depositDate: DateTime(2030, 1, 1),
-                depositDueDate: DateTime(2030, 2, 2),
+                depositDate: DateTime(2030, 1, 10),
+                depositDueDate: DateTime(2030, 2, 12),
                 dolarPrice: 10.0,
                 name: 'Deposito agregado',
               );
