@@ -47,11 +47,11 @@ class FixedTermDepositWidget extends StatelessWidget {
                   spacing: 12,
                   children: [
                     Text(
-                      'Fecha de depósito: ${depositDate.day}\\${depositDate.month}\\${depositDate.year}',
+                      'Fecha de depósito: ${depositDate.day.toString().length > 1 ? '${depositDate.day}' : '0${depositDate.day}'}\\${depositDate.month.toString().length > 1 ? '${depositDate.month}' : '0${depositDate.month}'}\\${depositDate.year}',
                       style: const TextStyle(fontSize: 20),
                     ),
                     Text(
-                      'Fecha de vencimiento: ${depositDueDate.day}\\${depositDueDate.month}\\${depositDueDate.year}',
+                      'Fecha de vencimiento: ${depositDueDate.day.toString().length > 1 ? '${depositDueDate.day}' : '0${depositDueDate.day}'}\\${depositDueDate.month.toString().length > 1 ? '${depositDueDate.month}' : '0${depositDueDate.month}'}\\${depositDueDate.year}',
                       style: const TextStyle(fontSize: 20),
                     ),
                     Text(
