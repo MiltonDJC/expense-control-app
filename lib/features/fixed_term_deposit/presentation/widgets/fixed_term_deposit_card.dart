@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FixedTermDepositWidget extends StatelessWidget {
+class FixedTermDepositCard extends StatelessWidget {
   const new({
     super.key,
     required this.id,
