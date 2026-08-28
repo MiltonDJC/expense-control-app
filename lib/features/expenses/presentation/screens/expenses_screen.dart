@@ -36,9 +36,9 @@ class ExpensesScreen extends ConsumerWidget {
                             .read(expensesProvider.notifier)
                             .updateExpense(
                               id: state.expenses[index].id,
-                              name: 'Tarea actualizada',
+                              name: 'Gasto actualizado',
                               bank: Bank.bancoProvincia,
-                              isFixed: false,
+                              isFixed: true,
                               payMethod: PayMethod.mercadoPago,
                             );
                         ref.invalidate(expensesProvider);
