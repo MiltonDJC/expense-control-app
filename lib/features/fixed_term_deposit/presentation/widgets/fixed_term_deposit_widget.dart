@@ -29,14 +29,14 @@ class FixedTermDepositWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 10,
+          spacing: 28,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   fixedTermDepositName,
-                  style: const TextStyle(fontSize: 26, fontWeight: .w600),
+                  style: const TextStyle(fontSize: 28, fontWeight: .w600),
                 ),
               ],
             ),
@@ -44,23 +44,22 @@ class FixedTermDepositWidget extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 12,
                   children: [
                     Text(
                       'Fecha de depósito: ${depositDate.day.toString().length > 1 ? '${depositDate.day}' : '0${depositDate.day}'}\\${depositDate.month.toString().length > 1 ? '${depositDate.month}' : '0${depositDate.month}'}\\${depositDate.year}',
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 24),
                     ),
                     Text(
                       'Fecha de vencimiento: ${depositDueDate.day.toString().length > 1 ? '${depositDueDate.day}' : '0${depositDueDate.day}'}\\${depositDueDate.month.toString().length > 1 ? '${depositDueDate.month}' : '0${depositDueDate.month}'}\\${depositDueDate.year}',
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 24),
                     ),
                     Text(
                       'Monto depositado: \$$depositAmount',
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 24),
                     ),
                     Text(
                       'Precio del dólar: \$$dolarPrice',
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 24),
                     ),
                   ],
                 ),
