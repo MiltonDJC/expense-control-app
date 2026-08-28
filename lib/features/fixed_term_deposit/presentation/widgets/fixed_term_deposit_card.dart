@@ -29,7 +29,7 @@ class FixedTermDepositCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 28,
+          spacing: 20,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,6 +37,36 @@ class FixedTermDepositCard extends StatelessWidget {
                 Text(
                   fixedTermDepositName,
                   style: const TextStyle(fontSize: 28, fontWeight: .w600),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  spacing: 12,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: onEdited,
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Color(0xFF2F3776),
+                        size: 22,
+                      ),
+                      label: const Text(
+                        'Editar',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: onDeleted,
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Color(0xFFFF0033),
+                        size: 22,
+                      ),
+                      label: const Text(
+                        'Eliminar',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -62,30 +92,6 @@ class FixedTermDepositCard extends StatelessWidget {
                       style: const TextStyle(fontSize: 24),
                     ),
                   ],
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              spacing: 12,
-              children: [
-                OutlinedButton.icon(
-                  onPressed: onEdited,
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Color(0xFF2F3776),
-                    size: 22,
-                  ),
-                  label: const Text('Editar', style: TextStyle(fontSize: 22)),
-                ),
-                OutlinedButton.icon(
-                  onPressed: onDeleted,
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Color(0xFFFF0033),
-                    size: 22,
-                  ),
-                  label: const Text('Eliminar', style: TextStyle(fontSize: 22)),
                 ),
               ],
             ),
