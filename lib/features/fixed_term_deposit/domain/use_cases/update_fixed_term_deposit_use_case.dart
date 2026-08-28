@@ -1,7 +1,7 @@
 import 'package:expense_control_app/features/fixed_term_deposit/domain/repositories/fixed_term_deposit_repository.dart';
 
-class UpdateFixedTermDeposit {
-  UpdateFixedTermDeposit({required this.fixedTermDepositRepository});
+class UpdateFixedTermDepositUseCase {
+  UpdateFixedTermDepositUseCase({required this.fixedTermDepositRepository});
 
   final FixedTermDepositRepository fixedTermDepositRepository;
 
@@ -16,7 +16,7 @@ class UpdateFixedTermDeposit {
     id: id,
     depositAmount: depositAmount,
     depositDate: depositDate,
-    depositDueDate: depositDate,
+    depositDueDate: depositDueDate,
     dolarPrice: dolarPrice,
     name: name,
   );
