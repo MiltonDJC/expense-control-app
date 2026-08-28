@@ -29,7 +29,7 @@ class FixedTermDepositCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 20,
+          spacing: 28,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
