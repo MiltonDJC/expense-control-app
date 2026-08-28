@@ -10,12 +10,14 @@ class UpdateExpenseUseCase {
   Future<void> call({
     required int id,
     String? name,
+    double? amount,
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
   }) => expensesRepository.updateExpense(
     id: id,
     name: name,
+    amount: amount,
     payMethod: payMethod,
     bank: bank,
     isFixed: isFixed,

@@ -26,6 +26,7 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
   Future<void> updateExpense({
     required int id,
     String? name,
+    double? amount,
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
@@ -33,6 +34,7 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
     await dataSource.updateExpense(
       id: id,
       name: name,
+      amount: amount,
       payMethod: payMethod,
       bank: bank,
       isFixed: isFixed,
@@ -42,12 +44,14 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
   @override
   Future<void> addExpense({
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
   }) async {
     await dataSource.addExpense(
       name: name,
+      amount: amount,
       payMethod: payMethod,
       bank: bank,
       isFixed: isFixed,

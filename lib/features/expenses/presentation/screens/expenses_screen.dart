@@ -28,6 +28,7 @@ class ExpensesScreen extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     return ExpenseWidget(
                       expenseName: state.expenses[index].name,
+                      amount: state.expenses[index].amount,
                       bankName: state.expenses[index].bank?.name,
                       isFixed: state.expenses[index].isFixed,
                       payMethod: state.expenses[index].payMethod.name,
@@ -63,6 +64,7 @@ class ExpensesScreen extends ConsumerWidget {
               .read(expensesProvider.notifier)
               .addExpense(
                 name: 'Gasto agregado',
+                amount: 100.0,
                 payMethod: PayMethod.debitCard,
                 bank: Bank.bancoComafi,
                 isFixed: false,

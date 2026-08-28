@@ -29,6 +29,7 @@ class ExpensesNotifier extends _$ExpensesNotifier {
   Future<void> updateExpense({
     required int id,
     String? name,
+    double? amount,
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
@@ -36,6 +37,7 @@ class ExpensesNotifier extends _$ExpensesNotifier {
     await ref.read(updateExpenseUseCaseProvider)(
       id: id,
       name: name,
+      amount: amount,
       payMethod: payMethod,
       bank: bank,
       isFixed: isFixed,
@@ -44,12 +46,14 @@ class ExpensesNotifier extends _$ExpensesNotifier {
 
   Future<void> addExpense({
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
   }) async {
     await ref.read(addExpenseUseCaseProvider)(
       name: name,
+      amount: amount,
       payMethod: payMethod,
       bank: bank,
       isFixed: isFixed,

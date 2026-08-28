@@ -30,6 +30,7 @@ class ExpensesLocalDataSource {
   Future<void> updateExpense({
     required int id,
     String? name,
+    double? amount,
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
@@ -39,6 +40,7 @@ class ExpensesLocalDataSource {
         .update(
           (o) => o(
             name: Value.absentIfNull(name),
+            amount: Value.absentIfNull(amount),
             payMethod: Value.absentIfNull(payMethod),
             bank: Value.absentIfNull(bank),
             isFixed: Value.absentIfNull(isFixed),
@@ -48,6 +50,7 @@ class ExpensesLocalDataSource {
 
   Future<void> addExpense({
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
@@ -55,6 +58,7 @@ class ExpensesLocalDataSource {
     await appDatabase.managers.expense.create(
       (o) => o(
         name: name,
+        amount: amount,
         payMethod: payMethod,
         bank: Value.absentIfNull(bank),
         isFixed: isFixed,

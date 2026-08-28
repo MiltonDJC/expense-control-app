@@ -9,11 +9,13 @@ class AddExpenseUseCase {
 
   Future<void> call({
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
   }) => expensesRepository.addExpense(
     name: name,
+    amount: amount,
     payMethod: payMethod,
     bank: bank,
     isFixed: isFixed,

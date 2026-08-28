@@ -6,6 +6,7 @@ class ExpenseWidget extends StatelessWidget {
   const new({
     super.key,
     required this.expenseName,
+    required this.amount,
     this.bankName,
     required this.isFixed,
     required this.payMethod,
@@ -14,6 +15,7 @@ class ExpenseWidget extends StatelessWidget {
   });
 
   final String expenseName;
+  final double amount;
   final String? bankName;
   final bool isFixed;
   final String payMethod;
@@ -68,18 +70,31 @@ class ExpenseWidget extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
+            Column(
+              spacing: 16,
               children: [
-                const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
-                Text(
-                  getPayMethodName(payMethod),
-                  style: const TextStyle(fontSize: 24),
+                Row(
+                  children: [
+                    Text(
+                      'Monto pagado: \$$amount',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                  ],
                 ),
-                if (bankName != null)
-                  Text(
-                    ' (${getBankName(bankName!)})',
-                    style: const TextStyle(fontSize: 24),
-                  ),
+                Row(
+                  children: [
+                    const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
+                    Text(
+                      getPayMethodName(payMethod),
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                    if (bankName != null)
+                      Text(
+                        ' (${getBankName(bankName!)})',
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                  ],
+                ),
               ],
             ),
             Row(

@@ -5,6 +5,7 @@ class ExpenseEntity {
   ExpenseEntity({
     required this.id,
     required this.name,
+    required this.amount,
     required this.payMethod,
     this.bank,
     required this.isFixed,
@@ -12,6 +13,7 @@ class ExpenseEntity {
 
   final int id;
   final String name;
+  final double amount;
   final PayMethod payMethod;
   final Bank? bank;
   final bool isFixed;

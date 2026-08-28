@@ -8,12 +8,14 @@ abstract class ExpensesRepository {
   Future<void> updateExpense({
     required int id,
     String? name,
+    double? amount,
     PayMethod? payMethod,
     Bank? bank,
     bool? isFixed,
   });
   Future<void> addExpense({
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,

@@ -12,6 +12,7 @@ abstract class ExpenseModel with _$ExpenseModel {
   const factory ExpenseModel({
     required int id,
     required String name,
+    required double amount,
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
@@ -20,6 +21,7 @@ abstract class ExpenseModel with _$ExpenseModel {
   factory ExpenseModel.fromDrift(ExpenseData expenseRow) => ExpenseModel(
     id: expenseRow.id,
     name: expenseRow.name,
+    amount: expenseRow.amount,
     payMethod: expenseRow.payMethod,
     bank: expenseRow.bank,
     isFixed: expenseRow.isFixed,
@@ -28,6 +30,7 @@ abstract class ExpenseModel with _$ExpenseModel {
   factory ExpenseModel.fromEntity(ExpenseEntity entity) => ExpenseModel(
     id: entity.id,
     name: entity.name,
+    amount: entity.amount,
     payMethod: entity.payMethod,
     bank: entity.bank,
     isFixed: entity.isFixed,
@@ -36,6 +39,7 @@ abstract class ExpenseModel with _$ExpenseModel {
   ExpenseEntity toEntity() => ExpenseEntity(
     id: id,
     name: name,
+    amount: amount,
     payMethod: payMethod,
     bank: bank,
     isFixed: isFixed,
