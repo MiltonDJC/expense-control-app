@@ -1,7 +1,7 @@
 import 'package:expense_control_app/features/fixed_term_deposit/domain/repositories/fixed_term_deposit_repository.dart';
 
-class AddFixedTermDeposit {
-  AddFixedTermDeposit({required this.fixedTermDepositRepository});
+class AddFixedTermDepositUseCase {
+  AddFixedTermDepositUseCase({required this.fixedTermDepositRepository});
 
   final FixedTermDepositRepository fixedTermDepositRepository;
 
