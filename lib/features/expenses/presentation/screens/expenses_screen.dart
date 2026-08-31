@@ -73,9 +73,9 @@ class ExpensesScreen extends ConsumerWidget {
                     child: ExpenseWidget(
                       expenseName: state.expenses[index].name,
                       amount: state.expenses[index].amount,
-                      bankName: state.expenses[index].bank?.name,
+                      bankName: state.expenses[index].bank,
                       isFixed: state.expenses[index].isFixed,
-                      payMethod: state.expenses[index].payMethod.name,
+                      payMethod: state.expenses[index].payMethod,
                     ),
                   );
                 },
@@ -91,8 +91,8 @@ class ExpensesScreen extends ConsumerWidget {
               .addExpense(
                 name: 'Gasto agregado',
                 amount: 100.0,
-                payMethod: PayMethod.debitCard,
-                bank: Bank.bancoComafi,
+                payMethod: PayMethod.mercadoPago,
+                bank: null,
                 isFixed: false,
               );
           ref.invalidate(expensesProvider);
