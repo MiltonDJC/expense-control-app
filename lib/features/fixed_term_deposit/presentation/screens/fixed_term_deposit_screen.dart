@@ -112,40 +112,30 @@ class FixedTermDepositScreen extends ConsumerWidget {
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      persistentFooterButtons: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          await ref
+              .read(fixedTermDepositProvider.notifier)
+              .addFixedTermDeposit(
+                depositAmount: 6,
+                depositAmountReceived: 100,
+                depositDate: DateTime(2000, 1, 1),
+                depositDueDate: DateTime(2000, 1, 30),
+                dolarPrice: 1.0,
+                name: 'Depósito actualizado',
+              );
+          ref.invalidate(fixedTermDepositProvider);
+        },
+        label: const Row(
           children: [
-            FloatingActionButton.extended(
-              onPressed: () async {
-                await ref
-                    .read(fixedTermDepositProvider.notifier)
-                    .addFixedTermDeposit(
-                      depositAmount: 6,
-                      depositAmountReceived: 100,
-                      depositDate: DateTime(2000, 1, 1),
-                      depositDueDate: DateTime(2000, 1, 30),
-                      dolarPrice: 1.0,
-                      name: 'Depósito actualizado',
-                    );
-                ref.invalidate(fixedTermDepositProvider);
-              },
-              label: const Row(
-                children: [
-                  Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
-                  SizedBox(width: 6),
-                  Text(
-                    'Agregar plazo fijo',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
+            Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
+            SizedBox(width: 6),
+            Text(
+              'Agregar plazo fijo',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
             ),
           ],
         ),
-      ],
-      persistentFooterDecoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.black)),
       ),
     );
   }
