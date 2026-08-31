@@ -69,7 +69,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
       ),
-      body: screens[selectedIndex],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: screens[selectedIndex],
+      ),
     );
   }
 }
