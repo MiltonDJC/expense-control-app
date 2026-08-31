@@ -7,7 +7,7 @@ class EditActionButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton.icon(
+    return ElevatedButton.icon(
       onPressed: onEdited,
       icon: const Icon(Icons.edit, color: Color(0xFF2F3776), size: 22),
       label: const Text('Editar', style: TextStyle(fontSize: 22)),
