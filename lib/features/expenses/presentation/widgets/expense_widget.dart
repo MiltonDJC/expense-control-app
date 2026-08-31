@@ -1,7 +1,7 @@
 import 'package:expense_control_app/core/presentation/widgets/delete_action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/edit_action_button_widget.dart';
-import 'package:expense_control_app/features/expenses/presentation/utils/get_bank_name.dart';
-import 'package:expense_control_app/features/expenses/presentation/utils/get_pay_method_name.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseWidget extends StatelessWidget {
