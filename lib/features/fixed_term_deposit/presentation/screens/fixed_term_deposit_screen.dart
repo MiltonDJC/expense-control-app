@@ -144,7 +144,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
           ],
         ),
       ],
-      persistentFooterDecoration: BoxDecoration(
+      persistentFooterDecoration: const BoxDecoration(
         border: Border(top: BorderSide(color: Colors.black)),
       ),
     );
