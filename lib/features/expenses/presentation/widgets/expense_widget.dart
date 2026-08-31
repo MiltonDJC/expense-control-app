@@ -1,5 +1,3 @@
-import 'package:expense_control_app/core/presentation/widgets/delete_action_button_widget.dart';
-import 'package:expense_control_app/core/presentation/widgets/edit_action_button_widget.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +10,6 @@ class ExpenseWidget extends StatelessWidget {
     this.bankName,
     required this.isFixed,
     required this.payMethod,
-    required this.onDeleted,
-    required this.onEdited,
   });
 
   final String expenseName;
@@ -21,8 +17,6 @@ class ExpenseWidget extends StatelessWidget {
   final String? bankName;
   final bool isFixed;
   final String payMethod;
-  final VoidCallback onDeleted;
-  final VoidCallback onEdited;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +33,6 @@ class ExpenseWidget extends StatelessWidget {
                 Text(
                   expenseName,
                   style: const TextStyle(fontSize: 28, fontWeight: .w600),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  spacing: 12,
-                  children: [
-                    EditActionButtonWidget(onEdited: onEdited),
-                    DeleteActionButtonWidget(onDeleted: onDeleted),
-                  ],
                 ),
               ],
             ),
