@@ -21,38 +21,35 @@ class ExpensesScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: ListView.builder(
-                  itemCount: state.expenses.length,
-                  itemBuilder: (context, index) {
-                    return ExpenseWidget(
-                      expenseName: state.expenses[index].name,
-                      amount: state.expenses[index].amount,
-                      bankName: state.expenses[index].bank?.name,
-                      isFixed: state.expenses[index].isFixed,
-                      payMethod: state.expenses[index].payMethod.name,
-                      onEdited: () async {
-                        await ref
-                            .read(expensesProvider.notifier)
-                            .updateExpense(
-                              id: state.expenses[index].id,
-                              name: 'Gasto actualizado',
-                              bank: Bank.bancoProvincia,
-                              isFixed: true,
-                              payMethod: PayMethod.mercadoPago,
-                            );
-                        ref.invalidate(expensesProvider);
-                      },
-                      onDeleted: () async {
-                        await ref
-                            .read(expensesProvider.notifier)
-                            .deleteExpense(id: state.expenses[index].id);
-                        ref.invalidate(expensesProvider);
-                      },
-                    );
-                  },
-                ),
+            : ListView.builder(
+                itemCount: state.expenses.length,
+                itemBuilder: (context, index) {
+                  return ExpenseWidget(
+                    expenseName: state.expenses[index].name,
+                    amount: state.expenses[index].amount,
+                    bankName: state.expenses[index].bank?.name,
+                    isFixed: state.expenses[index].isFixed,
+                    payMethod: state.expenses[index].payMethod.name,
+                    onEdited: () async {
+                      await ref
+                          .read(expensesProvider.notifier)
+                          .updateExpense(
+                            id: state.expenses[index].id,
+                            name: 'Gasto actualizado',
+                            bank: Bank.bancoProvincia,
+                            isFixed: true,
+                            payMethod: PayMethod.mercadoPago,
+                          );
+                      ref.invalidate(expensesProvider);
+                    },
+                    onDeleted: () async {
+                      await ref
+                          .read(expensesProvider.notifier)
+                          .deleteExpense(id: state.expenses[index].id);
+                      ref.invalidate(expensesProvider);
+                    },
+                  );
+                },
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
