@@ -2,6 +2,7 @@ import 'package:expense_control_app/features/fixed_term_deposit/presentation/sta
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FixedTermDepositScreen extends ConsumerWidget {
   const new({super.key});
@@ -19,12 +20,58 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: ListView.builder(
-                  itemCount: state.fixedTermDeposits.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return FixedTermDepositCard(
+            : ListView.builder(
+                itemCount: state.fixedTermDeposits.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Slidable(
+                    key: Key(state.fixedTermDeposits[index].id.toString()),
+                    startActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      extentRatio: 0.2,
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) async {
+                            await ref
+                                .read(fixedTermDepositProvider.notifier)
+                                .updateFixedTermDeposit(
+                                  id: state.fixedTermDeposits[index].id,
+                                  depositAmount: 6,
+                                  depositAmountReceived: 100,
+                                  depositDate: DateTime(2000, 1, 1),
+                                  depositDueDate: DateTime(2000, 1, 6),
+                                  dolarPrice: 1.0,
+                                  name: 'Depósito actualizado',
+                                );
+                            ref.invalidate(fixedTermDepositProvider);
+                          },
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          icon: Icons.edit,
+                          label: 'Editar',
+                        ),
+                      ],
+                    ),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      extentRatio: 0.2,
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) async {
+                            await ref
+                                .read(fixedTermDepositProvider.notifier)
+                                .deleteFixedTermDeposit(
+                                  id: state.fixedTermDeposits[index].id,
+                                );
+                            ref.invalidate(fixedTermDepositProvider);
+                          },
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Eliminar',
+                        ),
+                      ],
+                    ),
+                    child: FixedTermDepositCard(
                       id: state.fixedTermDeposits[index].id,
                       fixedTermDepositName: state.fixedTermDeposits[index].name,
                       depositAmount:
@@ -51,36 +98,54 @@ class FixedTermDepositScreen extends ConsumerWidget {
                               depositAmount: 6,
                               depositAmountReceived: 100,
                               depositDate: DateTime(2000, 1, 1),
-                              depositDueDate: DateTime(2001, 1, 1),
+                              depositDueDate: DateTime(2000, 1, 6),
                               dolarPrice: 1.0,
                               name: 'Depósito actualizado',
                             );
                         ref.invalidate(fixedTermDepositProvider);
                       },
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await ref
-              .read(fixedTermDepositProvider.notifier)
-              .addFixedTermDeposit(
-                depositAmount: 50.0,
-                depositAmountReceived: 50.0,
-                depositDate: DateTime(2030, 1, 10),
-                depositDueDate: DateTime(2030, 2, 12),
-                dolarPrice: 10.0,
-                name: 'Depósito agregado',
-              );
-          ref.invalidate(fixedTermDepositProvider);
-        },
-        tooltip: 'Agregar nuevo gasto',
-        child: const Icon(Icons.add, size: 32),
+      persistentFooterButtons: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton.extended(
+              onPressed: () async {
+                await ref
+                    .read(fixedTermDepositProvider.notifier)
+                    .addFixedTermDeposit(
+                      depositAmount: 6,
+                      depositAmountReceived: 100,
+                      depositDate: DateTime(2000, 1, 1),
+                      depositDueDate: DateTime(2000, 1, 30),
+                      dolarPrice: 1.0,
+                      name: 'Depósito actualizado',
+                    );
+                ref.invalidate(fixedTermDepositProvider);
+              },
+              label: const Row(
+                children: [
+                  Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
+                  SizedBox(width: 6),
+                  Text(
+                    'Agregar plazo fijo',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+      persistentFooterDecoration: BoxDecoration(
+        border: Border(top: BorderSide(color: Colors.black)),
       ),
     );
   }
