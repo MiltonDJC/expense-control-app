@@ -1,3 +1,5 @@
+import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +16,9 @@ class ExpenseWidget extends StatelessWidget {
 
   final String expenseName;
   final double amount;
-  final String? bankName;
+  final Bank? bankName;
   final bool isFixed;
-  final String payMethod;
+  final PayMethod payMethod;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,18 @@ class ExpenseWidget extends StatelessWidget {
                   expenseName,
                   style: const TextStyle(fontSize: 28, fontWeight: .w600),
                 ),
+                if (isFixed)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: const Text(
+                      'Gasto Fijo',
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                  ),
               ],
             ),
             Column(
@@ -51,32 +65,16 @@ class ExpenseWidget extends StatelessWidget {
                   children: [
                     const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
                     Text(
-                      getPayMethodName(payMethod),
+                      getPayMethodName(payMethod.name),
                       style: const TextStyle(fontSize: 24),
                     ),
                     if (bankName != null)
                       Text(
-                        ' (${getBankName(bankName!)})',
+                        ' (${getBankName(bankName!.name)})',
                         style: const TextStyle(fontSize: 24),
                       ),
                   ],
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                if (isFixed)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: const Text(
-                      'Gasto Fijo',
-                      style: TextStyle(fontSize: 24, color: Colors.white),
-                    ),
-                  ),
               ],
             ),
           ],
