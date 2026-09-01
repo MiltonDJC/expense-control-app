@@ -1,7 +1,7 @@
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
+import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
-import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog/expense_alert_dialog_widget.dart';
+import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_add_widget.dart';
+import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_update_widget.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_information_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,33 +37,13 @@ class ExpensesScreen extends ConsumerWidget {
                             await showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialog(
-                                  actions: [
-                                    ElevatedButton(
-                                      onPressed: () async =>
-                                          Navigator.pop(context),
-                                      child: const Text('Volver'),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        await ref
-                                            .read(expensesProvider.notifier)
-                                            .updateExpense(
-                                              id: state.expenses[index].id,
-                                              amount: 6,
-                                              bank: Bank.bancoComafi,
-                                              isFixed: true,
-                                              payMethod: PayMethod.creditCard,
-                                              name: 'Depósito actualizado',
-                                            );
-                                        ref.invalidate(expensesProvider);
-                                        if (context.mounted) {
-                                          Navigator.pop(context);
-                                        }
-                                      },
-                                      child: const Text('Confirmar'),
-                                    ),
-                                  ],
+                                return ExpenseAlertDialogFormUpdateWidget(
+                                  id: state.expenses[index].id,
+                                  expenseName: state.expenses[index].name,
+                                  amount: state.expenses[index].amount,
+                                  bankName: state.expenses[index].bank,
+                                  isFixed: state.expenses[index].isFixed,
+                                  payMethod: state.expenses[index].payMethod,
                                 );
                               },
                             );
@@ -85,14 +65,19 @@ class ExpensesScreen extends ConsumerWidget {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
+                                  title: const Center(
+                                    child: Text(
+                                      '¿Segura que quiere eliminar este gasto?',
+                                    ),
+                                  ),
                                   actions: [
-                                    ElevatedButton(
+                                    ActionButtonWidget(
                                       onPressed: () async {
                                         Navigator.pop(context);
                                       },
-                                      child: const Text('Volver'),
+                                      text: 'Cancelar',
                                     ),
-                                    ElevatedButton(
+                                    ActionButtonWidget(
                                       onPressed: () async {
                                         await ref
                                             .read(expensesProvider.notifier)
@@ -104,7 +89,7 @@ class ExpensesScreen extends ConsumerWidget {
                                           Navigator.pop(context);
                                         }
                                       },
-                                      child: const Text('Confirmar'),
+                                      text: 'Confirmar',
                                     ),
                                   ],
                                 );
@@ -137,7 +122,7 @@ class ExpensesScreen extends ConsumerWidget {
           await showDialog(
             context: context,
             builder: (context) {
-              return const ExpenseAlertDialogWidget();
+              return const ExpenseAlertDialogFormAddWidget();
             },
           );
         },
