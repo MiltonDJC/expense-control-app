@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
 
 class ActionButtonWidget extends StatelessWidget {
-  const new({
-    super.key,
-    required this.backgroundColor,
-    required this.onPressed,
-    required this.text,
-    required this.textColor,
-  });
+  const new({super.key, required this.onPressed, required this.text});
 
-  final Color backgroundColor;
   final VoidCallback onPressed;
   final String text;
-  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        backgroundColor: backgroundColor,
+        backgroundColor: text == 'Confirmar' ? Colors.blue : Colors.red,
       ),
       onPressed: onPressed,
-      child: Text(text, style: TextStyle(fontSize: 18, color: textColor)),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18, color: Colors.white),
+      ),
     );
   }
 }
