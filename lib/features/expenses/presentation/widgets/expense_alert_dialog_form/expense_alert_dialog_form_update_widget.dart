@@ -3,6 +3,7 @@ import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/enums/expense_sections_type.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_dropdown_section.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_section.dart';
@@ -60,13 +61,10 @@ class _ExpenseAlertDialogFormUpdateWidgetState
 
   @override
   Widget build(BuildContext context) {
-    payMethodSelected = widget.payMethod;
-    bankSelected = widget.bankName;
-
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: const Text(
-        'Registrar Gasto',
+        'Actualizar Gasto',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       content: Form(
@@ -136,6 +134,7 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                           payMethodSelected!.index != PayMethod.cash.index) {
                         sectionAvailable = true;
                       } else {
+                        bankSelected = null;
                         sectionAvailable = false;
                       }
                     });
@@ -145,13 +144,12 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                   sectionAvailable: sectionAvailable,
                   expenseDropdownSectionType: ExpenseDropdownSectionType.bank,
                   bankValidator: (value) {
-                    if (widget.bankName!.name.isNotEmpty) return null;
                     if (value == null) return 'Seleccione un banco';
                     return null;
                   },
                   title: 'Banco',
                   hint:
-                      'Banco actual seleccionado: ${widget.bankName ?? 'Ninguno'}',
+                      'Banco actual seleccionado: ${getBankName(widget.bankName?.name ?? '')}',
                   onChangedBankSelected: (value) {
                     setState(() => bankSelected = value);
                   },
@@ -192,16 +190,18 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                     name: expenseNameController.text.isEmpty
                         ? widget.expenseName
                         : expenseNameController.text,
-                    amount: expenseNameController.text.isEmpty
+                    amount: expenseAmountController.text.isEmpty
                         ? widget.amount
                         : double.tryParse(expenseAmountController.text),
-                    payMethod: payMethodSelected,
+                    payMethod: payMethodSelected ?? widget.payMethod,
                     bank:
-                        payMethodSelected!.index !=
-                                PayMethod.mercadoPago.index &&
-                            payMethodSelected!.index != PayMethod.cash.index
+                        ((payMethodSelected?.index ==
+                                    PayMethod.mercadoPago.index ||
+                                payMethodSelected?.index ==
+                                    PayMethod.cash.index) &&
+                            bankSelected == null)
                         ? bankSelected
-                        : null,
+                        : bankSelected ?? widget.bankName,
                     isFixed: isFixed ?? widget.isFixed,
                   );
               ref.invalidate(expensesProvider);
