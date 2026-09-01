@@ -3,11 +3,13 @@ import 'package:expense_control_app/features/expenses/domain/enums/pay_method.da
 import 'package:expense_control_app/features/expenses/presentation/enums/expense_sections_type.dart';
 import 'package:flutter/material.dart';
 
-class ExpenseAlertDialogDropdownSection extends StatelessWidget {
+class ExpenseAlertDialogFormDropdownSection extends StatelessWidget {
   const new({
     super.key,
     required this.sectionAvailable,
     required this.expenseDropdownSectionType,
+    this.payMethodValidator,
+    this.bankValidator,
     required this.title,
     required this.hint,
     this.onChangedPayMethodSelected,
@@ -16,6 +18,8 @@ class ExpenseAlertDialogDropdownSection extends StatelessWidget {
 
   final bool sectionAvailable;
   final ExpenseDropdownSectionType expenseDropdownSectionType;
+  final FormFieldValidator<PayMethod>? payMethodValidator;
+  final FormFieldValidator<Bank>? bankValidator;
   final String title;
   final String hint;
   final ValueChanged<PayMethod?>? onChangedPayMethodSelected;
@@ -72,6 +76,7 @@ class ExpenseAlertDialogDropdownSection extends StatelessWidget {
                           ),
                         ],
                         onChanged: onChangedPayMethodSelected,
+                        validator: payMethodValidator,
                       )
                     : DropdownButtonFormField<Bank>(
                         hint: Text(hint, style: const TextStyle(fontSize: 16)),
@@ -103,6 +108,7 @@ class ExpenseAlertDialogDropdownSection extends StatelessWidget {
                           ),
                         ],
                         onChanged: onChangedBankSelected,
+                        validator: bankValidator,
                       ),
                 const SizedBox(height: 16),
               ],

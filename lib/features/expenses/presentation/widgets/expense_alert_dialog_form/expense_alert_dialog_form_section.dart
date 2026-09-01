@@ -1,10 +1,11 @@
 import 'package:expense_control_app/features/expenses/presentation/enums/expense_sections_type.dart';
 import 'package:flutter/material.dart';
 
-class ExpenseAlertDialogSection extends StatefulWidget {
+class ExpenseAlertDialogFormSection extends StatefulWidget {
   const new({
     super.key,
     required this.expenseSectionType,
+    required this.validator,
     required this.controller,
     required this.title,
     required this.hintText,
@@ -12,15 +13,17 @@ class ExpenseAlertDialogSection extends StatefulWidget {
 
   final ExpenseSectionType expenseSectionType;
   final TextEditingController controller;
+  final FormFieldValidator<String>? validator;
   final String title;
   final String hintText;
 
   @override
-  State<ExpenseAlertDialogSection> createState() =>
-      ExpenseAlertDialogSectionState();
+  State<ExpenseAlertDialogFormSection> createState() =>
+      ExpenseAlertDialogFormSectionState();
 }
 
-class ExpenseAlertDialogSectionState extends State<ExpenseAlertDialogSection> {
+class ExpenseAlertDialogFormSectionState
+    extends State<ExpenseAlertDialogFormSection> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,9 +35,11 @@ class ExpenseAlertDialogSectionState extends State<ExpenseAlertDialogSection> {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
-          TextField(
+          TextFormField(
+            validator: widget.validator,
+            autovalidateMode: AutovalidateMode.onUserInteractionIfError,
             controller: widget.controller,
-            keyboardType: ExpenseSectionType.amount.name == 'amount'
+            keyboardType: widget.expenseSectionType.name == 'amount'
                 ? const TextInputType.numberWithOptions(decimal: true)
                 : TextInputType.text,
             style: const TextStyle(fontSize: 18),
