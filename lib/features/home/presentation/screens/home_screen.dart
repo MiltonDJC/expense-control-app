@@ -33,36 +33,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) =>
               setState(() => selectedIndex = value),
-          indicatorColor: Colors.transparent,
-          indicatorShape: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(.circular(10)),
-          ),
+          indicatorColor: Theme.of(context).focusColor,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
           labelTextStyle: const WidgetStatePropertyAll(
-            TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.account_balance_wallet_outlined),
-              selectedIcon: Icon(Icons.account_balance_wallet),
+              icon: Icon(Icons.account_balance_wallet_outlined, size: 28),
+              selectedIcon: Icon(Icons.account_balance_wallet, size: 32),
               label: 'Balance',
               tooltip: 'Mi balance',
             ),
             NavigationDestination(
-              icon: Icon(Icons.savings_outlined),
-              selectedIcon: Icon(Icons.savings),
+              icon: Icon(Icons.savings_outlined, size: 28),
+              selectedIcon: Icon(Icons.savings, size: 32),
               label: 'Bolsillos',
               tooltip: 'Mis bolsillos',
             ),
             NavigationDestination(
-              icon: Icon(Icons.money_off_csred_outlined),
-              selectedIcon: Icon(Icons.money_off_csred),
+              icon: Icon(Icons.money_off_csred_outlined, size: 28),
+              selectedIcon: Icon(Icons.money_off_csred, size: 32),
               label: 'Gastos',
               tooltip: 'Mis gastos',
             ),
             NavigationDestination(
-              icon: Icon(Icons.account_balance_outlined),
-              selectedIcon: Icon(Icons.account_balance),
+              icon: Icon(Icons.account_balance_outlined, size: 28),
+              selectedIcon: Icon(Icons.account_balance, size: 32),
               label: 'Plazos Fijos',
               tooltip: 'Mis plazos fijos',
             ),
