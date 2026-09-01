@@ -1,7 +1,8 @@
 import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
-import 'package:expense_control_app/features/expenses/presentation/widgets/expense_widget.dart';
+import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog/expense_alert_dialog_widget.dart';
+import 'package:expense_control_app/features/expenses/presentation/widgets/expense_information_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -33,17 +34,39 @@ class ExpensesScreen extends ConsumerWidget {
                       children: [
                         SlidableAction(
                           onPressed: (context) async {
-                            await ref
-                                .read(expensesProvider.notifier)
-                                .updateExpense(
-                                  id: state.expenses[index].id,
-                                  amount: 6,
-                                  bank: Bank.bancoComafi,
-                                  isFixed: true,
-                                  payMethod: PayMethod.creditCard,
-                                  name: 'Depósito actualizado',
+                            await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () async =>
+                                          Navigator.pop(context),
+                                      child: const Text('Volver'),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        await ref
+                                            .read(expensesProvider.notifier)
+                                            .updateExpense(
+                                              id: state.expenses[index].id,
+                                              amount: 6,
+                                              bank: Bank.bancoComafi,
+                                              isFixed: true,
+                                              payMethod: PayMethod.creditCard,
+                                              name: 'Depósito actualizado',
+                                            );
+                                        ref.invalidate(expensesProvider);
+                                        if (context.mounted) {
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      child: const Text('Confirmar'),
+                                    ),
+                                  ],
                                 );
-                            ref.invalidate(expensesProvider);
+                              },
+                            );
                           },
                           backgroundColor: Colors.blue,
                           foregroundColor: Colors.white,
@@ -58,10 +81,35 @@ class ExpensesScreen extends ConsumerWidget {
                       children: [
                         SlidableAction(
                           onPressed: (context) async {
-                            await ref
-                                .read(expensesProvider.notifier)
-                                .deleteExpense(id: state.expenses[index].id);
-                            ref.invalidate(expensesProvider);
+                            await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Volver'),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        await ref
+                                            .read(expensesProvider.notifier)
+                                            .deleteExpense(
+                                              id: state.expenses[index].id,
+                                            );
+                                        ref.invalidate(expensesProvider);
+                                        if (context.mounted) {
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      child: const Text('Confirmar'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
@@ -70,7 +118,7 @@ class ExpensesScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    child: ExpenseWidget(
+                    child: ExpenseInformationWidget(
                       expenseName: state.expenses[index].name,
                       amount: state.expenses[index].amount,
                       bankName: state.expenses[index].bank,
@@ -86,16 +134,12 @@ class ExpensesScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await ref
-              .read(expensesProvider.notifier)
-              .addExpense(
-                name: 'Gasto agregado',
-                amount: 100.0,
-                payMethod: PayMethod.mercadoPago,
-                bank: null,
-                isFixed: false,
-              );
-          ref.invalidate(expensesProvider);
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return const ExpenseAlertDialogWidget();
+            },
+          );
         },
         tooltip: 'Agregar nuevo gasto',
         child: const Icon(Icons.add, size: 32),
