@@ -42,7 +42,7 @@ class ExpensesLocalDataSource {
             name: Value.absentIfNull(name),
             amount: Value.absentIfNull(amount),
             payMethod: Value.absentIfNull(payMethod),
-            bank: Value.absentIfNull(bank),
+            bank: Value(bank),
             isFixed: Value.absentIfNull(isFixed),
           ),
         );
