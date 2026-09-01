@@ -4,7 +4,7 @@ import 'package:expense_control_app/features/expenses/presentation/utils/bank_ut
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
 import 'package:flutter/material.dart';
 
-class ExpenseWidget extends StatelessWidget {
+class ExpenseInformationWidget extends StatelessWidget {
   const new({
     super.key,
     required this.expenseName,
