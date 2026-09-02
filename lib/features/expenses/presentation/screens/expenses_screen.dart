@@ -25,6 +25,7 @@ class ExpensesScreen extends ConsumerWidget {
               )
             : ListView.builder(
                 itemCount: state.expenses.length,
+                reverse: true,
                 itemBuilder: (context, index) {
                   return Slidable(
                     key: Key(state.expenses[index].id.toString()),
