@@ -106,6 +106,10 @@ class ExpenseAlertDialogFormDropdownSection extends StatelessWidget {
                             value: Bank.bancoComafi,
                             child: Text('Banco Comafi'),
                           ),
+                          DropdownMenuItem(
+                            value: Bank.bancoNacion,
+                            child: Text('Banco Nación'),
+                          ),
                         ],
                         onChanged: onChangedBankSelected,
                         validator: bankValidator,

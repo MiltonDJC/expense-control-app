@@ -1,1 +1,1 @@
-enum Bank { bancoMacro, bancoProvincia, bancoComafi }
+enum Bank { bancoMacro, bancoProvincia, bancoComafi, bancoNacion }
