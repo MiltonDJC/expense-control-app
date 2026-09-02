@@ -117,7 +117,7 @@ class ExpensesScreen extends ConsumerWidget {
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           await showDialog(
             context: context,
@@ -127,7 +127,16 @@ class ExpensesScreen extends ConsumerWidget {
           );
         },
         tooltip: 'Agregar nuevo gasto',
-        child: const Icon(Icons.add, size: 32),
+        label: const Row(
+          children: [
+            Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
+            SizedBox(width: 6),
+            Text(
+              'Agregar gasto',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
     );
   }
