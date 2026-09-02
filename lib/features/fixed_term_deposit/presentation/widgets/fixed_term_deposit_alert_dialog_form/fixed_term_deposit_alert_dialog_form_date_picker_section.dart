@@ -4,11 +4,13 @@ class FixedTermDepositAlertDialogFormDatePickerSection extends StatefulWidget {
   const FixedTermDepositAlertDialogFormDatePickerSection({
     super.key,
     required this.title,
+    this.hintText,
     required this.datePicked,
     required this.validator,
   });
 
   final String title;
+  final String? hintText;
   final Function(DateTime?) datePicked;
   final String? Function(String?)? validator;
 
@@ -49,7 +51,8 @@ class _FixedTermDepositAlertDialogFormDatePickerSectionState
       setState(() {
         selectedDate = picked;
         widget.datePicked(selectedDate);
-        _dateController.text = '${picked.toLocal()}'.split(' ')[0];
+        _dateController.text =
+            '${selectedDate!.day.toString().length > 1 ? '${selectedDate!.day}' : '0${selectedDate!.day}'}\\${selectedDate!.month.toString().length > 1 ? '${selectedDate!.month}' : '0${selectedDate!.month}'}\\${selectedDate!.year}';
       });
     }
   }
@@ -70,7 +73,7 @@ class _FixedTermDepositAlertDialogFormDatePickerSectionState
           onTap: _pickDate,
           style: const TextStyle(fontSize: 18),
           decoration: InputDecoration(
-            hintText: 'Seleccione una fecha',
+            hintText: widget.hintText,
             prefixIcon: const Icon(Icons.calendar_today),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             contentPadding: const EdgeInsets.symmetric(
