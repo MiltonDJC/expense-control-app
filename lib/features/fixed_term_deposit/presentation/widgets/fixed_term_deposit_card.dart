@@ -11,8 +11,6 @@ class FixedTermDepositCard extends StatelessWidget {
     required this.depositDate,
     required this.depositDueDate,
     required this.dolarPrice,
-    required this.onDeleted,
-    required this.onEdited,
   });
 
   final int id;
@@ -22,8 +20,6 @@ class FixedTermDepositCard extends StatelessWidget {
   final DateTime depositDate;
   final DateTime depositDueDate;
   final double dolarPrice;
-  final VoidCallback onDeleted;
-  final VoidCallback onEdited;
 
   @override
   Widget build(BuildContext context) {
