@@ -1,4 +1,4 @@
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/utils/date_utils.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/due_date_information_widget.dart';
 import 'package:flutter/material.dart';
 
 class FixedTermDepositCard extends StatelessWidget {
@@ -39,27 +39,9 @@ class FixedTermDepositCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: getDueDateColor(
-                          depositDueDate.difference(depositDate).inDays,
-                        ),
-                      ),
-                      child: Text(
-                        'Vence en: ${depositDueDate.difference(depositDate).inDays} días',
-                        style: const TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                    DueDateInformationWidget(
+                      depositDate: depositDate,
+                      depositDueDate: depositDueDate,
                     ),
                   ],
                 ),
