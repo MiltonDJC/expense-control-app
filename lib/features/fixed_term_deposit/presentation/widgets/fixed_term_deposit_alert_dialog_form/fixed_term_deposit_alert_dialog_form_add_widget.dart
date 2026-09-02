@@ -136,6 +136,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   title: 'Fecha de depósito',
                   datePicked: _getDepositDate,
                   validator: null,
+                  hintText: 'Seleccione una fecha',
                 ),
                 FixedTermDepositAlertDialogFormDatePickerSection(
                   title: 'Fecha de vencimiento',
@@ -148,6 +149,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                     }
                     return null;
                   },
+                  hintText: 'Seleccione una fecha',
                 ),
               ],
             ),
