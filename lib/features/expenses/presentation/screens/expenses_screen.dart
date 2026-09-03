@@ -32,7 +32,7 @@ class ExpensesScreen extends ConsumerWidget {
                       motion: const ScrollMotion(),
                       extentRatio: 0.2,
                       children: [
-                        SlidableAction(
+                        CustomSlidableAction(
                           onPressed: (context) async {
                             await showDialog(
                               context: context,
@@ -50,8 +50,20 @@ class ExpensesScreen extends ConsumerWidget {
                           },
                           backgroundColor: Colors.blue,
                           foregroundColor: Colors.white,
-                          icon: Icons.edit,
-                          label: 'Editar',
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.edit, color: Colors.white, size: 28),
+                              SizedBox(height: 4),
+                              Text(
+                                'Editar',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -59,7 +71,7 @@ class ExpensesScreen extends ConsumerWidget {
                       motion: const ScrollMotion(),
                       extentRatio: 0.2,
                       children: [
-                        SlidableAction(
+                        CustomSlidableAction(
                           onPressed: (context) async {
                             await showDialog(
                               context: context,
@@ -98,8 +110,20 @@ class ExpensesScreen extends ConsumerWidget {
                           },
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: 'Eliminar',
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.delete, color: Colors.white, size: 28),
+                              SizedBox(height: 4),
+                              Text(
+                                'Eliminar',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
