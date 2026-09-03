@@ -27,6 +27,15 @@ class MoneyPocketsLocalDataSource {
     }
   }
 
+  Future<void> addMoneyPocket({
+    required String name,
+    required double amount,
+  }) async {
+    await appDatabase.managers.moneyPocket.create(
+      (o) => o(name: name, amount: amount),
+    );
+  }
+
   Future<void> updateMoneyPocket({
     required int id,
     String? name,
