@@ -57,14 +57,20 @@ class FixedTermDepositLocalDataSource {
   }
 
   Future<List<FixedTermDepositModel>> getAllFixedTermDeposits() async {
-    final fixedTermDepositRows = await appDatabase.managers.fixedTermDeposit
-        .get();
-    final fixedTermDepositModels = fixedTermDepositRows
-        .map(
-          (fixedTermDepositRow) =>
-              FixedTermDepositModel.fromDrift(fixedTermDepositRow),
-        )
-        .toList();
-    return fixedTermDepositModels;
+    try {
+      final fixedTermDepositRows = await appDatabase.managers.fixedTermDeposit
+          .get();
+      final fixedTermDepositModels = fixedTermDepositRows
+          .map(
+            (fixedTermDepositRow) =>
+                FixedTermDepositModel.fromDrift(fixedTermDepositRow),
+          )
+          .toList();
+      return fixedTermDepositModels;
+    } catch (e) {
+      throw Exception(
+        'No se pudo obtener los plazos fijos registrados en la base de datos',
+      );
+    }
   }
 }
