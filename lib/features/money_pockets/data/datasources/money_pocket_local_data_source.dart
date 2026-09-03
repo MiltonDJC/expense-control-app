@@ -7,18 +7,24 @@ class MoneyPocketLocalDataSource {
 
   final AppDatabase appDatabase;
 
-  Future<List<MoneyPocketModel>> getAllFixedTermDeposits() async {
-    final moneyPocketRows = await appDatabase.managers.moneyPocket.get();
-    final moneyPocketModels = moneyPocketRows
-        .map(
-          (moneyPocketRow) => MoneyPocketModel(
-            id: moneyPocketRow.id,
-            name: moneyPocketRow.name,
-            amount: moneyPocketRow.amount,
-          ),
-        )
-        .toList();
-    return moneyPocketModels;
+  Future<List<MoneyPocketModel>> getAllMoneyPockets() async {
+    try {
+      final moneyPocketRows = await appDatabase.managers.moneyPocket.get();
+      final moneyPocketModels = moneyPocketRows
+          .map(
+            (moneyPocketRow) => MoneyPocketModel(
+              id: moneyPocketRow.id,
+              name: moneyPocketRow.name,
+              amount: moneyPocketRow.amount,
+            ),
+          )
+          .toList();
+      return moneyPocketModels;
+    } catch (e) {
+      throw Exception(
+        'No se pudo obtener los bolsillos registrados en la base de datos',
+      );
+    }
   }
 
   Future<void> updateMoneyPocket({
