@@ -16,6 +16,14 @@ class MoneyPocketsRepositoryImpl implements MoneyPocketsRepository {
   }
 
   @override
+  Future<void> addMoneyPocket({
+    required String name,
+    required double amount,
+  }) async {
+    await dataSource.addMoneyPocket(name: name, amount: amount);
+  }
+
+  @override
   Future<void> updateMoneyPocket({
     required int id,
     String? name,
