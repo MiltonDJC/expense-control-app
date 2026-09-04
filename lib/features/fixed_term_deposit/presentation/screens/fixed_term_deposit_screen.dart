@@ -99,9 +99,6 @@ class FixedTermDepositScreen extends ConsumerWidget {
                                                   .fixedTermDeposits[index]
                                                   .id,
                                             );
-                                        ref.invalidate(
-                                          fixedTermDepositProvider,
-                                        );
                                         if (context.mounted) {
                                           Navigator.pop(context);
                                         }
