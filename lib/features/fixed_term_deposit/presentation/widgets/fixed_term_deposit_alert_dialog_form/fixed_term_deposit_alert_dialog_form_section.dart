@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FixedTermDepositAlertDialogFormSection extends StatefulWidget {
+class FixedTermDepositAlertDialogFormSection extends StatelessWidget {
   const new({
     super.key,
     required this.title,
@@ -15,31 +15,24 @@ class FixedTermDepositAlertDialogFormSection extends StatefulWidget {
   final String? Function(String?)? validator;
 
   @override
-  State<FixedTermDepositAlertDialogFormSection> createState() =>
-      FixedTermDepositAlertDialogFormSectionState();
-}
-
-class FixedTermDepositAlertDialogFormSectionState
-    extends State<FixedTermDepositAlertDialogFormSection> {
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.title,
+            title,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           TextFormField(
-            validator: widget.validator,
+            validator: validator,
             autovalidateMode: AutovalidateMode.onUserInteractionIfError,
-            controller: widget.controller,
+            controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             style: const TextStyle(fontSize: 18),
             decoration: InputDecoration(
-              hintText: widget.hintText,
+              hintText: hintText,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
