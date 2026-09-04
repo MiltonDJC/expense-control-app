@@ -226,7 +226,6 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                         ? fixedTermDepositNameController.text
                         : widget.fixedTermDepositName,
                   );
-              ref.invalidate(fixedTermDepositProvider);
               if (context.mounted) Navigator.pop(context);
             }
           },
