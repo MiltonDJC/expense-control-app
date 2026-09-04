@@ -24,7 +24,12 @@ class MoneyPocketsNotifier extends _$MoneyPocketsNotifier {
     required String name,
     required double amount,
   }) async {
-    await ref.read(addMoneyPocketUseCaseProvider)(name: name, amount: amount);
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(addMoneyPocketUseCaseProvider)(name: name, amount: amount);
+      final moneyPockets = await ref.read(getAllMoneyPocketsUseCaseProvider)();
+      return MoneyPocketsState(moneyPockets: moneyPockets);
+    });
   }
 
   Future<void> updateMoneyPocket({
@@ -32,14 +37,24 @@ class MoneyPocketsNotifier extends _$MoneyPocketsNotifier {
     String? name,
     double? amount,
   }) async {
-    await ref.read(updateMoneyPocketUseCaseProvider)(
-      id: id,
-      name: name,
-      amount: amount,
-    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(updateMoneyPocketUseCaseProvider)(
+        id: id,
+        name: name,
+        amount: amount,
+      );
+      final moneyPockets = await ref.read(getAllMoneyPocketsUseCaseProvider)();
+      return MoneyPocketsState(moneyPockets: moneyPockets);
+    });
   }
 
   Future<void> deleteMoneyPocket({required int id}) async {
-    await ref.read(deleteMoneyPocketUseCaseProvider)(id: id);
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(deleteMoneyPocketUseCaseProvider)(id: id);
+      final moneyPockets = await ref.read(getAllMoneyPocketsUseCaseProvider)();
+      return MoneyPocketsState(moneyPockets: moneyPockets);
+    });
   }
 }
