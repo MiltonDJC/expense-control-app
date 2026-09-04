@@ -13,7 +13,7 @@ AddFixedTermDepositUseCase addFixedTermDepositUseCase(Ref ref) {
 }
 
 @riverpod
-UpdateFixedTermDepositUseCase updateExpenseUseCase(Ref ref) {
+UpdateFixedTermDepositUseCase updateFixedTermDepositUseCase(Ref ref) {
   final repository = ref.read(fixedTermDepositRepositoryProvider);
   return UpdateFixedTermDepositUseCase(fixedTermDepositRepository: repository);
 }
