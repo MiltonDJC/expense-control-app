@@ -106,7 +106,6 @@ class _MoneyPocketsAlertDialogFormUpdateWidgetState
                         ? double.tryParse(_moneyPocketAmountController.text)
                         : widget.amount,
                   );
-              ref.invalidate(moneyPocketsProvider);
               if (context.mounted) {
                 Navigator.pop(context);
               }
