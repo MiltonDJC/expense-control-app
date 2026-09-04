@@ -30,14 +30,21 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
     required double dolarPrice,
     required String name,
   }) async {
-    await ref.read(addFixedTermDepositUseCaseProvider)(
-      depositAmount: depositAmount,
-      depositAmountReceived: depositAmountReceived,
-      depositDate: depositDate,
-      depositDueDate: depositDueDate,
-      dolarPrice: dolarPrice,
-      name: name,
-    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(addFixedTermDepositUseCaseProvider)(
+        depositAmount: depositAmount,
+        depositAmountReceived: depositAmountReceived,
+        depositDate: depositDate,
+        depositDueDate: depositDueDate,
+        dolarPrice: dolarPrice,
+        name: name,
+      );
+      final fixedTermDeposits = await ref.read(
+        getAllFixedTermDepositsUseCaseProvider,
+      )();
+      return FixedTermDepositState(fixedTermDeposits: fixedTermDeposits);
+    });
   }
 
   Future<void> updateFixedTermDeposit({
@@ -49,18 +56,32 @@ class FixedTermDepositNotifier extends _$FixedTermDepositNotifier {
     double? dolarPrice,
     String? name,
   }) async {
-    await ref.read(updateExpenseUseCaseProvider)(
-      id: id,
-      depositAmount: depositAmount,
-      depositAmountReceived: depositAmountReceived,
-      depositDate: depositDate,
-      depositDueDate: depositDueDate,
-      dolarPrice: dolarPrice,
-      name: name,
-    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(updateFixedTermDepositUseCaseProvider)(
+        id: id,
+        depositAmount: depositAmount,
+        depositAmountReceived: depositAmountReceived,
+        depositDate: depositDate,
+        depositDueDate: depositDueDate,
+        dolarPrice: dolarPrice,
+        name: name,
+      );
+      final fixedTermDeposits = await ref.read(
+        getAllFixedTermDepositsUseCaseProvider,
+      )();
+      return FixedTermDepositState(fixedTermDeposits: fixedTermDeposits);
+    });
   }
 
   Future<void> deleteFixedTermDeposit({required int id}) async {
-    await ref.read(deleteFixedTermDepositUseCaseProvider)(id: id);
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(deleteFixedTermDepositUseCaseProvider)(id: id);
+      final fixedTermDeposits = await ref.read(
+        getAllFixedTermDepositsUseCaseProvider,
+      )();
+      return FixedTermDepositState(fixedTermDeposits: fixedTermDeposits);
+    });
   }
 }
