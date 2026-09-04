@@ -25,7 +25,6 @@ class FixedTermDepositScreen extends ConsumerWidget {
               )
             : ListView.builder(
                 itemCount: state.fixedTermDeposits.length,
-                reverse: true,
                 itemBuilder: (BuildContext context, int index) {
                   return Slidable(
                     key: Key(state.fixedTermDeposits[index].id.toString()),
