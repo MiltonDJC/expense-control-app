@@ -104,7 +104,6 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                                     .moneyPockets[index]
                                                     .id,
                                               );
-                                          ref.invalidate(moneyPocketsProvider);
                                           if (context.mounted) {
                                             Navigator.pop(context);
                                           }
