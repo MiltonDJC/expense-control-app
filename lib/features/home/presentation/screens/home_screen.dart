@@ -67,7 +67,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 12, top: 12, right: 12),
+        padding: const EdgeInsets.only(left: 12, top: 24, right: 12),
         child: screens[selectedIndex],
       ),
     );
