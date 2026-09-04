@@ -50,7 +50,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
     });
   }
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DateTime? _depositDateSelected;
   DateTime? _depositDueDateSelected;
@@ -64,7 +64,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       content: Form(
-        key: formKey,
+        key: _formKey,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
         child: SingleChildScrollView(
           child: SizedBox(
@@ -74,8 +74,8 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FixedTermDepositAlertDialogFormSection(
-                  validator: (_) {
-                    if (fixedTermDepositNameController.text.isEmpty) {
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return 'El campo no puede estar vacío.';
                     }
                     return null;
@@ -85,13 +85,11 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   hintText: 'Ej. Vacaciones, Ahorros etc.',
                 ),
                 FixedTermDepositAlertDialogFormSection(
-                  validator: (_) {
-                    if (depositAmountController.text.isEmpty) {
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
-                    } else if (int.tryParse(depositAmountController.text)
-                            is! int ||
-                        double.tryParse(depositAmountController.text)
-                            is! double) {
+                    } else if (int.tryParse(value) is! int ||
+                        double.tryParse(value) is! double) {
                       return 'El campo debe tener caracteres numéricos';
                     }
                     return null;
@@ -101,14 +99,11 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   hintText: '0.00',
                 ),
                 FixedTermDepositAlertDialogFormSection(
-                  validator: (_) {
-                    if (depositAmountReceivedController.text.isEmpty) {
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
-                    } else if (int.tryParse(
-                          depositAmountReceivedController.text,
-                        ) is! int ||
-                        double.tryParse(depositAmountReceivedController.text)
-                            is! double) {
+                    } else if (int.tryParse(value) is! int ||
+                        double.tryParse(value) is! double) {
                       return 'El campo debe tener caracteres numéricos';
                     }
                     return null;
@@ -118,12 +113,11 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   hintText: '0.00',
                 ),
                 FixedTermDepositAlertDialogFormSection(
-                  validator: (_) {
-                    if (dolarPriceController.text.isEmpty) {
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
-                    } else if (int.tryParse(dolarPriceController.text)
-                            is! int ||
-                        double.tryParse(dolarPriceController.text) is! double) {
+                    } else if (int.tryParse(value) is! int ||
+                        double.tryParse(value) is! double) {
                       return 'El campo debe tener caracteres numéricos';
                     }
                     return null;
@@ -135,13 +129,19 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                 FixedTermDepositAlertDialogFormDatePickerSection(
                   title: 'Fecha de depósito',
                   datePicked: _getDepositDate,
-                  validator: null,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Debe elegir una fecha válida';
+                    }
+                    return null;
+                  },
                   hintText: 'Seleccione una fecha',
                 ),
                 FixedTermDepositAlertDialogFormDatePickerSection(
                   title: 'Fecha de vencimiento',
                   datePicked: _getDepositDueDate,
-                  validator: (_) {
+                  validator: (value) {
+                    if (value!.isEmpty) return 'Debe elegir una fecha válida';
                     if (_depositDueDateSelected!.isBefore(
                       _depositDateSelected!,
                     )) {
@@ -163,7 +163,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
         ),
         ActionButtonWidget(
           onPressed: () async {
-            if (formKey.currentState!.validate()) {
+            if (_formKey.currentState!.validate()) {
               await ref
                   .read(fixedTermDepositProvider.notifier)
                   .addFixedTermDeposit(
@@ -186,7 +186,6 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                     dolarPrice: double.tryParse(dolarPriceController.text)!,
                     name: fixedTermDepositNameController.text,
                   );
-              ref.invalidate(fixedTermDepositProvider);
               if (context.mounted) Navigator.pop(context);
             }
           },
