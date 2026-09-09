@@ -12,6 +12,10 @@ class FixedTermDepositAlertDialogFormDatePickerSection extends StatefulWidget {
   final String title;
   final String? hintText;
   final Function(DateTime?) datePicked;
+
+  // TODO: Revisar si cambiar el 'String?' de la función validator por DateTime?
+  // * Relacionado con el archivo: lib\features\fixed_term_deposit\presentation\widgets\fixed_term_deposit_alert_dialog_form\fixed_term_deposit_alert_dialog_form_update_widget.dart
+
   final String? Function(String?)? validator;
 
   @override
