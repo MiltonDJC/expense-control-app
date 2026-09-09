@@ -1,7 +1,7 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_add_widget.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_update_widget.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_add_widget.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_update_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,7 +37,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                             await showDialog(
                               context: context,
                               builder: (context) {
-                                return FixedTermDepositAlertDialogFormUpdateWidget(
+                                return FormUpdateWidget(
                                   id: state.fixedTermDeposits[index].id,
                                   depositAmount: state
                                       .fixedTermDeposits[index]
@@ -141,7 +141,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
           await showDialog(
             context: context,
             builder: (context) {
-              return const FixedTermDepositAlertDialogFormAddWidget();
+              return const FormAddWidget();
             },
           );
         },
