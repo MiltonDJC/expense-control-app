@@ -170,15 +170,16 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                       'Fecha previa: ${widget.depositDueDate.day.toString().length > 1 ? '${widget.depositDueDate.day}' : '0${widget.depositDueDate.day}'}\\${widget.depositDueDate.month.toString().length > 1 ? '${widget.depositDueDate.month}' : '0${widget.depositDueDate.month}'}\\${widget.depositDueDate.year}',
                   datePicked: _getDepositDueDate,
                   validator: (_) {
-                    if (widget.depositDate.toString().isNotEmpty &&
-                        widget.depositDate.toString().isNotEmpty) {
-                      return null;
-                    }
-                    if (_depositDueDateSelected!.isBefore(widget.depositDate)) {
+                    // TODO: Corregir lógica de validacion para la selección de fechas.
+                    // TODO: Revisar si es posible utilizar el value '(_)' del parámetro.
+                    if (_depositDueDateSelected != null &&
+                        _depositDueDateSelected!.isBefore(widget.depositDate)) {
                       return 'La fecha no puede ser previa a la fecha de depósito';
-                    } else if (_depositDueDateSelected!.isBefore(
-                      _depositDateSelected!,
-                    )) {
+                    }
+                    if (_depositDateSelected != null &&
+                        _depositDueDateSelected!.isBefore(
+                          _depositDateSelected!,
+                        )) {
                       return 'La fecha no puede ser previa a la fecha de depósito';
                     }
                     return null;
