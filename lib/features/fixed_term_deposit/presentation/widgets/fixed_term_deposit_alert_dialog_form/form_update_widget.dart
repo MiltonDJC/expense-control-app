@@ -166,21 +166,7 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                   hintText:
                       'Fecha previa: ${formatDate(widget.depositDueDate)}',
                   datePicked: _getDepositDueDate,
-                  validator: (_) {
-                    // TODO: Corregir lógica de validacion para la selección de fechas.
-                    // TODO: Revisar si es posible utilizar el value '(_)' del parámetro.
-                    if (_depositDueDateSelected != null &&
-                        _depositDueDateSelected!.isBefore(widget.depositDate)) {
-                      return 'La fecha no puede ser previa a la fecha de depósito';
-                    }
-                    if (_depositDateSelected != null &&
-                        _depositDueDateSelected!.isBefore(
-                          _depositDateSelected!,
-                        )) {
-                      return 'La fecha no puede ser previa a la fecha de depósito';
-                    }
-                    return null;
-                  },
+                  validator: null,
                 ),
               ],
             ),
