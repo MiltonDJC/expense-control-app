@@ -1,5 +1,6 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:flutter/material.dart';
@@ -156,15 +157,14 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                 ),
                 FormDatePickerSection(
                   title: 'Fecha de depósito',
-                  hintText:
-                      'Fecha previa: ${widget.depositDate.day.toString().length > 1 ? '${widget.depositDate.day}' : '0${widget.depositDate.day}'}\\${widget.depositDate.month.toString().length > 1 ? '${widget.depositDate.month}' : '0${widget.depositDate.month}'}\\${widget.depositDate.year}',
+                  hintText: 'Fecha previa: ${formatDate(widget.depositDate)}',
                   datePicked: _getDepositDate,
                   validator: null,
                 ),
                 FormDatePickerSection(
                   title: 'Fecha de vencimiento',
                   hintText:
-                      'Fecha previa: ${widget.depositDueDate.day.toString().length > 1 ? '${widget.depositDueDate.day}' : '0${widget.depositDueDate.day}'}\\${widget.depositDueDate.month.toString().length > 1 ? '${widget.depositDueDate.month}' : '0${widget.depositDueDate.month}'}\\${widget.depositDueDate.year}',
+                      'Fecha previa: ${formatDate(widget.depositDueDate)}',
                   datePicked: _getDepositDueDate,
                   validator: (_) {
                     // TODO: Corregir lógica de validacion para la selección de fechas.

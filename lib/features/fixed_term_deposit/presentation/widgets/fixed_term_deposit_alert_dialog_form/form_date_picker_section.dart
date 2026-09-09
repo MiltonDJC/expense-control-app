@@ -1,3 +1,4 @@
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/utils/format_date_utils.dart';
 import 'package:flutter/material.dart';
 
 class FormDatePickerSection extends StatefulWidget {
@@ -53,8 +54,7 @@ class _FormDatePickerSectionState extends State<FormDatePickerSection> {
       setState(() {
         selectedDate = picked;
         widget.datePicked(selectedDate);
-        _dateController.text =
-            '${selectedDate!.day.toString().length > 1 ? '${selectedDate!.day}' : '0${selectedDate!.day}'}\\${selectedDate!.month.toString().length > 1 ? '${selectedDate!.month}' : '0${selectedDate!.month}'}\\${selectedDate!.year}';
+        _dateController.text = formatDate(selectedDate!);
       });
     }
   }
