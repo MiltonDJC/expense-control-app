@@ -1,20 +1,18 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_date_picker_section.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_section.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FixedTermDepositAlertDialogFormAddWidget extends ConsumerStatefulWidget {
+class FormAddWidget extends ConsumerStatefulWidget {
   const new({super.key});
 
   @override
-  ConsumerState<FixedTermDepositAlertDialogFormAddWidget> createState() =>
-      _FixedTermDepositAlertDialogFormAddWidgetState();
+  ConsumerState<FormAddWidget> createState() => _FormAddWidgetState();
 }
 
-class _FixedTermDepositAlertDialogFormAddWidgetState
-    extends ConsumerState<FixedTermDepositAlertDialogFormAddWidget> {
+class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
   late TextEditingController depositAmountController;
   late TextEditingController depositAmountReceivedController;
   late TextEditingController dolarPriceController;
@@ -73,7 +71,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'El campo no puede estar vacío.';
@@ -84,7 +82,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   title: 'Nombre del plazo fijo',
                   hintText: 'Ej. Vacaciones, Ahorros etc.',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
@@ -98,7 +96,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   title: 'Monto a depositar',
                   hintText: '0.00',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
@@ -112,7 +110,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   title: 'Monto a recibir',
                   hintText: '0.00',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'El campo no puede estar vacío';
@@ -126,7 +124,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   title: 'Precio del dólar',
                   hintText: '0.00',
                 ),
-                FixedTermDepositAlertDialogFormDatePickerSection(
+                FormDatePickerSection(
                   title: 'Fecha de depósito',
                   datePicked: _getDepositDate,
                   validator: (value) {
@@ -137,7 +135,7 @@ class _FixedTermDepositAlertDialogFormAddWidgetState
                   },
                   hintText: 'Seleccione una fecha',
                 ),
-                FixedTermDepositAlertDialogFormDatePickerSection(
+                FormDatePickerSection(
                   title: 'Fecha de vencimiento',
                   datePicked: _getDepositDueDate,
                   validator: (value) {

@@ -1,12 +1,11 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_date_picker_section.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/fixed_term_deposit_alert_dialog_form_section.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
+import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FixedTermDepositAlertDialogFormUpdateWidget
-    extends ConsumerStatefulWidget {
+class FormUpdateWidget extends ConsumerStatefulWidget {
   const new({
     super.key,
     required this.id,
@@ -27,12 +26,10 @@ class FixedTermDepositAlertDialogFormUpdateWidget
   final String fixedTermDepositName;
 
   @override
-  ConsumerState<FixedTermDepositAlertDialogFormUpdateWidget> createState() =>
-      _FixedTermDepositAlertDialogFormUpdateWidgetState();
+  ConsumerState<FormUpdateWidget> createState() => _FormUpdateWidgetState();
 }
 
-class _FixedTermDepositAlertDialogFormUpdateWidgetState
-    extends ConsumerState<FixedTermDepositAlertDialogFormUpdateWidget> {
+class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
   late TextEditingController depositAmountController;
   late TextEditingController depositAmountReceivedController;
   late TextEditingController dolarPriceController;
@@ -91,7 +88,7 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (_) {
                     if (widget.fixedTermDepositName.isNotEmpty) return null;
                     if (fixedTermDepositNameController.text.isEmpty) {
@@ -104,7 +101,7 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                   hintText:
                       'Nombre actual del plazo fijo: ${widget.fixedTermDepositName}',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (_) {
                     if (widget.depositAmount.toString().isNotEmpty) return null;
                     if (depositAmountController.text.isEmpty) {
@@ -121,7 +118,7 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                   title: 'Monto a depositar',
                   hintText: 'Monto previo: \$${widget.depositAmount}',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (_) {
                     if (widget.depositAmountReceived.toString().isNotEmpty) {
                       return null;
@@ -141,7 +138,7 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                   title: 'Monto a recibir',
                   hintText: 'Monto previo: \$${widget.depositAmountReceived}',
                 ),
-                FixedTermDepositAlertDialogFormSection(
+                FormSection(
                   validator: (_) {
                     if (widget.dolarPrice.toString().isNotEmpty) return null;
                     if (dolarPriceController.text.isEmpty) {
@@ -157,14 +154,14 @@ class _FixedTermDepositAlertDialogFormUpdateWidgetState
                   title: 'Precio del dólar',
                   hintText: 'Precio previo: \$${widget.dolarPrice}',
                 ),
-                FixedTermDepositAlertDialogFormDatePickerSection(
+                FormDatePickerSection(
                   title: 'Fecha de depósito',
                   hintText:
                       'Fecha previa: ${widget.depositDate.day.toString().length > 1 ? '${widget.depositDate.day}' : '0${widget.depositDate.day}'}\\${widget.depositDate.month.toString().length > 1 ? '${widget.depositDate.month}' : '0${widget.depositDate.month}'}\\${widget.depositDate.year}',
                   datePicked: _getDepositDate,
                   validator: null,
                 ),
-                FixedTermDepositAlertDialogFormDatePickerSection(
+                FormDatePickerSection(
                   title: 'Fecha de vencimiento',
                   hintText:
                       'Fecha previa: ${widget.depositDueDate.day.toString().length > 1 ? '${widget.depositDueDate.day}' : '0${widget.depositDueDate.day}'}\\${widget.depositDueDate.month.toString().length > 1 ? '${widget.depositDueDate.month}' : '0${widget.depositDueDate.month}'}\\${widget.depositDueDate.year}',

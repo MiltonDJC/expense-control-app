@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FixedTermDepositAlertDialogFormDatePickerSection extends StatefulWidget {
-  const FixedTermDepositAlertDialogFormDatePickerSection({
+class FormDatePickerSection extends StatefulWidget {
+  const FormDatePickerSection({
     super.key,
     required this.title,
     this.hintText,
@@ -19,12 +19,10 @@ class FixedTermDepositAlertDialogFormDatePickerSection extends StatefulWidget {
   final String? Function(String?)? validator;
 
   @override
-  State<FixedTermDepositAlertDialogFormDatePickerSection> createState() =>
-      _FixedTermDepositAlertDialogFormDatePickerSectionState();
+  State<FormDatePickerSection> createState() => _FormDatePickerSectionState();
 }
 
-class _FixedTermDepositAlertDialogFormDatePickerSectionState
-    extends State<FixedTermDepositAlertDialogFormDatePickerSection> {
+class _FormDatePickerSectionState extends State<FormDatePickerSection> {
   late TextEditingController _dateController;
 
   @override

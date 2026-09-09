@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FixedTermDepositAlertDialogFormSection extends StatelessWidget {
+class FormSection extends StatelessWidget {
   const new({
     super.key,
     required this.title,
