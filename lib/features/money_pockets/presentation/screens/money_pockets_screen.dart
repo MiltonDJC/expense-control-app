@@ -1,9 +1,9 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
-import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pockets_alert_dialog_form/money_pockets_alert_dialog_form_add_widget.dart';
-import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pockets_alert_dialog_form/money_pockets_alert_dialog_form_update_widget.dart';
-import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pockets_alert_dialog_form/money_pocktes_list_element_widget.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket_add_form.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket_update_form.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -44,7 +44,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                               await showDialog(
                                 context: context,
                                 builder: (context) {
-                                  return MoneyPocketsAlertDialogFormUpdateWidget(
+                                  return MoneyPocketUpdateForm(
                                     id: state.moneyPockets[index].id,
                                     name: state.moneyPockets[index].name,
                                     amount: state.moneyPockets[index].amount,
@@ -138,7 +138,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                           ),
                         ],
                       ),
-                      child: MoneyPocketsListElementWidget(
+                      child: MoneyPocket(
                         name: state.moneyPockets[index].name,
                         amount: state.moneyPockets[index].amount,
                       ),
@@ -155,7 +155,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
           await showDialog(
             context: context,
             builder: (context) {
-              return const MoneyPocketsAlertDialogFormAddWidget();
+              return const MoneyPocketAddForm();
             },
           );
         },
