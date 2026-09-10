@@ -9,6 +9,7 @@ class ExpenseEntity {
     required this.payMethod,
     this.bank,
     required this.isFixed,
+    this.moneyPocketId,
   });
 
   final int id;
@@ -17,4 +18,5 @@ class ExpenseEntity {
   final PayMethod payMethod;
   final Bank? bank;
   final bool isFixed;
+  final int? moneyPocketId;
 }

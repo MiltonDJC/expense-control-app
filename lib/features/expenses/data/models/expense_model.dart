@@ -16,6 +16,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
+    int? moneyPocketId,
   }) = _ExpenseModel;
 
   factory ExpenseModel.fromDrift(ExpenseData expenseRow) => ExpenseModel(
@@ -25,6 +26,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     payMethod: expenseRow.payMethod,
     bank: expenseRow.bank,
     isFixed: expenseRow.isFixed,
+    moneyPocketId: expenseRow.moneyPocketId,
   );
 
   factory ExpenseModel.fromEntity(ExpenseEntity entity) => ExpenseModel(
@@ -34,6 +36,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     payMethod: entity.payMethod,
     bank: entity.bank,
     isFixed: entity.isFixed,
+    moneyPocketId: entity.moneyPocketId,
   );
 
   ExpenseEntity toEntity() => ExpenseEntity(
@@ -43,5 +46,6 @@ abstract class ExpenseModel with _$ExpenseModel {
     payMethod: payMethod,
     bank: bank,
     isFixed: isFixed,
+    moneyPocketId: moneyPocketId,
   );
 }
