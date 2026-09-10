@@ -162,6 +162,7 @@ class ExpensesScreen extends ConsumerWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
