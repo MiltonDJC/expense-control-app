@@ -163,6 +163,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
         icon: Icons.add,
         tooltip: 'Agregar nuevo bolsillo',
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
