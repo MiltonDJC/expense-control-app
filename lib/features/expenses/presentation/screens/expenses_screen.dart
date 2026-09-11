@@ -133,6 +133,7 @@ class ExpensesScreen extends ConsumerWidget {
                       bankName: state.expenses[index].bank,
                       isFixed: state.expenses[index].isFixed,
                       payMethod: state.expenses[index].payMethod,
+                      moneyPocketId: state.expenses[index].moneyPocketId,
                     ),
                   );
                 },
