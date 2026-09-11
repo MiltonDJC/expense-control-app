@@ -5,6 +5,7 @@ import 'package:expense_control_app/features/expenses/presentation/enums/expense
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_dropdown_section.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_section.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -41,9 +42,18 @@ class _ExpenseAlertDialogFormAddWidgetState
   PayMethod? payMethodSelected;
   Bank? bankSelected;
   bool isFixed = false;
+  int? moneyPocketSelected;
 
   @override
   Widget build(BuildContext context) {
+    final moneyPockets = ref
+        .watch(moneyPocketsProvider)
+        .when(
+          data: (value) => value.moneyPockets,
+          error: (error, stackTrace) => null,
+          loading: () => null,
+        );
+
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: const Text(
@@ -127,6 +137,41 @@ class _ExpenseAlertDialogFormAddWidgetState
                     setState(() => bankSelected = value);
                   },
                 ),
+                const Text(
+                  'Bolsillo',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 8),
+                DropdownButtonFormField<int>(
+                  hint: const Text(
+                    'Seleccionar bolsillo',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  style: const TextStyle(fontSize: 18, color: Colors.black),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+                  ),
+                  items: moneyPockets
+                      ?.map(
+                        (moneyPocket) => DropdownMenuItem(
+                          value: moneyPocket.id,
+                          child: Text(moneyPocket.name),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      moneyPocketSelected = value;
+                    });
+                  },
+                  validator: null,
+                ),
                 Row(
                   children: [
                     const Text(
@@ -167,8 +212,8 @@ class _ExpenseAlertDialogFormAddWidgetState
                         ? bankSelected
                         : null,
                     isFixed: isFixed,
+                    moneyPocketId: moneyPocketSelected,
                   );
-              ref.invalidate(expensesProvider);
               if (context.mounted) Navigator.pop(context);
             }
           },
