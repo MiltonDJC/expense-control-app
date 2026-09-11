@@ -3,6 +3,7 @@ import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';
+import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/providers/money_pockets_use_cases_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
     required this.isFixed,
     required this.payMethod,
     this.moneyPocketId,
+    required this.createdDate,
   });
 
   final String expenseName;
@@ -25,6 +27,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
   final bool isFixed;
   final PayMethod payMethod;
   final int? moneyPocketId;
+  final DateTime createdDate;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -91,6 +94,18 @@ class ExpenseInformationWidget extends ConsumerWidget {
                         ' (${getBankName(bankName!.name)})',
                         style: const TextStyle(fontSize: 24),
                       ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Icon(Icons.calendar_month),
+                    ),
+                    Text(
+                      'Fecha realizado: ${formatDate(createdDate)}',
+                      style: const TextStyle(fontSize: 24),
+                    ),
                   ],
                 ),
                 Row(
