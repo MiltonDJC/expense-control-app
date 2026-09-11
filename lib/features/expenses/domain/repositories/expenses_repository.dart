@@ -20,5 +20,6 @@ abstract class ExpensesRepository {
     Bank? bank,
     required bool isFixed,
     int? moneyPocketId,
+    required DateTime createdDate,
   });
 }
