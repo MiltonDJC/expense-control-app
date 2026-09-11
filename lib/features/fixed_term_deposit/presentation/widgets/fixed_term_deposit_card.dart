@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/due_date_information_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class FixedTermDepositCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  fixedTermDepositName,
+                  fixedTermDepositName.capitalize,
                   style: const TextStyle(fontSize: 30, fontWeight: .w600),
                 ),
                 Row(
