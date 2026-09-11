@@ -105,12 +105,12 @@ class ExpenseInformationWidget extends ConsumerWidget {
                               )
                               .name;
                           return Text(
-                            'Bolsillo seleccionado: $moneyPocketName',
+                            'Bolsillo utilizado: "$moneyPocketName"',
                             style: const TextStyle(fontSize: 24),
                           );
                         }
 
-                        return const Center(child: Text(''));
+                        return const SizedBox();
                       },
                     ),
                   ],
