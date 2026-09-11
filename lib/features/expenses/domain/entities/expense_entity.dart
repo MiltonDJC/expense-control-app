@@ -10,6 +10,7 @@ class ExpenseEntity {
     this.bank,
     required this.isFixed,
     this.moneyPocketId,
+    required this.createdDate,
   });
 
   final int id;
@@ -19,4 +20,5 @@ class ExpenseEntity {
   final Bank? bank;
   final bool isFixed;
   final int? moneyPocketId;
+  final DateTime createdDate;
 }
