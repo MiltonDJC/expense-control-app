@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
 import 'package:flutter/material.dart';
 
 class MoneyPocket extends StatelessWidget {
@@ -42,7 +43,7 @@ class MoneyPocket extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
-                  name,
+                  name.capitalize,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
