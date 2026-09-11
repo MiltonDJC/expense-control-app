@@ -51,6 +51,7 @@ class ExpensesNotifier extends _$ExpensesNotifier {
     Bank? bank,
     required bool isFixed,
     int? moneyPocketId,
+    required DateTime createdDate,
   }) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
@@ -61,6 +62,7 @@ class ExpensesNotifier extends _$ExpensesNotifier {
         bank: bank,
         isFixed: isFixed,
         moneyPocketId: moneyPocketId,
+        createdDate: createdDate,
       );
       final expenses = await ref.read(getAllExpensesUseCaseProvider)();
       return ExpensesState(expenses: expenses);
