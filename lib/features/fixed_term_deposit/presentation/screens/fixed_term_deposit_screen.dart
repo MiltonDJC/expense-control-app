@@ -24,114 +24,121 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : ListView.builder(
-                itemCount: state.fixedTermDeposits.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Slidable(
-                    key: Key(state.fixedTermDeposits[index].id.toString()),
-                    startActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      extentRatio: 0.2,
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) async {
-                            await showDialog(
-                              context: context,
-                              builder: (context) {
-                                return FormUpdateWidget(
-                                  id: state.fixedTermDeposits[index].id,
-                                  depositAmount: state
-                                      .fixedTermDeposits[index]
-                                      .depositAmount,
-                                  depositAmountReceived: state
-                                      .fixedTermDeposits[index]
-                                      .depositAmountReceived,
-                                  depositDate: state
-                                      .fixedTermDeposits[index]
-                                      .depositDate,
-                                  depositDueDate: state
-                                      .fixedTermDeposits[index]
-                                      .depositDueDate,
-                                  dolarPrice:
-                                      state.fixedTermDeposits[index].dolarPrice,
-                                  fixedTermDepositName:
-                                      state.fixedTermDeposits[index].name,
-                                );
-                              },
-                            );
-                          },
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          icon: Icons.edit,
-                          label: 'Editar',
-                        ),
-                      ],
-                    ),
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      extentRatio: 0.2,
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) async {
-                            await showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: const Center(
-                                    child: Text(
-                                      '¿Segura que quiere eliminar este gasto?',
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 72),
+                child: ListView.builder(
+                  itemCount: state.fixedTermDeposits.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Slidable(
+                      key: Key(state.fixedTermDeposits[index].id.toString()),
+                      startActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        extentRatio: 0.2,
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) async {
+                              await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return FormUpdateWidget(
+                                    id: state.fixedTermDeposits[index].id,
+                                    depositAmount: state
+                                        .fixedTermDeposits[index]
+                                        .depositAmount,
+                                    depositAmountReceived: state
+                                        .fixedTermDeposits[index]
+                                        .depositAmountReceived,
+                                    depositDate: state
+                                        .fixedTermDeposits[index]
+                                        .depositDate,
+                                    depositDueDate: state
+                                        .fixedTermDeposits[index]
+                                        .depositDueDate,
+                                    dolarPrice: state
+                                        .fixedTermDeposits[index]
+                                        .dolarPrice,
+                                    fixedTermDepositName:
+                                        state.fixedTermDeposits[index].name,
+                                  );
+                                },
+                              );
+                            },
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: 'Editar',
+                          ),
+                        ],
+                      ),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        extentRatio: 0.2,
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) async {
+                              await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Center(
+                                      child: Text(
+                                        '¿Segura que quiere eliminar este gasto?',
+                                      ),
                                     ),
-                                  ),
-                                  actions: [
-                                    ActionButtonWidget(
-                                      onPressed: () async {
-                                        Navigator.pop(context);
-                                      },
-                                      text: 'Cancelar',
-                                    ),
-                                    ActionButtonWidget(
-                                      onPressed: () async {
-                                        await ref
-                                            .read(
-                                              fixedTermDepositProvider.notifier,
-                                            )
-                                            .deleteFixedTermDeposit(
-                                              id: state
-                                                  .fixedTermDeposits[index]
-                                                  .id,
-                                            );
-                                        if (context.mounted) {
+                                    actions: [
+                                      ActionButtonWidget(
+                                        onPressed: () async {
                                           Navigator.pop(context);
-                                        }
-                                      },
-                                      text: 'Confirmar',
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: 'Eliminar',
-                        ),
-                      ],
-                    ),
-                    child: FixedTermDepositCard(
-                      id: state.fixedTermDeposits[index].id,
-                      fixedTermDepositName: state.fixedTermDeposits[index].name,
-                      depositAmount:
-                          state.fixedTermDeposits[index].depositAmount,
-                      depositAmountReceived:
-                          state.fixedTermDeposits[index].depositAmountReceived,
-                      depositDate: state.fixedTermDeposits[index].depositDate,
-                      depositDueDate:
-                          state.fixedTermDeposits[index].depositDueDate,
-                      dolarPrice: state.fixedTermDeposits[index].dolarPrice,
-                    ),
-                  );
-                },
+                                        },
+                                        text: 'Cancelar',
+                                      ),
+                                      ActionButtonWidget(
+                                        onPressed: () async {
+                                          await ref
+                                              .read(
+                                                fixedTermDepositProvider
+                                                    .notifier,
+                                              )
+                                              .deleteFixedTermDeposit(
+                                                id: state
+                                                    .fixedTermDeposits[index]
+                                                    .id,
+                                              );
+                                          if (context.mounted) {
+                                            Navigator.pop(context);
+                                          }
+                                        },
+                                        text: 'Confirmar',
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Eliminar',
+                          ),
+                        ],
+                      ),
+                      child: FixedTermDepositCard(
+                        id: state.fixedTermDeposits[index].id,
+                        fixedTermDepositName:
+                            state.fixedTermDeposits[index].name,
+                        depositAmount:
+                            state.fixedTermDeposits[index].depositAmount,
+                        depositAmountReceived: state
+                            .fixedTermDeposits[index]
+                            .depositAmountReceived,
+                        depositDate: state.fixedTermDeposits[index].depositDate,
+                        depositDueDate:
+                            state.fixedTermDeposits[index].depositDueDate,
+                        dolarPrice: state.fixedTermDeposits[index].dolarPrice,
+                      ),
+                    );
+                  },
+                ),
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
