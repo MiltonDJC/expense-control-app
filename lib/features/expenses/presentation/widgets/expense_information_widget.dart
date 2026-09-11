@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
@@ -37,7 +38,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  expenseName,
+                  expenseName.capitalize,
                   style: const TextStyle(fontSize: 28, fontWeight: .w600),
                 ),
                 if (isFixed)
@@ -105,7 +106,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                               )
                               .name;
                           return Text(
-                            'Bolsillo utilizado: "$moneyPocketName"',
+                            'Bolsillo utilizado: ${moneyPocketName.capitalize}',
                             style: const TextStyle(fontSize: 24),
                           );
                         }
