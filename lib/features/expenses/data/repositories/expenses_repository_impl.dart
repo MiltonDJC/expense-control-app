@@ -49,6 +49,7 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
     Bank? bank,
     required bool isFixed,
     int? moneyPocketId,
+    required DateTime createdDate,
   }) async {
     await dataSource.addExpense(
       name: name,
@@ -57,6 +58,7 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
       bank: bank,
       isFixed: isFixed,
       moneyPocketId: moneyPocketId,
+      createdDate: createdDate,
     );
   }
 }
