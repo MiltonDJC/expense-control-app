@@ -46,180 +46,179 @@ class _ExpenseAlertDialogFormAddWidgetState
 
   @override
   Widget build(BuildContext context) {
-    final moneyPockets = ref
-        .watch(moneyPocketsProvider)
-        .when(
-          data: (value) => value.moneyPockets,
-          error: (error, stackTrace) => null,
-          loading: () => null,
-        );
+    final moneyPockets = ref.watch(moneyPocketsProvider);
 
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: const Text(
-        'Registrar Gasto',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-      content: Form(
-        key: formKey,
-        autovalidateMode: AutovalidateMode.onUserInteractionIfError,
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.85,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ExpenseAlertDialogFormSection(
-                  validator: (_) {
-                    if (expenseNameController.text.isEmpty) {
-                      return 'El campo no puede estar vacío.';
-                    }
-                    return null;
-                  },
-                  expenseSectionType: ExpenseSectionType.expenseName,
-                  controller: expenseNameController,
-                  title: 'Nombre del gasto',
-                  hintText: 'Ej. Supermercado, Luz, etc.',
-                ),
-                ExpenseAlertDialogFormSection(
-                  validator: (_) {
-                    if (expenseAmountController.text.isEmpty) {
-                      return 'El campo no puede estar vacío';
-                    } else if (int.tryParse(expenseAmountController.text)
-                            is! int ||
-                        double.tryParse(expenseAmountController.text)
-                            is! double) {
-                      return 'El campo debe tener caracteres numéricos';
-                    }
-                    return null;
-                  },
-                  expenseSectionType: ExpenseSectionType.amount,
-                  controller: expenseAmountController,
-                  title: 'Monto',
-                  hintText: '0.00',
-                ),
-                ExpenseAlertDialogFormDropdownSection(
-                  sectionAvailable: true,
-                  expenseDropdownSectionType:
-                      ExpenseDropdownSectionType.payMethod,
-                  payMethodValidator: (value) {
-                    if (value == null) {
-                      return 'Seleccione un método de pago';
-                    }
-                    return null;
-                  },
-                  title: 'Método de pago',
-                  hint: 'Seleccione el método de pago',
-                  onChangedPayMethodSelected: (value) {
-                    setState(() {
-                      payMethodSelected = value;
-                      if (payMethodSelected!.index !=
-                              PayMethod.mercadoPago.index &&
-                          payMethodSelected!.index != PayMethod.cash.index) {
-                        sectionAvailable = true;
-                      } else {
-                        sectionAvailable = false;
+    return moneyPockets.when(
+      data: (state) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Registrar Gasto',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        content: Form(
+          key: formKey,
+          autovalidateMode: AutovalidateMode.onUserInteractionIfError,
+          child: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.85,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ExpenseAlertDialogFormSection(
+                    validator: (_) {
+                      if (expenseNameController.text.isEmpty) {
+                        return 'El campo no puede estar vacío.';
                       }
-                    });
-                  },
-                ),
-                ExpenseAlertDialogFormDropdownSection(
-                  sectionAvailable: sectionAvailable,
-                  expenseDropdownSectionType: ExpenseDropdownSectionType.bank,
-                  bankValidator: (value) {
-                    if (value == null) return 'Seleccione un banco';
-                    return null;
-                  },
-                  title: 'Banco',
-                  hint: 'Seleccione el banco utilizado',
-                  onChangedBankSelected: (value) {
-                    setState(() => bankSelected = value);
-                  },
-                ),
-                const Text(
-                  'Bolsillo',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 8),
-                DropdownButtonFormField<int>(
-                  hint: const Text(
-                    'Seleccionar bolsillo',
-                    style: TextStyle(fontSize: 16),
+                      return null;
+                    },
+                    expenseSectionType: ExpenseSectionType.expenseName,
+                    controller: expenseNameController,
+                    title: 'Nombre del gasto',
+                    hintText: 'Ej. Supermercado, Luz, etc.',
                   ),
-                  style: const TextStyle(fontSize: 18, color: Colors.black),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
+                  ExpenseAlertDialogFormSection(
+                    validator: (_) {
+                      if (expenseAmountController.text.isEmpty) {
+                        return 'El campo no puede estar vacío';
+                      } else if (int.tryParse(expenseAmountController.text)
+                              is! int ||
+                          double.tryParse(expenseAmountController.text)
+                              is! double) {
+                        return 'El campo debe tener caracteres numéricos';
+                      }
+                      return null;
+                    },
+                    expenseSectionType: ExpenseSectionType.amount,
+                    controller: expenseAmountController,
+                    title: 'Monto',
+                    hintText: '0.00',
                   ),
-                  items: moneyPockets
-                      ?.map(
-                        (moneyPocket) => DropdownMenuItem(
-                          value: moneyPocket.id,
-                          child: Text(moneyPocket.name),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      moneyPocketSelected = value;
-                    });
-                  },
-                  validator: null,
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      '¿Es un gasto fijo?:',
-                      style: TextStyle(fontSize: 18),
+                  ExpenseAlertDialogFormDropdownSection(
+                    sectionAvailable: true,
+                    expenseDropdownSectionType:
+                        ExpenseDropdownSectionType.payMethod,
+                    payMethodValidator: (value) {
+                      if (value == null) {
+                        return 'Seleccione un método de pago';
+                      }
+                      return null;
+                    },
+                    title: 'Método de pago',
+                    hint: 'Seleccione el método de pago',
+                    onChangedPayMethodSelected: (value) {
+                      setState(() {
+                        payMethodSelected = value;
+                        if (payMethodSelected!.index !=
+                                PayMethod.mercadoPago.index &&
+                            payMethodSelected!.index != PayMethod.cash.index) {
+                          sectionAvailable = true;
+                        } else {
+                          sectionAvailable = false;
+                        }
+                      });
+                    },
+                  ),
+                  ExpenseAlertDialogFormDropdownSection(
+                    sectionAvailable: sectionAvailable,
+                    expenseDropdownSectionType: ExpenseDropdownSectionType.bank,
+                    bankValidator: (value) {
+                      if (value == null) return 'Seleccione un banco';
+                      return null;
+                    },
+                    title: 'Banco',
+                    hint: 'Seleccione el banco utilizado',
+                    onChangedBankSelected: (value) {
+                      setState(() => bankSelected = value);
+                    },
+                  ),
+                  const Text(
+                    'Bolsillo',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 8),
+                  DropdownButtonFormField<int>(
+                    hint: const Text(
+                      'Seleccionar bolsillo',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    Checkbox(
-                      value: isFixed,
-                      onChanged: (value) {
-                        setState(() => isFixed = value!);
-                      },
+                    style: const TextStyle(fontSize: 18, color: Colors.black),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
                     ),
-                  ],
-                ),
-              ],
+                    items: state.moneyPockets
+                        .map(
+                          (moneyPocket) => DropdownMenuItem(
+                            value: moneyPocket.id,
+                            child: Text(moneyPocket.name),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        moneyPocketSelected = value;
+                      });
+                    },
+                    validator: null,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        '¿Es un gasto fijo?:',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Checkbox(
+                        value: isFixed,
+                        onChanged: (value) {
+                          setState(() => isFixed = value!);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+        actions: [
+          ActionButtonWidget(
+            onPressed: () => Navigator.pop(context),
+            text: 'Cancelar',
+          ),
+          ActionButtonWidget(
+            onPressed: () async {
+              if (formKey.currentState!.validate()) {
+                await ref
+                    .read(expensesProvider.notifier)
+                    .addExpense(
+                      name: expenseNameController.text,
+                      amount: double.tryParse(expenseAmountController.text)!,
+                      payMethod: payMethodSelected!,
+                      bank:
+                          payMethodSelected!.index !=
+                                  PayMethod.mercadoPago.index &&
+                              payMethodSelected!.index != PayMethod.cash.index
+                          ? bankSelected
+                          : null,
+                      isFixed: isFixed,
+                      moneyPocketId: moneyPocketSelected,
+                    );
+                if (context.mounted) Navigator.pop(context);
+              }
+            },
+            text: 'Confirmar',
+          ),
+        ],
       ),
-      actions: [
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
-        ),
-        ActionButtonWidget(
-          onPressed: () async {
-            if (formKey.currentState!.validate()) {
-              await ref
-                  .read(expensesProvider.notifier)
-                  .addExpense(
-                    name: expenseNameController.text,
-                    amount: double.tryParse(expenseAmountController.text)!,
-                    payMethod: payMethodSelected!,
-                    bank:
-                        payMethodSelected!.index !=
-                                PayMethod.mercadoPago.index &&
-                            payMethodSelected!.index != PayMethod.cash.index
-                        ? bankSelected
-                        : null,
-                    isFixed: isFixed,
-                    moneyPocketId: moneyPocketSelected,
-                  );
-              if (context.mounted) Navigator.pop(context);
-            }
-          },
-          text: 'Confirmar',
-        ),
-      ],
+      error: (error, stackTrace) =>
+          Center(child: Text('Ocurrió un error: ${error.toString()}')),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
