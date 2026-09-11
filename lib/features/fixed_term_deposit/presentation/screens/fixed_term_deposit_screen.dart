@@ -156,6 +156,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
