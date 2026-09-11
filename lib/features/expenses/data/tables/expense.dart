@@ -10,4 +10,5 @@ class Expense extends Table {
   late final bank = intEnum<Bank>().nullable()();
   late final isFixed = boolean()();
   late final moneyPocketId = integer().nullable()();
+  late final createdDate = dateTime()();
 }
