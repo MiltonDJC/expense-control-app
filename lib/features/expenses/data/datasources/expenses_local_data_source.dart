@@ -54,6 +54,7 @@ class ExpensesLocalDataSource {
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
+    int? moneyPocketId,
   }) async {
     await appDatabase.managers.expense.create(
       (o) => o(
@@ -62,6 +63,7 @@ class ExpensesLocalDataSource {
         payMethod: payMethod,
         bank: Value.absentIfNull(bank),
         isFixed: isFixed,
+        moneyPocketId: Value(moneyPocketId),
       ),
     );
   }
