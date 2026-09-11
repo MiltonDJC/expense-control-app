@@ -1,4 +1,4 @@
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/utils/format_date_utils.dart';
+import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:flutter/material.dart';
 
 class FormDatePickerSection extends StatefulWidget {
