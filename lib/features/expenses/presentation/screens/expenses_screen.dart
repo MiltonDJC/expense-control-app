@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_add_widget.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_update_widget.dart';
@@ -143,7 +144,7 @@ class ExpensesScreen extends ConsumerWidget {
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: CustomFloatingActionButton(
         onPressed: () async {
           await showDialog(
             context: context,
@@ -153,16 +154,8 @@ class ExpensesScreen extends ConsumerWidget {
           );
         },
         tooltip: 'Agregar nuevo gasto',
-        label: const Row(
-          children: [
-            Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
-            SizedBox(width: 6),
-            Text(
-              'Agregar gasto',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
+        title: 'Agregar gasto',
+        icon: Icons.add,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

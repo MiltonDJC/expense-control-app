@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_add_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_update_widget.dart';
@@ -136,7 +137,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: CustomFloatingActionButton(
         onPressed: () async {
           await showDialog(
             context: context,
@@ -145,16 +146,9 @@ class FixedTermDepositScreen extends ConsumerWidget {
             },
           );
         },
-        label: const Row(
-          children: [
-            Icon(Icons.add, size: 26, fontWeight: FontWeight.w600),
-            SizedBox(width: 6),
-            Text(
-              'Agregar plazo fijo',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
+        title: 'Agregar plazo fijo',
+        icon: Icons.add,
+        tooltip: 'Agregar nuevo plazo fijo',
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
