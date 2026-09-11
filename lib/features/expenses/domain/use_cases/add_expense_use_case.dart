@@ -19,6 +19,7 @@ class AddExpenseUseCase {
     Bank? bank,
     required bool isFixed,
     int? moneyPocketId,
+    required DateTime createdDate,
   }) async {
     if (moneyPocketId == null) {
       await expensesRepository.addExpense(
@@ -28,6 +29,7 @@ class AddExpenseUseCase {
         bank: bank,
         isFixed: isFixed,
         moneyPocketId: null,
+        createdDate: createdDate,
       );
     } else {
       final moneyPockets = await moneyPocketsRepository.getAllMoneyPockets();
@@ -43,6 +45,7 @@ class AddExpenseUseCase {
         bank: bank,
         isFixed: isFixed,
         moneyPocketId: moneyPocketId,
+        createdDate: createdDate,
       );
       await moneyPocketsRepository.updateMoneyPocket(
         id: moneyPocketId,
