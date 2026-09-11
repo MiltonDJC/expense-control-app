@@ -17,16 +17,11 @@ class CustomFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
+      icon: Icon(icon, size: 26, fontWeight: FontWeight.w600),
       onPressed: onPressed,
-      label: Row(
-        children: [
-          Icon(icon, size: 26, fontWeight: FontWeight.w600),
-          const SizedBox(width: 6),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-          ),
-        ],
+      label: Text(
+        title,
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
       ),
       tooltip: tooltip,
     );
