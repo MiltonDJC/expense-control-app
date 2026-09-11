@@ -1,6 +1,6 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/utils/format_date_utils.dart';
+import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:flutter/material.dart';
@@ -97,6 +97,9 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: fixedTermDepositNameController,
                   title: 'Nombre del plazo fijo',
                   hintText:
@@ -115,6 +118,9 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: depositAmountController,
                   title: 'Monto a depositar',
                   hintText: 'Monto previo: \$${widget.depositAmount}',
@@ -135,6 +141,9 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: depositAmountReceivedController,
                   title: 'Monto a recibir',
                   hintText: 'Monto previo: \$${widget.depositAmountReceived}',
@@ -151,6 +160,9 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: dolarPriceController,
                   title: 'Precio del dólar',
                   hintText: 'Precio previo: \$${widget.dolarPrice}',

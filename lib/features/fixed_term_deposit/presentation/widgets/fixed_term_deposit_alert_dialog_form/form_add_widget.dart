@@ -78,6 +78,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                     }
                     return null;
                   },
+                  keyboardType: TextInputType.text,
                   controller: fixedTermDepositNameController,
                   title: 'Nombre del plazo fijo',
                   hintText: 'Ej. Vacaciones, Ahorros etc.',
@@ -92,6 +93,9 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: depositAmountController,
                   title: 'Monto a depositar',
                   hintText: '0.00',
@@ -106,6 +110,9 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: depositAmountReceivedController,
                   title: 'Monto a recibir',
                   hintText: '0.00',
@@ -120,6 +127,9 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   controller: dolarPriceController,
                   title: 'Precio del dólar',
                   hintText: '0.00',
