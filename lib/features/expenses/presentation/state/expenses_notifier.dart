@@ -50,13 +50,20 @@ class ExpensesNotifier extends _$ExpensesNotifier {
     required PayMethod payMethod,
     Bank? bank,
     required bool isFixed,
+    int? moneyPocketId,
   }) async {
-    await ref.read(addExpenseUseCaseProvider)(
-      name: name,
-      amount: amount,
-      payMethod: payMethod,
-      bank: bank,
-      isFixed: isFixed,
-    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(addExpenseUseCaseProvider)(
+        name: name,
+        amount: amount,
+        payMethod: payMethod,
+        bank: bank,
+        isFixed: isFixed,
+        moneyPocketId: moneyPocketId,
+      );
+      final expenses = await ref.read(getAllExpensesUseCaseProvider)();
+      return ExpensesState(expenses: expenses);
+    });
   }
 }
