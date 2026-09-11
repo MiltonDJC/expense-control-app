@@ -82,13 +82,21 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'El campo no puede estar vacío.';
-                    } else if (int.tryParse(value) is! int ||
-                        double.tryParse(value) is! double) {
+                    }
+                    if (value.contains(',')) {
+                      return 'Utilice el punto en vez de la coma';
+                    }
+                    if (int.tryParse(value) is int ||
+                        double.tryParse(value) is double) {
+                      return null;
+                    } else {
                       return 'El campo debe tener caracteres numéricos';
                     }
-                    return null;
                   },
                   controller: _moneyPocketAmountController,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: InputDecoration(
                     hintText: '\$ 0.00',
                     border: OutlineInputBorder(
