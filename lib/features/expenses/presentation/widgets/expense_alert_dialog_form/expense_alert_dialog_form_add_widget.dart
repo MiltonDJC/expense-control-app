@@ -87,6 +87,21 @@ class _ExpenseAlertDialogFormAddWidgetState
                               is! double) {
                         return 'El campo debe tener caracteres numéricos';
                       }
+
+                      if (moneyPocketSelected != null) {
+                        final moneyPocketAmount = state.moneyPockets
+                            .firstWhere(
+                              (moneyPocket) =>
+                                  moneyPocket.id == moneyPocketSelected,
+                            )
+                            .amount;
+
+                        if (moneyPocketAmount <
+                            double.tryParse(expenseAmountController.text)!) {
+                          return 'El monto no puede ser mayor al del bolsillo';
+                        }
+                      }
+
                       return null;
                     },
                     expenseSectionType: ExpenseSectionType.amount,
@@ -152,20 +167,26 @@ class _ExpenseAlertDialogFormAddWidgetState
                         vertical: 14,
                       ),
                     ),
-                    items: state.moneyPockets
-                        .map(
-                          (moneyPocket) => DropdownMenuItem(
-                            value: moneyPocket.id,
-                            child: Text(moneyPocket.name),
+                    items: [
+                      const DropdownMenuItem(
+                        value: null,
+                        child: Text('Ninguno'),
+                      ),
+                      ...state.moneyPockets.map(
+                        (moneyPocket) => DropdownMenuItem(
+                          value: moneyPocket.id,
+                          child: Text(
+                            '${moneyPocket.name} (\$${moneyPocket.amount})',
                           ),
-                        )
-                        .toList(),
+                        ),
+                      ),
+                    ],
                     onChanged: (value) {
                       setState(() {
                         moneyPocketSelected = value;
                       });
                     },
-                    validator: null,
+                    validator: (_) => null,
                   ),
                   Row(
                     children: [
