@@ -7,12 +7,14 @@ class FormSection extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.validator,
+    required this.keyboardType,
   });
 
   final String title;
   final String hintText;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class FormSection extends StatelessWidget {
             validator: validator,
             autovalidateMode: AutovalidateMode.onUserInteractionIfError,
             controller: controller,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            keyboardType: keyboardType,
             style: const TextStyle(fontSize: 18),
             decoration: InputDecoration(
               hintText: hintText,
