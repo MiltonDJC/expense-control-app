@@ -67,6 +67,7 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                     if (value!.isEmpty) return null;
                     return null;
                   },
+                  keyboardType: TextInputType.text,
                 ),
                 FormSection(
                   title: 'Monto',
@@ -80,6 +81,9 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                     }
                     return null;
                   },
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                 ),
               ],
             ),
