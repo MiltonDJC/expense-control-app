@@ -3,6 +3,7 @@ import 'package:expense_control_app/features/expenses/domain/use_cases/delete_ex
 import 'package:expense_control_app/features/expenses/domain/use_cases/get_all_expenses_use_case.dart';
 import 'package:expense_control_app/features/expenses/domain/use_cases/update_expense_use_case.dart';
 import 'package:expense_control_app/features/expenses/presentation/providers/expenses_repository_provider.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/providers/money_pockets_repository_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'expenses_use_cases_provider.g.dart';
 
@@ -26,6 +27,10 @@ UpdateExpenseUseCase updateExpenseUseCase(Ref ref) {
 
 @riverpod
 AddExpenseUseCase addExpenseUseCase(Ref ref) {
-  final respository = ref.read(expensesRepositoryProvider);
-  return AddExpenseUseCase(expensesRepository: respository);
+  final expensesRespository = ref.read(expensesRepositoryProvider);
+  final moneyPocketRespository = ref.read(moneyPocketsRepositoryProvider);
+  return AddExpenseUseCase(
+    expensesRepository: expensesRespository,
+    moneyPocketsRepository: moneyPocketRespository,
+  );
 }
