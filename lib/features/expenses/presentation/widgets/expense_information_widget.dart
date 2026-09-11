@@ -6,6 +6,7 @@ import 'package:expense_control_app/features/expenses/presentation/utils/pay_met
 import 'package:expense_control_app/features/money_pockets/presentation/providers/money_pockets_use_cases_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class ExpenseInformationWidget extends ConsumerWidget {
   const new({
@@ -59,7 +60,15 @@ class ExpenseInformationWidget extends ConsumerWidget {
               spacing: 16,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Transform.flip(
+                        flipY: true,
+                        child: const Icon(Symbols.payment_arrow_down),
+                      ),
+                    ),
                     Text(
                       'Monto pagado: \$$amount',
                       style: const TextStyle(fontSize: 24),
@@ -68,6 +77,10 @@ class ExpenseInformationWidget extends ConsumerWidget {
                 ),
                 Row(
                   children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Icon(Icons.savings),
+                    ),
                     const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
                     Text(
                       getPayMethodName(payMethod.name),
@@ -105,9 +118,17 @@ class ExpenseInformationWidget extends ConsumerWidget {
                                     moneyPocket.id == moneyPocketId,
                               )
                               .name;
-                          return Text(
-                            'Bolsillo utilizado: ${moneyPocketName.capitalize}',
-                            style: const TextStyle(fontSize: 24),
+                          return Row(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(right: 8),
+                                child: Icon(Icons.savings_outlined),
+                              ),
+                              Text(
+                                'Bolsillo utilizado: ${moneyPocketName.capitalize}',
+                                style: const TextStyle(fontSize: 24),
+                              ),
+                            ],
                           );
                         }
 
