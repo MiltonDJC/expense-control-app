@@ -17,6 +17,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     Bank? bank,
     required bool isFixed,
     int? moneyPocketId,
+    required DateTime createdDate,
   }) = _ExpenseModel;
 
   factory ExpenseModel.fromDrift(ExpenseData expenseRow) => ExpenseModel(
@@ -27,6 +28,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     bank: expenseRow.bank,
     isFixed: expenseRow.isFixed,
     moneyPocketId: expenseRow.moneyPocketId,
+    createdDate: expenseRow.createdDate,
   );
 
   factory ExpenseModel.fromEntity(ExpenseEntity entity) => ExpenseModel(
@@ -37,6 +39,7 @@ abstract class ExpenseModel with _$ExpenseModel {
     bank: entity.bank,
     isFixed: entity.isFixed,
     moneyPocketId: entity.moneyPocketId,
+    createdDate: entity.createdDate,
   );
 
   ExpenseEntity toEntity() => ExpenseEntity(
@@ -47,5 +50,6 @@ abstract class ExpenseModel with _$ExpenseModel {
     bank: bank,
     isFixed: isFixed,
     moneyPocketId: moneyPocketId,
+    createdDate: createdDate,
   );
 }
