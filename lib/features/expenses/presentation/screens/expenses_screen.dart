@@ -134,6 +134,7 @@ class ExpensesScreen extends ConsumerWidget {
                       isFixed: state.expenses[index].isFixed,
                       payMethod: state.expenses[index].payMethod,
                       moneyPocketId: state.expenses[index].moneyPocketId,
+                      createdDate: state.expenses[index].createdDate,
                     ),
                   );
                 },
@@ -163,7 +164,7 @@ class ExpensesScreen extends ConsumerWidget {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
