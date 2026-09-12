@@ -77,7 +77,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: Icon(Icons.savings),
+                      child: Icon(Icons.paid),
                     ),
                     const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
                     Text(
@@ -132,7 +132,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.only(right: 8),
-                                child: Icon(Icons.savings_outlined),
+                                child: Icon(Icons.savings),
                               ),
                               Text(
                                 'Bolsillo utilizado: ${moneyPocketName.capitalize}',
