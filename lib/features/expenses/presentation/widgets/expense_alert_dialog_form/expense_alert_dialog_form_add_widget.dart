@@ -6,7 +6,7 @@ import 'package:expense_control_app/features/expenses/presentation/enums/expense
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_dropdown_section.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_section.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
+import 'package:expense_control_app/core/presentation/widgets/form_date_picker_section.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
