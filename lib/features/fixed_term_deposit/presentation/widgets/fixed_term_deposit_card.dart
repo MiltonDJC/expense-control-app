@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
+import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/due_date_information_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +62,7 @@ class FixedTermDepositCard extends StatelessWidget {
                       children: [
                         const Icon(Icons.calendar_month),
                         Text(
-                          'Fecha de depósito: ${depositDate.day.toString().length > 1 ? '${depositDate.day}' : '0${depositDate.day}'}\\${depositDate.month.toString().length > 1 ? '${depositDate.month}' : '0${depositDate.month}'}\\${depositDate.year}',
+                          'Fecha de depósito: ${formatDate(depositDate)}',
                           style: const TextStyle(fontSize: 24),
                         ),
                       ],
@@ -71,7 +72,7 @@ class FixedTermDepositCard extends StatelessWidget {
                       children: [
                         const Icon(Icons.calendar_month),
                         Text(
-                          'Fecha de vencimiento: ${depositDueDate.day.toString().length > 1 ? '${depositDueDate.day}' : '0${depositDueDate.day}'}\\${depositDueDate.month.toString().length > 1 ? '${depositDueDate.month}' : '0${depositDueDate.month}'}\\${depositDueDate.year}',
+                          'Fecha de vencimiento: ${formatDate(depositDueDate)}',
                           style: const TextStyle(fontSize: 24),
                         ),
                       ],
@@ -79,7 +80,7 @@ class FixedTermDepositCard extends StatelessWidget {
                     Row(
                       spacing: 10,
                       children: [
-                        const Icon(Icons.lock_outline),
+                        const Icon(Icons.lock),
                         Text(
                           'Monto depositado: \$$depositAmount',
                           style: const TextStyle(fontSize: 24),
@@ -89,7 +90,7 @@ class FixedTermDepositCard extends StatelessWidget {
                     Row(
                       spacing: 10,
                       children: [
-                        const Icon(Icons.savings_outlined),
+                        const Icon(Icons.savings),
                         Text(
                           'Monto a recibir: \$$depositAmountReceived',
                           style: const TextStyle(fontSize: 24),
