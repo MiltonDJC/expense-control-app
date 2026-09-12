@@ -1,7 +1,7 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
 import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_date_picker_section.dart';
+import 'package:expense_control_app/core/presentation/widgets/form_date_picker_section.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
