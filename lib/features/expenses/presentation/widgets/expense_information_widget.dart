@@ -7,7 +7,6 @@ import 'package:expense_control_app/core/presentation/utils/format_date_utils.da
 import 'package:expense_control_app/features/money_pockets/presentation/providers/money_pockets_use_cases_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 class ExpenseInformationWidget extends ConsumerWidget {
   const new({
@@ -63,14 +62,10 @@ class ExpenseInformationWidget extends ConsumerWidget {
               spacing: 16,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Transform.flip(
-                        flipY: true,
-                        child: const Icon(Symbols.payment_arrow_down),
-                      ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Icon(Icons.payments),
                     ),
                     Text(
                       'Monto pagado: \$$amount',
