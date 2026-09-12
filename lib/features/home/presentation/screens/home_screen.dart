@@ -1,4 +1,5 @@
 import 'package:expense_control_app/features/balance/presentation/screens/balance_screen.dart';
+import 'package:expense_control_app/features/cards/presentation/screens/cards_screen.dart';
 import 'package:expense_control_app/features/expenses/presentation/screens/expenses_screen.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/screens/fixed_term_deposit_screen.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/screens/money_pockets_screen.dart';
@@ -18,6 +19,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     const MoneyPocketsScreen(),
     const ExpensesScreen(),
     const FixedTermDepositScreen(),
+    const CardsScreen(),
   ];
 
   int selectedIndex = 0;
@@ -41,27 +43,49 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.account_balance_wallet_outlined, size: 26),
-              selectedIcon: Icon(Icons.account_balance_wallet, size: 30),
+              selectedIcon: Icon(
+                Icons.account_balance_wallet,
+                color: Colors.black,
+                size: 30,
+              ),
               label: 'Balance',
               tooltip: 'Mi balance',
             ),
             NavigationDestination(
               icon: Icon(Icons.savings_outlined, size: 26),
-              selectedIcon: Icon(Icons.savings, size: 30),
+              selectedIcon: Icon(Icons.savings, color: Colors.black, size: 30),
               label: 'Bolsillos',
               tooltip: 'Mis bolsillos',
             ),
             NavigationDestination(
               icon: Icon(Icons.money_off_csred_outlined, size: 26),
-              selectedIcon: Icon(Icons.money_off_csred, size: 30),
+              selectedIcon: Icon(
+                Icons.money_off_csred,
+                color: Colors.black,
+                size: 30,
+              ),
               label: 'Gastos',
               tooltip: 'Mis gastos',
             ),
             NavigationDestination(
               icon: Icon(Icons.account_balance_outlined, size: 26),
-              selectedIcon: Icon(Icons.account_balance, size: 30),
+              selectedIcon: Icon(
+                Icons.account_balance,
+                color: Colors.black,
+                size: 30,
+              ),
               label: 'Plazos Fijos',
               tooltip: 'Mis plazos fijos',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.credit_card_outlined, size: 26),
+              selectedIcon: Icon(
+                Icons.credit_card,
+                color: Colors.black,
+                size: 30,
+              ),
+              label: 'Tarjetas',
+              tooltip: 'Mis tarjetas',
             ),
           ],
         ),
