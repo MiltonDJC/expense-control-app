@@ -1,6 +1,6 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
-import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_section.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket_form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,10 +44,11 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      actionsOverflowButtonSpacing: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: const Text(
+      title: Text(
         'Actualizar Bolsillo',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.headlineLarge,
       ),
       content: Form(
         key: _formKey,
@@ -59,7 +60,7 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FormSection(
+                MoneyPocketFormSection(
                   title: 'Nombre',
                   hintText: 'Nombre previo: ${widget.name}',
                   controller: _moneyPocketNameController,
@@ -69,7 +70,8 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                   },
                   keyboardType: TextInputType.text,
                 ),
-                FormSection(
+                const SizedBox(height: 16),
+                MoneyPocketFormSection(
                   title: 'Monto',
                   hintText: 'Monto previo: \$ ${widget.amount}',
                   controller: _moneyPocketAmountController,
@@ -85,16 +87,13 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                     decimal: true,
                   ),
                 ),
+                const SizedBox(height: 16),
               ],
             ),
           ),
         ),
       ),
       actions: [
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
-        ),
         ActionButtonWidget(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
@@ -115,6 +114,10 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
             }
           },
           text: 'Confirmar',
+        ),
+        ActionButtonWidget(
+          onPressed: () => Navigator.pop(context),
+          text: 'Cancelar',
         ),
       ],
     );
