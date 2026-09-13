@@ -1,5 +1,6 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
+import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket_form_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,10 +49,8 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
-              Text('Nombre', style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 8),
-              TextFormField(
+              MoneyPocketFormSection(
+                title: 'Nombre',
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'El campo no puede estar vacío.';
@@ -59,14 +58,11 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   return null;
                 },
                 controller: _moneyPocketNameController,
-                decoration: const InputDecoration(
-                  hintText: 'Nombre del bolsillo',
-                ),
+                hintText: 'Nombre del bolsillo',
               ),
               const SizedBox(height: 16),
-              Text('Monto', style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 8),
-              TextFormField(
+              MoneyPocketFormSection(
+                title: 'Monto',
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'El campo no puede estar vacío.';
@@ -82,10 +78,7 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   }
                 },
                 controller: _moneyPocketAmountController,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                ),
-                decoration: const InputDecoration(hintText: '\$ 0.00'),
+                hintText: '\$ 0.00',
               ),
               const SizedBox(height: 16),
             ],
