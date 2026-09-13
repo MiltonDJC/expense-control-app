@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FormSection extends StatelessWidget {
+class MoneyPocketFormSection extends StatelessWidget {
   const new({
     super.key,
     required this.title,
@@ -20,10 +20,7 @@ class FormSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
+          Text(title, style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 8),
           TextFormField(
             validator: validator,
@@ -31,18 +28,8 @@ class FormSection extends StatelessWidget {
             controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             style: const TextStyle(fontSize: 18),
-            decoration: InputDecoration(
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
-              ),
-            ),
+            decoration: InputDecoration(hintText: hintText),
           ),
-          const SizedBox(height: 16),
         ],
       ),
     );
