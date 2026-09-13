@@ -10,13 +10,15 @@ class ActionButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        backgroundColor: text == 'Confirmar' ? Colors.blue : Colors.red,
+        backgroundColor: text == 'Confirmar'
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.errorContainer,
       ),
       onPressed: onPressed,
       child: Text(
         text,
-        style: const TextStyle(fontSize: 18, color: Colors.white),
+        style: Theme.of(context).primaryTextTheme.headlineSmall
+            ?.copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }
