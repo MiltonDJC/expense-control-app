@@ -161,7 +161,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: Color(0xFF333333),
         ),
-        hintStyle: const TextStyle(fontSize: 16, color: Color(0xFF757575)),
+        hintStyle: const TextStyle(fontSize: 24, color: Color(0xFF757575)),
       ),
 
       // Tarjetas con bordes bien definidos
@@ -317,7 +317,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: Color(0xFFE0E0E0),
         ),
-        hintStyle: const TextStyle(fontSize: 16, color: Color(0xFF9E9E9E)),
+        hintStyle: const TextStyle(fontSize: 24, color: Color(0xFF9E9E9E)),
       ),
 
       // Tarjetas para modo oscuro
