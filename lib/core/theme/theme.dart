@@ -114,7 +114,6 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: _primaryLight,
           foregroundColor: _onPrimaryLight,
-          minimumSize: const Size.fromHeight(56), // Altura generosa
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -123,7 +122,6 @@ class AppTheme {
           elevation: 3,
         ),
       ),
-
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: _primaryLight,
