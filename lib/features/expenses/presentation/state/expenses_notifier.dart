@@ -1,5 +1,5 @@
 import 'package:expense_control_app/features/expenses/domain/entities/expense_entity.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/providers/expenses_use_cases_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

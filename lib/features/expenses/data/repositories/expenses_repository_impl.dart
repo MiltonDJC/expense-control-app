@@ -1,6 +1,6 @@
 import 'package:expense_control_app/features/expenses/data/datasources/expenses_local_data_source.dart';
 import 'package:expense_control_app/features/expenses/domain/entities/expense_entity.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/domain/repositories/expenses_repository.dart';
 

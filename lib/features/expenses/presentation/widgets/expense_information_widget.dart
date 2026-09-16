@@ -1,5 +1,5 @@
 import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/pay_method_utils.dart';

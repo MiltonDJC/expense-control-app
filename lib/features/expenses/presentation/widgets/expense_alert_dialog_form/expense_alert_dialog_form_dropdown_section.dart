@@ -1,4 +1,4 @@
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/enums/expense_sections_type.dart';
 import 'package:flutter/material.dart';

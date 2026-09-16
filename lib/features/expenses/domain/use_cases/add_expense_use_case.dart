@@ -1,4 +1,4 @@
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/domain/repositories/expenses_repository.dart';
 import 'package:expense_control_app/features/money_pockets/domain/repositories/money_pockets_repository.dart';

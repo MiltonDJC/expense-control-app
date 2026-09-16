@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:expense_control_app/core/database/app_database.dart';
 import 'package:expense_control_app/features/expenses/data/models/expense_model.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 
 class ExpensesLocalDataSource {

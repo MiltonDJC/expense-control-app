@@ -1,6 +1,6 @@
 import 'package:expense_control_app/core/database/app_database.dart';
 import 'package:expense_control_app/features/expenses/domain/entities/expense_entity.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'expense_model.freezed.dart';

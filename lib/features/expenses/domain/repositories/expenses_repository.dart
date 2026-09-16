@@ -1,5 +1,5 @@
 import 'package:expense_control_app/features/expenses/domain/entities/expense_entity.dart';
-import 'package:expense_control_app/features/expenses/domain/enums/bank.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 
 abstract class ExpensesRepository {
