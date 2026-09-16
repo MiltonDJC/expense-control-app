@@ -1,0 +1,1 @@
+enum CreditCardType { mastercard, visa }
