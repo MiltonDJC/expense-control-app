@@ -3,15 +3,15 @@ import 'package:expense_control_app/features/cards/domain/entities/card_entity.d
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 
 abstract class CardsRepository {
-  List<CardEntity> getAllCards();
-  void addCreditCard(
+  Future<List<CardEntity>> getAllCards();
+  Future<void> addCreditCard(
     String cardName,
     CreditCardType creditCardType,
     Bank bank,
     DateTime dueDate,
     DateTime closeDate,
   );
-  void updateCard({
+  Future<void> updateCard({
     required int id,
     String? cardName,
     CreditCardType? creditCardType,
@@ -19,5 +19,5 @@ abstract class CardsRepository {
     DateTime? dueDate,
     DateTime? closeDate,
   });
-  void deleteCard({required int id});
+  Future<void> deleteCard({required int id});
 }
