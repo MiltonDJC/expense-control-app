@@ -1,6 +1,9 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/form_date_picker_section.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
+import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
+import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,30 +53,45 @@ class _CardAlertDialogFormAddState
           child: SingleChildScrollView(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.85,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Tarjeta',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  CreditCardWidget(
+                    creditCardType: CreditCardType.visa,
+                    bank: Bank.bancoComafi,
+                    closeDate: closeDate ?? DateTime.now(),
+                    dueDate: dueDate ?? DateTime.now(),
+                    cardColor: Colors.green,
                   ),
-                  const SizedBox(height: 16),
-                  FormDatePickerSection(
-                    title: 'Fecha de cierre',
-                    hintText: 'Seleccione una fecha',
-                    datePicked: (dateSelected) {
-                      closeDate = dateSelected;
-                    },
-                    validator: null,
-                  ),
-                  FormDatePickerSection(
-                    title: 'Fecha de vencimiento',
-                    hintText: 'Seleccione una fecha',
-                    datePicked: (dateSelected) {
-                      dueDate = dateSelected;
-                    },
-                    validator: null,
+                  SizedBox(
+                    width: 480,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 16),
+                        FormDatePickerSection(
+                          title: 'Fecha de cierre',
+                          hintText: 'Seleccione una fecha',
+                          datePicked: (dateSelected) {
+                            setState(() {
+                              closeDate = dateSelected;
+                            });
+                          },
+                          validator: null,
+                        ),
+                        FormDatePickerSection(
+                          title: 'Fecha de vencimiento',
+                          hintText: 'Seleccione una fecha',
+                          datePicked: (dateSelected) {
+                            setState(() {
+                              dueDate = dateSelected;
+                            });
+                          },
+                          validator: null,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -88,6 +106,8 @@ class _CardAlertDialogFormAddState
           ActionButtonWidget(
             onPressed: () async {
               if (formKey.currentState!.validate()) {
+                // Todo: implementar metodo para agregar tarjeta
+
                 if (context.mounted) Navigator.pop(context);
               }
             },
