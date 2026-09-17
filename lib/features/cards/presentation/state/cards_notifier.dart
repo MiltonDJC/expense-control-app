@@ -2,7 +2,6 @@ import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/entities/card_entity.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/providers/cards_use_cases_provider.dart';
-import 'package:expense_control_app/features/expenses/presentation/providers/expenses_use_cases_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'cards_notifier.freezed.dart';
