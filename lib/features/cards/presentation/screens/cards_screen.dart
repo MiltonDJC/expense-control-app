@@ -70,7 +70,7 @@ class CardsScreen extends ConsumerWidget {
                                       'Eliminar',
                                       style: TextStyle(color: Colors.red),
                                     ),
-                                    onTap: () => showDialog(
+                                    onTap: () async => await showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                         content: const SizedBox(
