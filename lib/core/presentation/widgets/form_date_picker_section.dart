@@ -63,14 +63,14 @@ class _FormDatePickerSectionState extends State<FormDatePickerSection> {
       children: [
         Text(
           widget.title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 8),
         TextFormField(
           controller: _dateController,
           readOnly: true,
           onTap: _pickDate,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           decoration: InputDecoration(
             hintText: widget.hintText,
             prefixIcon: const Icon(Icons.calendar_today),
