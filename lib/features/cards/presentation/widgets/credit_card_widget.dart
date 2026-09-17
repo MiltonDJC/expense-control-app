@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/utils/credit_card_date_formatter.dart';
@@ -22,8 +23,8 @@ class CreditCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedDueDate = formatCreditCardDate(dueDate);
-    final String formattedCloseDate = formatCreditCardDate(closeDate);
+    final String formattedDueDate = formatDate(dueDate);
+    final String formattedCloseDate = formatDate(closeDate);
 
     return Container(
       width: 480,
@@ -99,7 +100,7 @@ class CreditCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Cierre: $formattedCloseDate',
+                      'Cierre:\n$formattedCloseDate',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -113,7 +114,7 @@ class CreditCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Vencimiento: $formattedDueDate',
+                    'Vencimiento:\n$formattedDueDate',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
