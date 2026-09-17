@@ -91,6 +91,10 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
       ),
       actions: [
         ActionButtonWidget(
+          onPressed: () => Navigator.pop(context),
+          text: 'Cancelar',
+        ),
+        ActionButtonWidget(
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               await ref
@@ -105,10 +109,6 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
             }
           },
           text: 'Confirmar',
-        ),
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
         ),
       ],
     );
