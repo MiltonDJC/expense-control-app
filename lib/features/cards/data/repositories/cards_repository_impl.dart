@@ -17,7 +17,6 @@ class CardsRepositoryImpl implements CardsRepository {
 
   @override
   Future<void> addCreditCard(
-    String cardName,
     CreditCardType creditCardType,
     Bank bank,
     DateTime dueDate,

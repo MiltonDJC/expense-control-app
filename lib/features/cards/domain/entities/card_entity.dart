@@ -3,14 +3,12 @@ import 'package:expense_control_app/features/cards/domain/enums/credit_card_type
 
 class CardEntity {
   const CardEntity({
-    required this.cardName,
     required this.creditCardType,
     required this.bank,
     required this.dueDate,
     required this.closeDate,
   });
 
-  final String cardName;
   final CreditCardType creditCardType;
   final Bank bank;
   final DateTime dueDate;
