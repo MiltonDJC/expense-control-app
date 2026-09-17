@@ -44,7 +44,6 @@ class CreditCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Fila superior: Banco y Tipo de Tarjeta
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -68,8 +67,6 @@ class CreditCardWidget extends StatelessWidget {
               ),
             ],
           ),
-
-          // Chip simulado
           Row(
             children: [
               Container(
@@ -94,8 +91,6 @@ class CreditCardWidget extends StatelessWidget {
               ),
             ],
           ),
-
-          // Fila inferior: Nombre, Vencimiento y Cierre
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
