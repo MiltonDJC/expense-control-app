@@ -1,5 +1,8 @@
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/entities/card_entity.dart';
+import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/providers/cards_use_cases_provider.dart';
+import 'package:expense_control_app/features/expenses/presentation/providers/expenses_use_cases_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'cards_notifier.freezed.dart';
@@ -18,5 +21,23 @@ class CardsNotifier extends _$CardsNotifier {
     final cards = await ref.read(getAllCardsUseCaseProvider)();
     return CardsState(cards: cards);
   }
-  // Others methods
+
+  Future<void> addCreditCard({
+    required CreditCardType creditCardType,
+    required Bank bank,
+    required DateTime dueDate,
+    required DateTime closeDate,
+  }) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(addCreditCardUseCaseProvider)(
+        creditCardType: creditCardType,
+        bank: bank,
+        duedate: dueDate,
+        closeDate: closeDate,
+      );
+      final cards = await ref.read(getAllCardsUseCaseProvider)();
+      return CardsState(cards: cards);
+    });
+  }
 }
