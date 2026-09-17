@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_add.dart';
@@ -34,12 +35,84 @@ class CardsScreen extends ConsumerWidget {
                         ),
                     itemCount: state.cards.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return CreditCardWidget(
-                        creditCardType: state.cards[index].creditCardType,
-                        bank: state.cards[index].bank,
-                        dueDate: state.cards[index].dueDate,
-                        closeDate: state.cards[index].closeDate,
-                        cardColor: Colors.green,
+                      return Builder(
+                        builder: (BuildContext innerContext) {
+                          return InkWell(
+                            onLongPress: () async {
+                              final RenderBox renderBox =
+                                  innerContext.findRenderObject() as RenderBox;
+                              final size = renderBox.size;
+                              final position = renderBox.localToGlobal(
+                                Offset.zero,
+                              );
+
+                              final centerX = position.dx + (size.width / 2.5);
+                              final centerY = position.dy + (size.height / 2.5);
+
+                              await showMenu(
+                                context: context,
+                                position: RelativeRect.fromLTRB(
+                                  centerX,
+                                  centerY,
+                                  centerX,
+                                  centerY,
+                                ),
+                                items: [
+                                  const PopupMenuItem(
+                                    child: Icon(Icons.arrow_back),
+                                  ),
+                                  PopupMenuItem(
+                                    child: const Text('Editar'),
+                                    onTap: () {},
+                                  ),
+                                  PopupMenuItem(
+                                    child: const Text(
+                                      'Eliminar',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    onTap: () => showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        content: const SizedBox(
+                                          width: 288,
+                                          height: 100,
+                                          child: Center(
+                                            child: Text(
+                                              '¿Segura quiere eliminar la tarjeta?',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        actions: [
+                                          ActionButtonWidget(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            text: 'Cancelar',
+                                          ),
+                                          ActionButtonWidget(
+                                            onPressed: () {},
+                                            text: 'Confirmar',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            child: CreditCardWidget(
+                              creditCardType: state.cards[index].creditCardType,
+                              bank: state.cards[index].bank,
+                              dueDate: state.cards[index].dueDate,
+                              closeDate: state.cards[index].closeDate,
+                              cardColor: Colors.green,
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
