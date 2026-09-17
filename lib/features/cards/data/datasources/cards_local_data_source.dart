@@ -1,6 +1,7 @@
-// import 'package:drift/drift.dart';
 import 'package:expense_control_app/core/database/app_database.dart';
+import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/data/models/card_model.dart';
+import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 
 class CardsLocalDataSource {
   CardsLocalDataSource({required this.appDatabase});
@@ -19,5 +20,21 @@ class CardsLocalDataSource {
         'No se pudo obtener las tarjetas registradas en la base de datos.',
       );
     }
+  }
+
+  Future<void> addCreditCard({
+    required CreditCardType creditCardType,
+    required Bank bank,
+    required DateTime dueDate,
+    required DateTime closeDate,
+  }) async {
+    await appDatabase.managers.card.create(
+      (o) => o(
+        creditCardType: creditCardType,
+        bank: bank,
+        dueDate: dueDate,
+        closeDate: closeDate,
+      ),
+    );
   }
 }
