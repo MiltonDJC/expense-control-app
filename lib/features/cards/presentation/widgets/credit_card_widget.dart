@@ -1,7 +1,6 @@
 import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
-import 'package:expense_control_app/features/cards/presentation/utils/credit_card_date_formatter.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:flutter/material.dart';
 
