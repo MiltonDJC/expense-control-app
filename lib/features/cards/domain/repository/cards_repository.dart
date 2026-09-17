@@ -4,12 +4,12 @@ import 'package:expense_control_app/features/cards/domain/enums/credit_card_type
 
 abstract class CardsRepository {
   Future<List<CardEntity>> getAllCards();
-  Future<void> addCreditCard(
-    CreditCardType creditCardType,
-    Bank bank,
-    DateTime dueDate,
-    DateTime closeDate,
-  );
+  Future<void> addCreditCard({
+    required CreditCardType creditCardType,
+    required Bank bank,
+    required DateTime dueDate,
+    required DateTime closeDate,
+  });
   Future<void> updateCard({
     required int id,
     CreditCardType? creditCardType,
