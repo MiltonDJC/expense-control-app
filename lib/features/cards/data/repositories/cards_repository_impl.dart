@@ -16,14 +16,18 @@ class CardsRepositoryImpl implements CardsRepository {
   }
 
   @override
-  Future<void> addCreditCard(
-    CreditCardType creditCardType,
-    Bank bank,
-    DateTime dueDate,
-    DateTime closeDate,
-  ) {
-    // TODO: implement addCreditCard
-    throw UnimplementedError();
+  Future<void> addCreditCard({
+    required CreditCardType creditCardType,
+    required Bank bank,
+    required DateTime dueDate,
+    required DateTime closeDate,
+  }) async {
+    await dataSource.addCreditCard(
+      creditCardType: creditCardType,
+      bank: bank,
+      dueDate: dueDate,
+      closeDate: closeDate,
+    );
   }
 
   @override
