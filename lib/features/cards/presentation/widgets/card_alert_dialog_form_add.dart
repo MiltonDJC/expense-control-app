@@ -33,8 +33,10 @@ class _CardAlertDialogFormAddState
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  DateTime? dueDate;
-  DateTime? closeDate;
+  CreditCardType creditCardType = CreditCardType.visa;
+  Bank bank = Bank.bancoComafi;
+  DateTime closeDate = DateTime.now();
+  DateTime dueDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +55,15 @@ class _CardAlertDialogFormAddState
           child: SingleChildScrollView(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.85,
+              height: MediaQuery.of(context).size.height * 0.60,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CreditCardWidget(
-                    creditCardType: CreditCardType.visa,
+                    creditCardType: creditCardType,
                     bank: Bank.bancoComafi,
-                    closeDate: closeDate ?? DateTime.now(),
-                    dueDate: dueDate ?? DateTime.now(),
+                    closeDate: closeDate,
+                    dueDate: dueDate,
                     cardColor: Colors.green,
                   ),
                   SizedBox(
@@ -69,13 +72,41 @@ class _CardAlertDialogFormAddState
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const Text(
+                          'Tipo de tarjeta',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        DropdownButtonFormField<CreditCardType>(
+                          hint: const Text('Seleccione el tipo de tarjeta'),
+                          items: const [
+                            DropdownMenuItem(
+                              value: CreditCardType.mastercard,
+                              child: Text('Mastercard'),
+                            ),
+                            DropdownMenuItem(
+                              value: CreditCardType.visa,
+                              child: Text('Visa'),
+                            ),
+                          ],
+                          onChanged: (value) =>
+                              setState(() => creditCardType = value!),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         const SizedBox(height: 16),
                         FormDatePickerSection(
                           title: 'Fecha de cierre',
                           hintText: 'Seleccione una fecha',
                           datePicked: (dateSelected) {
                             setState(() {
-                              closeDate = dateSelected;
+                              closeDate = dateSelected!;
                             });
                           },
                           validator: null,
@@ -85,7 +116,7 @@ class _CardAlertDialogFormAddState
                           hintText: 'Seleccione una fecha',
                           datePicked: (dateSelected) {
                             setState(() {
-                              dueDate = dateSelected;
+                              dueDate = dateSelected!;
                             });
                           },
                           validator: null,
@@ -107,6 +138,14 @@ class _CardAlertDialogFormAddState
             onPressed: () async {
               if (formKey.currentState!.validate()) {
                 // Todo: implementar metodo para agregar tarjeta
+                await ref
+                    .read(cardsProvider.notifier)
+                    .addCreditCard(
+                      creditCardType: creditCardType,
+                      bank: bank,
+                      dueDate: dueDate,
+                      closeDate: closeDate,
+                    );
 
                 if (context.mounted) Navigator.pop(context);
               }
