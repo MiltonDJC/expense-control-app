@@ -1,6 +1,7 @@
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_add.dart';
+import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,9 +21,29 @@ class CardsScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 26),
                 ),
               )
-            : const Padding(
-                padding: EdgeInsets.only(bottom: 72),
-                child: Center(child: Text('Tarjetas listadas')),
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 72, top: 18),
+                child: Center(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 1.6,
+                          mainAxisSpacing: 18,
+                          crossAxisSpacing: 12,
+                        ),
+                    itemCount: state.cards.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CreditCardWidget(
+                        creditCardType: state.cards[index].creditCardType,
+                        bank: state.cards[index].bank,
+                        dueDate: state.cards[index].dueDate,
+                        closeDate: state.cards[index].closeDate,
+                        cardColor: Colors.green,
+                      );
+                    },
+                  ),
+                ),
               ),
         error: (error, stackTrace) =>
             Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
