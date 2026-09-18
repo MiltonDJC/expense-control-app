@@ -39,4 +39,13 @@ class CardsNotifier extends _$CardsNotifier {
       return CardsState(cards: cards);
     });
   }
+
+  Future<void> deleteCard({required int id}) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(deleteCardUseCaseProvider)(id: id);
+      final cards = await ref.read(getAllCardsUseCaseProvider)();
+      return CardsState(cards: cards);
+    });
+  }
 }
