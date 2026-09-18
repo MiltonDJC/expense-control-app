@@ -10,6 +10,7 @@ abstract class CardModel with _$CardModel {
   const CardModel._();
 
   const factory CardModel({
+    required int id,
     required CreditCardType creditCardType,
     required Bank bank,
     required DateTime dueDate,
@@ -17,6 +18,7 @@ abstract class CardModel with _$CardModel {
   }) = _CardModel;
 
   factory CardModel.fromDrift(CardData cardRow) => CardModel(
+    id: cardRow.id,
     creditCardType: cardRow.creditCardType,
     bank: cardRow.bank,
     dueDate: cardRow.dueDate,
@@ -24,6 +26,7 @@ abstract class CardModel with _$CardModel {
   );
 
   factory CardModel.fromEntity(CardEntity entity) => CardModel(
+    id: entity.id,
     creditCardType: entity.creditCardType,
     bank: entity.bank,
     dueDate: entity.dueDate,
@@ -31,6 +34,7 @@ abstract class CardModel with _$CardModel {
   );
 
   CardEntity toEntity() => CardEntity(
+    id: id,
     creditCardType: creditCardType,
     bank: bank,
     dueDate: dueDate,
