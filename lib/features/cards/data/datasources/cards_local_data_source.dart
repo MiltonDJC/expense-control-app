@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:expense_control_app/core/database/app_database.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/data/models/card_model.dart';
@@ -36,6 +37,25 @@ class CardsLocalDataSource {
         closeDate: closeDate,
       ),
     );
+  }
+
+  Future<void> updateCard({
+    required int id,
+    CreditCardType? creditCardType,
+    Bank? bank,
+    DateTime? dueDate,
+    DateTime? closeDate,
+  }) async {
+    await appDatabase.managers.card
+        .filter((f) => f.id(id))
+        .update(
+          (o) => o(
+            creditCardType: Value.absentIfNull(creditCardType),
+            bank: Value.absentIfNull(bank),
+            dueDate: Value.absentIfNull(dueDate),
+            closeDate: Value.absentIfNull(closeDate),
+          ),
+        );
   }
 
   Future<void> deleteCard({required int id}) async {
