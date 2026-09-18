@@ -44,8 +44,7 @@ class CardsRepositoryImpl implements CardsRepository {
   }
 
   @override
-  Future<void> deleteCard({required int id}) {
-    // TODO: implement deleteCard
-    throw UnimplementedError();
+  Future<void> deleteCard({required int id}) async {
+    await dataSource.deleteCard(id: id);
   }
 }
