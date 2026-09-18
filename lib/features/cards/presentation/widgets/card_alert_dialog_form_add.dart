@@ -54,17 +54,21 @@ class _CardAlertDialogFormAddState
           autovalidateMode: AutovalidateMode.onUserInteractionIfError,
           child: SingleChildScrollView(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.85,
-              height: MediaQuery.of(context).size.height * 0.60,
+              width: MediaQuery.of(context).size.width * 0.75,
+              height: MediaQuery.of(context).size.height * 0.50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CreditCardWidget(
-                    creditCardType: creditCardType,
-                    bank: Bank.bancoComafi,
-                    closeDate: closeDate,
-                    dueDate: dueDate,
-                    cardColor: Colors.green,
+                  SizedBox(
+                    height: 256,
+                    width: 416,
+                    child: CreditCardWidget(
+                      creditCardType: creditCardType,
+                      bank: Bank.bancoComafi,
+                      closeDate: closeDate,
+                      dueDate: dueDate,
+                      cardColor: Colors.green,
+                    ),
                   ),
                   SizedBox(
                     width: 480,
