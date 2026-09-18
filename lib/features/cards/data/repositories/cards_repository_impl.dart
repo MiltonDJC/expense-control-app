@@ -33,14 +33,18 @@ class CardsRepositoryImpl implements CardsRepository {
   @override
   Future<void> updateCard({
     required int id,
-    String? cardName,
     CreditCardType? creditCardType,
     Bank? bank,
     DateTime? dueDate,
     DateTime? closeDate,
-  }) {
-    // TODO: implement updateCard
-    throw UnimplementedError();
+  }) async {
+    await dataSource.updateCard(
+      id: id,
+      creditCardType: creditCardType,
+      bank: bank,
+      dueDate: dueDate,
+      closeDate: closeDate,
+    );
   }
 
   @override
