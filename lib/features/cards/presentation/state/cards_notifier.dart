@@ -40,6 +40,27 @@ class CardsNotifier extends _$CardsNotifier {
     });
   }
 
+  Future<void> updateCard({
+    required int id,
+    CreditCardType? creditCardType,
+    Bank? bank,
+    DateTime? dueDate,
+    DateTime? closeDate,
+  }) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(updateCardUseCaseProvider)(
+        id: id,
+        creditCardType: creditCardType,
+        bank: bank,
+        dueDate: dueDate,
+        closeDate: closeDate,
+      );
+      final cards = await ref.read(getAllCardsUseCaseProvider)();
+      return CardsState(cards: cards);
+    });
+  }
+
   Future<void> deleteCard({required int id}) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
