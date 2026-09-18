@@ -17,20 +17,6 @@ class CardAlertDialogFormAdd extends ConsumerStatefulWidget {
 
 class _CardAlertDialogFormAddState
     extends ConsumerState<CardAlertDialogFormAdd> {
-  late TextEditingController cardNameController;
-
-  @override
-  void initState() {
-    super.initState();
-    cardNameController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    cardNameController.dispose();
-    super.dispose();
-  }
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   CreditCardType creditCardType = CreditCardType.visa;
@@ -141,7 +127,6 @@ class _CardAlertDialogFormAddState
           ActionButtonWidget(
             onPressed: () async {
               if (formKey.currentState!.validate()) {
-                // Todo: implementar metodo para agregar tarjeta
                 await ref
                     .read(cardsProvider.notifier)
                     .addCreditCard(
