@@ -94,7 +94,16 @@ class CardsScreen extends ConsumerWidget {
                                             text: 'Cancelar',
                                           ),
                                           ActionButtonWidget(
-                                            onPressed: () {},
+                                            onPressed: () async {
+                                              await ref
+                                                  .read(cardsProvider.notifier)
+                                                  .deleteCard(
+                                                    id: state.cards[index].id,
+                                                  );
+                                              if (context.mounted) {
+                                                Navigator.pop(context);
+                                              }
+                                            },
                                             text: 'Confirmar',
                                           ),
                                         ],
