@@ -2,6 +2,7 @@ import 'package:expense_control_app/core/presentation/widgets/action_button_widg
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_add.dart';
+import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_update.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,7 +64,20 @@ class CardsScreen extends ConsumerWidget {
                                   ),
                                   PopupMenuItem(
                                     child: const Text('Editar'),
-                                    onTap: () {},
+                                    onTap: () async => await showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CardAlertDialogFormUpdate(
+                                            id: state.cards[index].id,
+                                            creditCardType: state
+                                                .cards[index]
+                                                .creditCardType,
+                                            bank: state.cards[index].bank,
+                                            dueDate: state.cards[index].dueDate,
+                                            closeDate:
+                                                state.cards[index].closeDate,
+                                          ),
+                                    ),
                                   ),
                                   PopupMenuItem(
                                     child: const Text(
