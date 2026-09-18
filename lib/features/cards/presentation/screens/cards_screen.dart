@@ -1,6 +1,7 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
+import 'package:expense_control_app/features/cards/presentation/utils/get_card_color.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_add.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_update.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
@@ -140,7 +141,9 @@ class CardsScreen extends ConsumerWidget {
                                 bank: state.cards[index].bank,
                                 dueDate: state.cards[index].dueDate,
                                 closeDate: state.cards[index].closeDate,
-                                cardColor: Colors.green,
+                                cardColor: getCardColor(
+                                  state.cards[index].bank,
+                                ),
                               ),
                             );
                           },
