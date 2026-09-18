@@ -41,7 +41,7 @@ class _CardAlertDialogFormAddState
           child: SingleChildScrollView(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.height * 0.50,
+              height: MediaQuery.of(context).size.height * 0.65,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -59,7 +59,6 @@ class _CardAlertDialogFormAddState
                   SizedBox(
                     width: 480,
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
@@ -84,6 +83,42 @@ class _CardAlertDialogFormAddState
                           ],
                           onChanged: (value) =>
                               setState(() => creditCardType = value!),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Banco',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        DropdownButtonFormField<Bank>(
+                          hint: const Text('Seleccione el banco emisor'),
+                          items: const [
+                            DropdownMenuItem(
+                              value: Bank.bancoMacro,
+                              child: Text('Banco Macro'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoProvincia,
+                              child: Text('Banco Provincia'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoComafi,
+                              child: Text('Banco Comafi'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoNacion,
+                              child: Text('Banco Nación'),
+                            ),
+                          ],
+                          onChanged: (value) => setState(() => bank = value!),
                           style: const TextStyle(
                             fontSize: 20,
                             color: Colors.black,
