@@ -37,4 +37,8 @@ class CardsLocalDataSource {
       ),
     );
   }
+
+  Future<void> deleteCard({required int id}) async {
+    await appDatabase.managers.card.filter((f) => f.id(id)).delete();
+  }
 }
