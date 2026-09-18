@@ -34,7 +34,6 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      actionsOverflowButtonSpacing: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: Text(
         'Registrar Bolsillo',
@@ -43,49 +42,51 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
       content: Form(
         key: _formKey,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.85,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MoneyPocketFormSection(
-                title: 'Nombre',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'El campo no puede estar vacío.';
-                  }
-                  return null;
-                },
-                controller: _moneyPocketNameController,
-                hintText: 'Nombre del bolsillo',
-                keyboardType: TextInputType.text,
-              ),
-              const SizedBox(height: 16),
-              MoneyPocketFormSection(
-                title: 'Monto',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'El campo no puede estar vacío.';
-                  }
-                  if (value.contains(',')) {
-                    return 'Utilice el punto en vez de la coma';
-                  }
-                  if (int.tryParse(value) is int ||
-                      double.tryParse(value) is double) {
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.85,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MoneyPocketFormSection(
+                  title: 'Nombre',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'El campo no puede estar vacío.';
+                    }
                     return null;
-                  } else {
-                    return 'El campo debe tener caracteres numéricos';
-                  }
-                },
-                controller: _moneyPocketAmountController,
-                hintText: '\$ 0.00',
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
+                  },
+                  controller: _moneyPocketNameController,
+                  hintText: 'Nombre del bolsillo',
+                  keyboardType: TextInputType.text,
                 ),
-              ),
-              const SizedBox(height: 16),
-            ],
+                const SizedBox(height: 16),
+                MoneyPocketFormSection(
+                  title: 'Monto',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'El campo no puede estar vacío.';
+                    }
+                    if (value.contains(',')) {
+                      return 'Utilice el punto en vez de la coma';
+                    }
+                    if (int.tryParse(value) is int ||
+                        double.tryParse(value) is double) {
+                      return null;
+                    } else {
+                      return 'El campo debe tener caracteres numéricos';
+                    }
+                  },
+                  controller: _moneyPocketAmountController,
+                  hintText: '\$ 0.00',
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),
