@@ -3,6 +3,7 @@ import 'package:expense_control_app/core/presentation/widgets/form_date_picker_s
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
+import 'package:expense_control_app/features/cards/presentation/utils/get_card_color.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,7 +54,7 @@ class _CardAlertDialogFormAddState
                       bank: Bank.bancoComafi,
                       closeDate: closeDate,
                       dueDate: dueDate,
-                      cardColor: Colors.green,
+                      cardColor: getCardColor(bank),
                     ),
                   ),
                   SizedBox(
