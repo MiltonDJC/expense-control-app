@@ -159,7 +159,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: Color(0xFF333333),
         ),
-        hintStyle: const TextStyle(fontSize: 24, color: Color(0xFF757575)),
+        hintStyle: const TextStyle(fontSize: 20, color: Color(0xFF757575)),
       ),
 
       // Tarjetas con bordes bien definidos
