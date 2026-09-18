@@ -44,7 +44,6 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      actionsOverflowButtonSpacing: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: Text(
         'Actualizar Bolsillo',
