@@ -54,6 +54,11 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                             state.moneyPockets[index].amount,
                                       );
                                     },
+                                    barrierDismissible: false,
+                                    animationStyle: const AnimationStyle(
+                                      curve: Curves.easeInOut,
+                                      duration: Duration(milliseconds: 250),
+                                    ),
                                   );
                                 },
                                 backgroundColor: Colors.blue,
@@ -122,6 +127,11 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                         ],
                                       );
                                     },
+                                    barrierDismissible: false,
+                                    animationStyle: const AnimationStyle(
+                                      curve: Curves.easeInOut,
+                                      duration: Duration(milliseconds: 250),
+                                    ),
                                   );
                                 },
                                 backgroundColor: Colors.red,
@@ -172,6 +182,11 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                   builder: (context) {
                     return const MoneyPocketAddForm();
                   },
+                  barrierDismissible: false,
+                  animationStyle: const AnimationStyle(
+                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 250),
+                  ),
                 );
               },
               title: 'Agregar bolsillo',
