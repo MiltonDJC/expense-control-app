@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
+import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/utils/format_date_utils.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/form_date_picker_section.dart';
@@ -192,6 +193,9 @@ class _CardAlertDialogFormUpdateState
                   );
 
               if (context.mounted) Navigator.pop(context);
+              if (context.mounted) {
+                AppSnackBar.show(context, 'Tarjeta actualizada con éxito.');
+              }
             }
           },
           text: 'Confirmar',
