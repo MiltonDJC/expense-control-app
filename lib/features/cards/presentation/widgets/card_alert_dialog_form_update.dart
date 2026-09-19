@@ -5,7 +5,9 @@ import 'package:expense_control_app/core/presentation/widgets/form_date_picker_s
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
+import 'package:expense_control_app/features/cards/presentation/utils/get_card_color.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
+import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,15 +17,15 @@ class CardAlertDialogFormUpdate extends ConsumerStatefulWidget {
     required this.id,
     required this.creditCardType,
     required this.bank,
-    required this.dueDate,
     required this.closeDate,
+    required this.dueDate,
   });
 
   final int id;
   final CreditCardType creditCardType;
   final Bank bank;
-  final DateTime dueDate;
   final DateTime closeDate;
+  final DateTime dueDate;
 
   @override
   ConsumerState<CardAlertDialogFormUpdate> createState() =>
@@ -36,8 +38,8 @@ class _CardAlertDialogFormUpdateState
 
   CreditCardType? creditCardType;
   Bank? bank;
-  DateTime? closeDate;
   DateTime? dueDate;
+  DateTime? closeDate;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class _CardAlertDialogFormUpdateState
           child: SingleChildScrollView(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.height * 0.50,
+              height: MediaQuery.of(context).size.height * 0.65,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -66,15 +68,14 @@ class _CardAlertDialogFormUpdateState
                     child: CreditCardWidget(
                       creditCardType: creditCardType ?? widget.creditCardType,
                       bank: bank ?? widget.bank,
-                      closeDate: closeDate ?? widget.closeDate,
                       dueDate: dueDate ?? widget.dueDate,
-                      cardColor: Colors.green,
+                      closeDate: closeDate ?? widget.closeDate,
+                      cardColor: getCardColor(bank ?? widget.bank),
                     ),
                   ),
                   SizedBox(
                     width: 480,
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
@@ -87,7 +88,7 @@ class _CardAlertDialogFormUpdateState
                         const SizedBox(height: 8),
                         DropdownButtonFormField<CreditCardType>(
                           hint: Text(
-                            'Tarjeta seleccionada: ${widget.creditCardType.name.capitalize}',
+                            'Tipo previo: ${widget.creditCardType.name.capitalize}',
                           ),
                           items: const [
                             DropdownMenuItem(
@@ -108,10 +109,48 @@ class _CardAlertDialogFormUpdateState
                           ),
                         ),
                         const SizedBox(height: 16),
+                        const Text(
+                          'Banco',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        DropdownButtonFormField<Bank>(
+                          hint: Text(
+                            'Banco previo: ${getBankName(widget.bank.name)}',
+                          ),
+                          items: const [
+                            DropdownMenuItem(
+                              value: Bank.bancoMacro,
+                              child: Text('Banco Macro'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoProvincia,
+                              child: Text('Banco Provincia'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoComafi,
+                              child: Text('Banco Comafi'),
+                            ),
+                            DropdownMenuItem(
+                              value: Bank.bancoNacion,
+                              child: Text('Banco Nación'),
+                            ),
+                          ],
+                          onChanged: (value) => setState(() => bank = value!),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
                         FormDatePickerSection(
                           title: 'Fecha de cierre',
                           hintText:
-                              'Fecha anterior: ${formatDate(widget.closeDate)}',
+                              'Fecha previa: ${formatDate(widget.closeDate)}',
                           datePicked: (dateSelected) {
                             setState(() {
                               closeDate = dateSelected!;
@@ -122,7 +161,7 @@ class _CardAlertDialogFormUpdateState
                         FormDatePickerSection(
                           title: 'Fecha de vencimiento',
                           hintText:
-                              'Fecha anterior: ${formatDate(widget.dueDate)}',
+                              'Fecha previa: ${formatDate(widget.dueDate)}',
                           datePicked: (dateSelected) {
                             setState(() {
                               dueDate = dateSelected!;
