@@ -171,6 +171,11 @@ class CardsScreen extends ConsumerWidget {
                   builder: (context) {
                     return const CardAlertDialogFormAdd();
                   },
+                  barrierDismissible: false,
+                  animationStyle: const AnimationStyle(
+                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 250),
+                  ),
                 );
               },
             ),
