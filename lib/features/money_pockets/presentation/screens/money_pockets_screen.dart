@@ -36,7 +36,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                     itemCount: state.moneyPockets.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
+                        padding: const EdgeInsets.only(bottom: 16, top: 8),
                         child: Slidable(
                           startActionPane: ActionPane(
                             motion: const ScrollMotion(),
