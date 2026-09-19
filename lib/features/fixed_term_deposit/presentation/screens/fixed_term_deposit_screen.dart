@@ -62,6 +62,11 @@ class FixedTermDepositScreen extends ConsumerWidget {
                                           state.fixedTermDeposits[index].name,
                                     );
                                   },
+                                  barrierDismissible: false,
+                                  animationStyle: const AnimationStyle(
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(milliseconds: 250),
+                                  ),
                                 );
                               },
                               backgroundColor: Colors.blue,
@@ -114,6 +119,11 @@ class FixedTermDepositScreen extends ConsumerWidget {
                                       ],
                                     );
                                   },
+                                  barrierDismissible: false,
+                                  animationStyle: const AnimationStyle(
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(milliseconds: 250),
+                                  ),
                                 );
                               },
                               backgroundColor: Colors.red,
@@ -158,6 +168,11 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   builder: (context) {
                     return const FormAddWidget();
                   },
+                  barrierDismissible: false,
+                  animationStyle: const AnimationStyle(
+                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 250),
+                  ),
                 );
               },
               title: 'Agregar plazo fijo',
