@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
@@ -113,6 +114,12 @@ class ExpensesScreen extends ConsumerWidget {
                                             ref.invalidate(expensesProvider);
                                             if (context.mounted) {
                                               Navigator.pop(context);
+                                            }
+                                            if (context.mounted) {
+                                              AppSnackBar.show(
+                                                context,
+                                                'Gasto eliminado con éxito.',
+                                              );
                                             }
                                           },
                                           text: 'Confirmar',
