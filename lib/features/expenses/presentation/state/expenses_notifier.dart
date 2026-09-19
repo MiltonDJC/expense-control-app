@@ -23,7 +23,12 @@ class ExpensesNotifier extends _$ExpensesNotifier {
   }
 
   Future<void> deleteExpense({required int id}) async {
-    await ref.read(deleteExpenseUseCaseProvider)(id: id);
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(deleteExpenseUseCaseProvider)(id: id);
+      final expenses = await ref.read(getAllExpensesUseCaseProvider)();
+      return ExpensesState(expenses: expenses);
+    });
   }
 
   Future<void> updateExpense({
@@ -34,14 +39,19 @@ class ExpensesNotifier extends _$ExpensesNotifier {
     Bank? bank,
     bool? isFixed,
   }) async {
-    await ref.read(updateExpenseUseCaseProvider)(
-      id: id,
-      name: name,
-      amount: amount,
-      payMethod: payMethod,
-      bank: bank,
-      isFixed: isFixed,
-    );
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(updateExpenseUseCaseProvider)(
+        id: id,
+        name: name,
+        amount: amount,
+        payMethod: payMethod,
+        bank: bank,
+        isFixed: isFixed,
+      );
+      final expenses = await ref.read(getAllExpensesUseCaseProvider)();
+      return ExpensesState(expenses: expenses);
+    });
   }
 
   Future<void> addExpense({
