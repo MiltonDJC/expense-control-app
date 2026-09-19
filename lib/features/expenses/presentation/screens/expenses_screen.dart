@@ -51,6 +51,11 @@ class ExpensesScreen extends ConsumerWidget {
                                           state.expenses[index].payMethod,
                                     );
                                   },
+                                  barrierDismissible: false,
+                                  animationStyle: const AnimationStyle(
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(milliseconds: 250),
+                                  ),
                                 );
                               },
                               backgroundColor: Colors.blue,
@@ -115,6 +120,11 @@ class ExpensesScreen extends ConsumerWidget {
                                       ],
                                     );
                                   },
+                                  barrierDismissible: false,
+                                  animationStyle: const AnimationStyle(
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(milliseconds: 250),
+                                  ),
                                 );
                               },
                               backgroundColor: Colors.red,
@@ -169,6 +179,11 @@ class ExpensesScreen extends ConsumerWidget {
                   builder: (context) {
                     return const ExpenseAlertDialogFormAddWidget();
                   },
+                  barrierDismissible: false,
+                  animationStyle: const AnimationStyle(
+                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 250),
+                  ),
                 );
               },
               tooltip: 'Agregar nuevo gasto',
