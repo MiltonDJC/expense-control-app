@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/core/presentation/widgets/form_date_picker_section.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
@@ -170,8 +171,10 @@ class _CardAlertDialogFormAddState
                     dueDate: dueDate,
                     closeDate: closeDate,
                   );
-
               if (context.mounted) Navigator.pop(context);
+              if (context.mounted) {
+                AppSnackBar.show(context, 'Tarjeta añadida con éxito.');
+              }
             }
           },
           text: 'Confirmar',
