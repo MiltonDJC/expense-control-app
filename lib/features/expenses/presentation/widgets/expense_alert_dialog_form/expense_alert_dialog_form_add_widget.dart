@@ -150,47 +150,59 @@ class _ExpenseAlertDialogFormAddWidgetState
                       setState(() => bankSelected = value);
                     },
                   ),
-                  const Text(
-                    'Bolsillo',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(height: 8),
-                  DropdownButtonFormField<int>(
-                    hint: const Text(
-                      'Seleccionar bolsillo',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    style: const TextStyle(fontSize: 18, color: Colors.black),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
-                    ),
-                    items: [
-                      const DropdownMenuItem(
-                        value: null,
-                        child: Text('Ninguno'),
-                      ),
-                      ...state.moneyPockets.map(
-                        (moneyPocket) => DropdownMenuItem(
-                          value: moneyPocket.id,
-                          child: Text(
-                            '${moneyPocket.name.capitalize} (\$${moneyPocket.amount})',
+                  ?payMethodSelected?.name != 'creditCard'
+                      ? const Text(
+                          'Bolsillo',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
                           ),
-                        ),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        moneyPocketSelected = value;
-                      });
-                    },
-                    validator: (_) => null,
-                  ),
+                        )
+                      : null,
+                  ?payMethodSelected?.name != 'creditCard'
+                      ? const SizedBox(height: 8)
+                      : null,
+                  ?payMethodSelected?.name != 'creditCard'
+                      ? DropdownButtonFormField<int>(
+                          hint: const Text(
+                            'Seleccionar bolsillo',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
+                          ),
+                          items: [
+                            const DropdownMenuItem(
+                              value: null,
+                              child: Text('Ninguno'),
+                            ),
+                            ...state.moneyPockets.map(
+                              (moneyPocket) => DropdownMenuItem(
+                                value: moneyPocket.id,
+                                child: Text(
+                                  '${moneyPocket.name.capitalize} (\$${moneyPocket.amount})',
+                                ),
+                              ),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              moneyPocketSelected = value;
+                            });
+                          },
+                          validator: (_) => null,
+                        )
+                      : null,
                   const SizedBox(height: 16),
                   FormDatePickerSection(
                     title: 'Fecha realizado',
@@ -198,7 +210,10 @@ class _ExpenseAlertDialogFormAddWidgetState
                     datePicked: (dateSelected) {
                       datePicked = dateSelected;
                     },
-                    validator: null,
+                    validator: (value) {
+                      if (value!.isEmpty) return 'Debe elegir una fecha';
+                      return null;
+                    },
                   ),
                   Row(
                     children: [
