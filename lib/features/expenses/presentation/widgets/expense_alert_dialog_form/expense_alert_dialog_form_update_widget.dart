@@ -1,3 +1,4 @@
+import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
@@ -204,8 +205,10 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                         : bankSelected ?? widget.bankName,
                     isFixed: isFixed ?? widget.isFixed,
                   );
-              ref.invalidate(expensesProvider);
               if (context.mounted) Navigator.pop(context);
+              if (context.mounted) {
+                AppSnackBar.show(context, 'Gasto actualizado con éxito.');
+              }
             }
           },
           text: 'Confirmar',
