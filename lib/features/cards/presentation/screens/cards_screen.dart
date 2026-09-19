@@ -83,6 +83,11 @@ class CardsScreen extends ConsumerWidget {
                                               closeDate:
                                                   state.cards[index].closeDate,
                                             ),
+                                        barrierDismissible: false,
+                                        animationStyle: const AnimationStyle(
+                                          curve: Curves.easeInOut,
+                                          duration: Duration(milliseconds: 250),
+                                        ),
                                       ),
                                     ),
                                     PopupMenuItem(
