@@ -43,168 +43,160 @@ class _CardAlertDialogFormUpdateState
 
   @override
   Widget build(BuildContext context) {
-    final cards = ref.watch(cardsProvider);
-
-    return cards.when(
-      data: (state) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'Actualizar tarjeta',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        content: Form(
-          key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteractionIfError,
-          child: SingleChildScrollView(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.height * 0.65,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    height: 256,
-                    width: 416,
-                    child: CreditCardWidget(
-                      creditCardType: creditCardType ?? widget.creditCardType,
-                      bank: bank ?? widget.bank,
-                      dueDate: dueDate ?? widget.dueDate,
-                      closeDate: closeDate ?? widget.closeDate,
-                      cardColor: getCardColor(bank ?? widget.bank),
-                    ),
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      title: const Text(
+        'Actualizar tarjeta',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      content: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.onUserInteractionIfError,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.75,
+            height: MediaQuery.of(context).size.height * 0.65,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  height: 256,
+                  width: 416,
+                  child: CreditCardWidget(
+                    creditCardType: creditCardType ?? widget.creditCardType,
+                    bank: bank ?? widget.bank,
+                    dueDate: dueDate ?? widget.dueDate,
+                    closeDate: closeDate ?? widget.closeDate,
+                    cardColor: getCardColor(bank ?? widget.bank),
                   ),
-                  SizedBox(
-                    width: 480,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Tipo de tarjeta',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
+                ),
+                SizedBox(
+                  width: 480,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Tipo de tarjeta',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 8),
-                        DropdownButtonFormField<CreditCardType>(
-                          hint: Text(
-                            'Tipo previo: ${widget.creditCardType.name.capitalize}',
-                          ),
-                          items: const [
-                            DropdownMenuItem(
-                              value: CreditCardType.mastercard,
-                              child: Text('Mastercard'),
-                            ),
-                            DropdownMenuItem(
-                              value: CreditCardType.visa,
-                              child: Text('Visa'),
-                            ),
-                          ],
-                          onChanged: (value) =>
-                              setState(() => creditCardType = value!),
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      ),
+                      const SizedBox(height: 8),
+                      DropdownButtonFormField<CreditCardType>(
+                        hint: Text(
+                          'Tipo previo: ${widget.creditCardType.name.capitalize}',
                         ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Banco',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
+                        items: const [
+                          DropdownMenuItem(
+                            value: CreditCardType.mastercard,
+                            child: Text('Mastercard'),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        DropdownButtonFormField<Bank>(
-                          hint: Text(
-                            'Banco previo: ${getBankName(widget.bank.name)}',
+                          DropdownMenuItem(
+                            value: CreditCardType.visa,
+                            child: Text('Visa'),
                           ),
-                          items: const [
-                            DropdownMenuItem(
-                              value: Bank.bancoMacro,
-                              child: Text('Banco Macro'),
-                            ),
-                            DropdownMenuItem(
-                              value: Bank.bancoProvincia,
-                              child: Text('Banco Provincia'),
-                            ),
-                            DropdownMenuItem(
-                              value: Bank.bancoComafi,
-                              child: Text('Banco Comafi'),
-                            ),
-                            DropdownMenuItem(
-                              value: Bank.bancoNacion,
-                              child: Text('Banco Nación'),
-                            ),
-                          ],
-                          onChanged: (value) => setState(() => bank = value!),
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
+                        ],
+                        onChanged: (value) =>
+                            setState(() => creditCardType = value!),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'Banco',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      DropdownButtonFormField<Bank>(
+                        hint: Text(
+                          'Banco previo: ${getBankName(widget.bank.name)}',
+                        ),
+                        items: const [
+                          DropdownMenuItem(
+                            value: Bank.bancoMacro,
+                            child: Text('Banco Macro'),
                           ),
+                          DropdownMenuItem(
+                            value: Bank.bancoProvincia,
+                            child: Text('Banco Provincia'),
+                          ),
+                          DropdownMenuItem(
+                            value: Bank.bancoComafi,
+                            child: Text('Banco Comafi'),
+                          ),
+                          DropdownMenuItem(
+                            value: Bank.bancoNacion,
+                            child: Text('Banco Nación'),
+                          ),
+                        ],
+                        onChanged: (value) => setState(() => bank = value!),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 16),
-                        FormDatePickerSection(
-                          title: 'Fecha de cierre',
-                          hintText:
-                              'Fecha previa: ${formatDate(widget.closeDate)}',
-                          datePicked: (dateSelected) {
-                            setState(() {
-                              closeDate = dateSelected!;
-                            });
-                          },
-                          validator: null,
-                        ),
-                        FormDatePickerSection(
-                          title: 'Fecha de vencimiento',
-                          hintText:
-                              'Fecha previa: ${formatDate(widget.dueDate)}',
-                          datePicked: (dateSelected) {
-                            setState(() {
-                              dueDate = dateSelected!;
-                            });
-                          },
-                          validator: null,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 16),
+                      FormDatePickerSection(
+                        title: 'Fecha de cierre',
+                        hintText:
+                            'Fecha previa: ${formatDate(widget.closeDate)}',
+                        datePicked: (dateSelected) {
+                          setState(() {
+                            closeDate = dateSelected!;
+                          });
+                        },
+                        validator: null,
+                      ),
+                      FormDatePickerSection(
+                        title: 'Fecha de vencimiento',
+                        hintText: 'Fecha previa: ${formatDate(widget.dueDate)}',
+                        datePicked: (dateSelected) {
+                          setState(() {
+                            dueDate = dateSelected!;
+                          });
+                        },
+                        validator: null,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
-        actions: [
-          ActionButtonWidget(
-            onPressed: () => Navigator.pop(context),
-            text: 'Cancelar',
-          ),
-          ActionButtonWidget(
-            onPressed: () async {
-              if (formKey.currentState!.validate()) {
-                await ref
-                    .read(cardsProvider.notifier)
-                    .updateCard(
-                      id: widget.id,
-                      creditCardType: creditCardType ?? widget.creditCardType,
-                      bank: bank ?? widget.bank,
-                      dueDate: dueDate ?? widget.dueDate,
-                      closeDate: closeDate ?? widget.closeDate,
-                    );
-
-                if (context.mounted) Navigator.pop(context);
-              }
-            },
-            text: 'Confirmar',
-          ),
-        ],
       ),
-      error: (error, stackTrace) =>
-          Center(child: Text('Hubo un error: ${error.toString()}')),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      actions: [
+        ActionButtonWidget(
+          onPressed: () => Navigator.pop(context),
+          text: 'Cancelar',
+        ),
+        ActionButtonWidget(
+          onPressed: () async {
+            if (formKey.currentState!.validate()) {
+              await ref
+                  .read(cardsProvider.notifier)
+                  .updateCard(
+                    id: widget.id,
+                    creditCardType: creditCardType ?? widget.creditCardType,
+                    bank: bank ?? widget.bank,
+                    dueDate: dueDate ?? widget.dueDate,
+                    closeDate: closeDate ?? widget.closeDate,
+                  );
+
+              if (context.mounted) Navigator.pop(context);
+            }
+          },
+          text: 'Confirmar',
+        ),
+      ],
     );
   }
 }
