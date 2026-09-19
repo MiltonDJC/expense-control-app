@@ -27,7 +27,6 @@ class CardsNotifier extends _$CardsNotifier {
     required DateTime dueDate,
     required DateTime closeDate,
   }) async {
-    state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await ref.read(addCreditCardUseCaseProvider)(
         creditCardType: creditCardType,
@@ -47,7 +46,6 @@ class CardsNotifier extends _$CardsNotifier {
     DateTime? dueDate,
     DateTime? closeDate,
   }) async {
-    state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await ref.read(updateCardUseCaseProvider)(
         id: id,
@@ -62,7 +60,6 @@ class CardsNotifier extends _$CardsNotifier {
   }
 
   Future<void> deleteCard({required int id}) async {
-    state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await ref.read(deleteCardUseCaseProvider)(id: id);
       final cards = await ref.read(getAllCardsUseCaseProvider)();
