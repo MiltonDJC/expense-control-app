@@ -68,6 +68,7 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                     return null;
                   },
                   keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16),
                 MoneyPocketFormSection(
@@ -85,6 +86,7 @@ class _MoneyPocketUpdateFormState extends ConsumerState<MoneyPocketUpdateForm> {
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
+                  textInputAction: TextInputAction.done,
                 ),
                 const SizedBox(height: 16),
               ],

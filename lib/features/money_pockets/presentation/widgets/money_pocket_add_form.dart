@@ -60,6 +60,7 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   controller: _moneyPocketNameController,
                   hintText: 'Nombre del bolsillo',
                   keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16),
                 MoneyPocketFormSection(
@@ -83,6 +84,7 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
+                  textInputAction: TextInputAction.done,
                 ),
                 const SizedBox(height: 16),
               ],
