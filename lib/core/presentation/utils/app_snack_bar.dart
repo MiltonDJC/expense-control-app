@@ -6,7 +6,7 @@ class AppSnackBar {
         SnackBar(
           content: Text(message, style: const TextStyle(fontSize: 24)),
           showCloseIcon: true,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 1500),
         ),
       );
 }
