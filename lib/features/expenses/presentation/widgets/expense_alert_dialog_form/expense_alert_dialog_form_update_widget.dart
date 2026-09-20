@@ -93,6 +93,7 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                   controller: expenseNameController,
                   title: 'Nombre del gasto',
                   hintText: 'Nombre actual: ${widget.expenseName}',
+                  textInputAction: TextInputAction.next,
                 ),
                 ExpenseAlertDialogFormSection(
                   validator: (_) {
@@ -114,6 +115,7 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                   controller: expenseAmountController,
                   title: 'Monto',
                   hintText: 'Monto actual: \$${widget.amount.toString()}',
+                  textInputAction: TextInputAction.done,
                 ),
                 ExpenseAlertDialogFormDropdownSection(
                   sectionAvailable: true,
