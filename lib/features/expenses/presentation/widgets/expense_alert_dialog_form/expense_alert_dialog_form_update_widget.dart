@@ -159,9 +159,9 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                 ),
                 Row(
                   children: [
-                    const Text(
+                    Text(
                       '¿Es un gasto fijo?:',
-                      style: TextStyle(fontSize: 18),
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     Checkbox(
                       value: isFixed ?? widget.isFixed,
