@@ -1,6 +1,7 @@
 import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
 import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/enums/expense_sections_type.dart';
@@ -271,7 +272,7 @@ class _ExpenseAlertDialogFormAddWidgetState
       ),
       error: (error, stackTrace) =>
           Center(child: Text('Ocurrió un error: ${error.toString()}')),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => const Center(child: AppCircularProgressIndicator()),
     );
   }
 }

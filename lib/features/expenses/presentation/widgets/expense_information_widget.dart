@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/extensions/string_formatter.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/expenses/domain/enums/pay_method.dart';
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
@@ -111,7 +112,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: AppCircularProgressIndicator(),
                           );
                         }
 

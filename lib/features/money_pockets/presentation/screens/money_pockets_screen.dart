@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/widgets/money_pocket_add_form.dart';
@@ -168,7 +169,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                 ),
           error: (error, stackTrace) =>
               Center(child: Text('Hubo un error: ${error.toString()}')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppCircularProgressIndicator()),
         ),
         Positioned(
           bottom: 16,

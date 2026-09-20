@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/widgets/fixed_term_deposit_alert_dialog_form/form_add_widget.dart';
@@ -154,7 +155,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                 ),
           error: (error, stackTrace) =>
               Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppCircularProgressIndicator()),
         ),
         Positioned(
           bottom: 16,

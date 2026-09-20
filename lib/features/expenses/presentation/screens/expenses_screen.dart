@@ -1,5 +1,6 @@
 import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
 import 'package:expense_control_app/features/expenses/presentation/widgets/expense_alert_dialog_form/expense_alert_dialog_form_add_widget.dart';
@@ -172,7 +173,7 @@ class ExpensesScreen extends ConsumerWidget {
                 ),
           error: (error, stackTrace) =>
               Center(child: Text('Ha ocurrido un error: ${error.toString()}')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppCircularProgressIndicator()),
         ),
         Positioned(
           bottom: 16,
