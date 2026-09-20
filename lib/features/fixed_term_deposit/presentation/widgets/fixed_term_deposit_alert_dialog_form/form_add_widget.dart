@@ -82,6 +82,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   controller: fixedTermDepositNameController,
                   title: 'Nombre del plazo fijo',
                   hintText: 'Ej. Vacaciones, Ahorros etc.',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (value) {
@@ -99,6 +100,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   controller: depositAmountController,
                   title: 'Monto a depositar',
                   hintText: '0.00',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (value) {
@@ -116,6 +118,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   controller: depositAmountReceivedController,
                   title: 'Monto a recibir',
                   hintText: '0.00',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (value) {
@@ -133,6 +136,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   controller: dolarPriceController,
                   title: 'Precio del dólar',
                   hintText: '0.00',
+                  textInputAction: TextInputAction.done,
                 ),
                 FormDatePickerSection(
                   title: 'Fecha de depósito',

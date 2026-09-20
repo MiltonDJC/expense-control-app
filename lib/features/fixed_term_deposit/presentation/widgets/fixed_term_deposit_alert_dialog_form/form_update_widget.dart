@@ -104,6 +104,7 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                   title: 'Nombre del plazo fijo',
                   hintText:
                       'Nombre actual del plazo fijo: ${widget.fixedTermDepositName}',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (_) {
@@ -124,6 +125,7 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                   controller: depositAmountController,
                   title: 'Monto a depositar',
                   hintText: 'Monto previo: \$${widget.depositAmount}',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (_) {
@@ -147,6 +149,7 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                   controller: depositAmountReceivedController,
                   title: 'Monto a recibir',
                   hintText: 'Monto previo: \$${widget.depositAmountReceived}',
+                  textInputAction: TextInputAction.next,
                 ),
                 FormSection(
                   validator: (_) {
@@ -166,6 +169,7 @@ class _FormUpdateWidgetState extends ConsumerState<FormUpdateWidget> {
                   controller: dolarPriceController,
                   title: 'Precio del dólar',
                   hintText: 'Precio previo: \$${widget.dolarPrice}',
+                  textInputAction: TextInputAction.done,
                 ),
                 FormDatePickerSection(
                   title: 'Fecha de depósito',
