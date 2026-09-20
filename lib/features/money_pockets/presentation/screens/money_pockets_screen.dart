@@ -96,7 +96,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                     context: context,
                                     builder: (context) {
                                       return AppAlertDialog(
-                                        title: '¿Segura que quiere eliminar este bolsillo?',
+                                        title: '¿Segura quiere eliminar este bolsillo?',
                                         actions: [
                                           ActionButtonWidget(
                                             onPressed: () async {

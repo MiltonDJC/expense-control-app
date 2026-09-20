@@ -94,7 +94,8 @@ class ExpensesScreen extends ConsumerWidget {
                                   context: context,
                                   builder: (context) {
                                     return AppAlertDialog(
-                                      title: '¿Segura que quiere eliminar este gasto?',
+                                      title:
+                                          '¿Segura quiere eliminar este gasto?',
                                       actions: [
                                         ActionButtonWidget(
                                           onPressed: () async {
