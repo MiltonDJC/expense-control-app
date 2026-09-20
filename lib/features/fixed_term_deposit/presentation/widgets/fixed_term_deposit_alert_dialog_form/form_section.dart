@@ -8,6 +8,7 @@ class FormSection extends StatelessWidget {
     required this.controller,
     required this.validator,
     required this.keyboardType,
+    required this.textInputAction,
   });
 
   final String title;
@@ -15,6 +16,7 @@ class FormSection extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,8 @@ class FormSection extends StatelessWidget {
                 vertical: 14,
               ),
             ),
+            textInputAction: textInputAction,
+            autofocus: true,
           ),
           const SizedBox(height: 16),
         ],
