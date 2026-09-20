@@ -8,6 +8,7 @@ class MoneyPocketFormSection extends StatelessWidget {
     required this.controller,
     required this.validator,
     required this.keyboardType,
+    required this.textInputAction,
   });
 
   final String title;
@@ -15,6 +16,7 @@ class MoneyPocketFormSection extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,8 @@ class MoneyPocketFormSection extends StatelessWidget {
             keyboardType: keyboardType,
             style: const TextStyle(fontSize: 18),
             decoration: InputDecoration(hintText: hintText),
+            textInputAction: textInputAction,
+            autofocus: true,
           ),
         ],
       ),
