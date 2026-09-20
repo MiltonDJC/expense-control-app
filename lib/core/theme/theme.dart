@@ -164,6 +164,7 @@ class AppTheme {
           color: Color(0xFF757575),
           fontWeight: FontWeight.w600,
         ),
+        errorStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
 
       // Tarjetas con bordes bien definidos
