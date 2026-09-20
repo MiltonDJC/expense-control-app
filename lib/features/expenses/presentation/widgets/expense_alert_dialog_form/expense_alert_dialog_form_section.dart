@@ -9,6 +9,7 @@ class ExpenseAlertDialogFormSection extends StatefulWidget {
     required this.controller,
     required this.title,
     required this.hintText,
+    required this.textInputAction,
   });
 
   final ExpenseSectionType expenseSectionType;
@@ -16,6 +17,7 @@ class ExpenseAlertDialogFormSection extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final String title;
   final String hintText;
+  final TextInputAction textInputAction;
 
   @override
   State<ExpenseAlertDialogFormSection> createState() =>
@@ -53,6 +55,8 @@ class ExpenseAlertDialogFormSectionState
                 vertical: 14,
               ),
             ),
+            textInputAction: widget.textInputAction,
+            autofocus: true,
           ),
           const SizedBox(height: 16),
         ],
