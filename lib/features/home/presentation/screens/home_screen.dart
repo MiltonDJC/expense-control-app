@@ -1,4 +1,4 @@
-import 'package:expense_control_app/features/balance/presentation/screens/balance_screen.dart';
+// import 'package:expense_control_app/features/balance/presentation/screens/balance_screen.dart';
 import 'package:expense_control_app/features/cards/presentation/screens/cards_screen.dart';
 import 'package:expense_control_app/features/expenses/presentation/screens/expenses_screen.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/screens/fixed_term_deposit_screen.dart';
@@ -15,9 +15,9 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final screens = <Widget>[
-    const BalanceScreen(),
-    const MoneyPocketsScreen(),
+    // const BalanceScreen(),
     const ExpensesScreen(),
+    const MoneyPocketsScreen(),
     const FixedTermDepositScreen(),
     const CardsScreen(),
   ];
@@ -43,15 +43,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             destinations: const [
+              // NavigationDestination(
+              //   icon: Icon(Icons.account_balance_wallet_outlined, size: 26),
+              //   selectedIcon: Icon(
+              //     Icons.account_balance_wallet,
+              //     color: Colors.black,
+              //     size: 30,
+              //   ),
+              //   label: 'Balance',
+              //   tooltip: 'Mi balance',
+              // ),
               NavigationDestination(
-                icon: Icon(Icons.account_balance_wallet_outlined, size: 26),
+                icon: Icon(Icons.money_off_csred_outlined, size: 26),
                 selectedIcon: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.money_off_csred,
                   color: Colors.black,
                   size: 30,
                 ),
-                label: 'Balance',
-                tooltip: 'Mi balance',
+                label: 'Gastos',
+                tooltip: 'Mis gastos',
               ),
               NavigationDestination(
                 icon: Icon(Icons.savings_outlined, size: 26),
@@ -62,16 +72,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 label: 'Bolsillos',
                 tooltip: 'Mis bolsillos',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.money_off_csred_outlined, size: 26),
-                selectedIcon: Icon(
-                  Icons.money_off_csred,
-                  color: Colors.black,
-                  size: 30,
-                ),
-                label: 'Gastos',
-                tooltip: 'Mis gastos',
               ),
               NavigationDestination(
                 icon: Icon(Icons.account_balance_outlined, size: 26),
