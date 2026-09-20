@@ -44,7 +44,7 @@ class ExpenseAlertDialogFormSectionState
             keyboardType: widget.expenseSectionType.name == 'amount'
                 ? const TextInputType.numberWithOptions(decimal: true)
                 : TextInputType.text,
-            style: const TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 20),
             decoration: InputDecoration(hintText: widget.hintText),
             textInputAction: widget.textInputAction,
             autofocus: true,
