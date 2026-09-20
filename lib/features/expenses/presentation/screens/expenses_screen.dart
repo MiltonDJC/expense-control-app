@@ -1,5 +1,6 @@
 import 'package:expense_control_app/core/presentation/utils/app_snack_bar.dart';
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_alert_dialog.dart';
 import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/expenses/presentation/state/expenses_notifier.dart';
@@ -92,12 +93,8 @@ class ExpensesScreen extends ConsumerWidget {
                                 await showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return AlertDialog(
-                                      title: const Center(
-                                        child: Text(
-                                          '¿Segura que quiere eliminar este gasto?',
-                                        ),
-                                      ),
+                                    return AppAlertDialog(
+                                      title: '¿Segura que quiere eliminar este gasto?',
                                       actions: [
                                         ActionButtonWidget(
                                           onPressed: () async {

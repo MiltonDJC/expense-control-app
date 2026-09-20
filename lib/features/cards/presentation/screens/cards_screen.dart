@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_alert_dialog.dart';
 import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
@@ -98,21 +99,8 @@ class CardsScreen extends ConsumerWidget {
                                       ),
                                       onTap: () async => await showDialog(
                                         context: context,
-                                        builder: (context) => AlertDialog(
-                                          content: const SizedBox(
-                                            width: 288,
-                                            height: 100,
-                                            child: Center(
-                                              child: Text(
-                                                '¿Segura quiere eliminar la tarjeta?',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                                        builder: (context) => AppAlertDialog(
+                                          title: '¿Segura quiere eliminar la tarjeta?',
                                           actions: [
                                             ActionButtonWidget(
                                               onPressed: () =>

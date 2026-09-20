@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_alert_dialog.dart';
 import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/money_pockets/presentation/state/money_pockets_notifier.dart';
@@ -94,12 +95,8 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                   await showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return AlertDialog(
-                                        title: const Center(
-                                          child: Text(
-                                            '¿Segura que quiere eliminar este bolsillo?',
-                                          ),
-                                        ),
+                                      return AppAlertDialog(
+                                        title: '¿Segura que quiere eliminar este bolsillo?',
                                         actions: [
                                           ActionButtonWidget(
                                             onPressed: () async {

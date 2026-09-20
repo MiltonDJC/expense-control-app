@@ -1,4 +1,5 @@
 import 'package:expense_control_app/core/presentation/widgets/action_button_widget.dart';
+import 'package:expense_control_app/core/presentation/widgets/app_alert_dialog.dart';
 import 'package:expense_control_app/core/presentation/widgets/app_circular_progress_indicator.dart';
 import 'package:expense_control_app/core/presentation/widgets/custom_floating_action_button.dart';
 import 'package:expense_control_app/features/fixed_term_deposit/presentation/state/fixed_term_deposit_notifier.dart';
@@ -86,12 +87,8 @@ class FixedTermDepositScreen extends ConsumerWidget {
                                 await showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return AlertDialog(
-                                      title: const Center(
-                                        child: Text(
-                                          '¿Segura que quiere eliminar este gasto?',
-                                        ),
-                                      ),
+                                    return AppAlertDialog(
+                                      title: '¿Segura quiere eliminar este plazo fijo?',
                                       actions: [
                                         ActionButtonWidget(
                                           onPressed: () async {
