@@ -45,16 +45,7 @@ class ExpenseAlertDialogFormSectionState
                 ? const TextInputType.numberWithOptions(decimal: true)
                 : TextInputType.text,
             style: const TextStyle(fontSize: 18),
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
-              ),
-            ),
+            decoration: InputDecoration(hintText: widget.hintText),
             textInputAction: widget.textInputAction,
             autofocus: true,
           ),

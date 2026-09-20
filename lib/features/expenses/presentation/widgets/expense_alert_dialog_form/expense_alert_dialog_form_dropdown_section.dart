@@ -43,19 +43,11 @@ class ExpenseAlertDialogFormDropdownSection extends StatelessWidget {
                 expenseDropdownSectionType ==
                         ExpenseDropdownSectionType.payMethod
                     ? DropdownButtonFormField<PayMethod>(
-                        hint: Text(hint, style: const TextStyle(fontSize: 16)),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
+                        hint: Text(
+                          hint,
+                          style: Theme.of(context)
+                              .inputDecorationTheme
+                              .hintStyle,
                         ),
                         items: const [
                           DropdownMenuItem(
@@ -79,19 +71,11 @@ class ExpenseAlertDialogFormDropdownSection extends StatelessWidget {
                         validator: payMethodValidator,
                       )
                     : DropdownButtonFormField<Bank>(
-                        hint: Text(hint, style: const TextStyle(fontSize: 16)),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
+                        hint: Text(
+                          hint,
+                          style: Theme.of(context)
+                              .inputDecorationTheme
+                              .hintStyle,
                         ),
                         items: const [
                           DropdownMenuItem(

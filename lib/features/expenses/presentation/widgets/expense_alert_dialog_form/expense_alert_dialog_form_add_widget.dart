@@ -168,22 +168,12 @@ class _ExpenseAlertDialogFormAddWidgetState
                       : null,
                   ?payMethodSelected?.name != 'creditCard'
                       ? DropdownButtonFormField<int>(
-                          hint: const Text(
-                            'Seleccionar bolsillo',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize: Theme.of(context)
+                                .inputDecorationTheme
+                                .hintStyle
+                                ?.fontSize,
                             color: Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 14,
-                            ),
                           ),
                           items: [
                             const DropdownMenuItem(
@@ -221,9 +211,9 @@ class _ExpenseAlertDialogFormAddWidgetState
                   ),
                   Row(
                     children: [
-                      const Text(
+                      Text(
                         '¿Es un gasto fijo?:',
-                        style: TextStyle(fontSize: 18),
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       Checkbox(
                         value: isFixed,
