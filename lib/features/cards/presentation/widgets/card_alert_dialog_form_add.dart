@@ -23,8 +23,8 @@ class _CardAlertDialogFormAddState
 
   CreditCardType creditCardType = CreditCardType.visa;
   Bank bank = Bank.bancoComafi;
-  DateTime closeDate = DateTime.now();
-  DateTime dueDate = DateTime.now();
+  DateTime? closeDate;
+  DateTime? dueDate;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _CardAlertDialogFormAddState
         child: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.75,
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: MediaQuery.of(context).size.height * 0.70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -50,8 +50,8 @@ class _CardAlertDialogFormAddState
                   child: CreditCardWidget(
                     creditCardType: creditCardType,
                     bank: bank,
-                    closeDate: closeDate,
-                    dueDate: dueDate,
+                    closeDate: DateTime.now(),
+                    dueDate: DateTime.now(),
                     cardColor: getCardColor(bank),
                   ),
                 ),
@@ -135,7 +135,12 @@ class _CardAlertDialogFormAddState
                             closeDate = dateSelected!;
                           });
                         },
-                        validator: null,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Debe elegir una fecha válida';
+                          }
+                          return null;
+                        },
                       ),
                       FormDatePickerSection(
                         title: 'Fecha de vencimiento',
@@ -145,7 +150,12 @@ class _CardAlertDialogFormAddState
                             dueDate = dateSelected!;
                           });
                         },
-                        validator: null,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Debe elegir una fecha válida';
+                          }
+                          return null;
+                        },
                       ),
                     ],
                   ),
@@ -168,8 +178,8 @@ class _CardAlertDialogFormAddState
                   .addCreditCard(
                     creditCardType: creditCardType,
                     bank: bank,
-                    dueDate: dueDate,
-                    closeDate: closeDate,
+                    dueDate: dueDate!,
+                    closeDate: closeDate!,
                   );
               if (context.mounted) Navigator.pop(context);
               if (context.mounted) {
