@@ -30,137 +30,125 @@ class ExpensesScreen extends ConsumerWidget {
                   child: ListView.builder(
                     itemCount: state.expenses.length,
                     itemBuilder: (context, index) {
-                      return Slidable(
-                        key: Key(state.expenses[index].id.toString()),
-                        startActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          extentRatio: 0.2,
-                          children: [
-                            CustomSlidableAction(
-                              onPressed: (context) async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return ExpenseAlertDialogFormUpdateWidget(
-                                      id: state.expenses[index].id,
-                                      expenseName: state.expenses[index].name,
-                                      amount: state.expenses[index].amount,
-                                      bankName: state.expenses[index].bank,
-                                      isFixed: state.expenses[index].isFixed,
-                                      payMethod:
-                                          state.expenses[index].payMethod,
-                                    );
-                                  },
-                                  barrierDismissible: false,
-                                  animationStyle: const AnimationStyle(
-                                    curve: Curves.easeInOut,
-                                    duration: Duration(milliseconds: 250),
-                                  ),
-                                );
-                              },
-                              backgroundColor: Colors.blue,
-                              foregroundColor: Colors.white,
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    'Editar',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Slidable(
+                          key: Key(state.expenses[index].id.toString()),
+                          startActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            extentRatio: 0.2,
+                            children: [
+                              CustomSlidableAction(
+                                borderRadius: BorderRadius.circular(10),
+                                onPressed: (context) async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return ExpenseAlertDialogFormUpdateWidget(
+                                        id: state.expenses[index].id,
+                                        expenseName: state.expenses[index].name,
+                                        amount: state.expenses[index].amount,
+                                        bankName: state.expenses[index].bank,
+                                        isFixed: state.expenses[index].isFixed,
+                                        payMethod:
+                                            state.expenses[index].payMethod,
+                                      );
+                                    },
+                                    barrierDismissible: false,
+                                    animationStyle: const AnimationStyle(
+                                      curve: Curves.easeInOut,
+                                      duration: Duration(milliseconds: 250),
                                     ),
-                                  ),
-                                ],
+                                  );
+                                },
+                                backgroundColor: Colors.blue,
+                                foregroundColor: Colors.white,
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.edit),
+                                    SizedBox(height: 4),
+                                    Text('Editar'),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        endActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          extentRatio: 0.2,
-                          children: [
-                            CustomSlidableAction(
-                              onPressed: (context) async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AppAlertDialog(
-                                      title:
-                                          '¿Segura quiere eliminar este gasto?',
-                                      actions: [
-                                        ActionButtonWidget(
-                                          onPressed: () async {
-                                            Navigator.pop(context);
-                                          },
-                                          text: 'Cancelar',
-                                        ),
-                                        ActionButtonWidget(
-                                          onPressed: () async {
-                                            await ref
-                                                .read(expensesProvider.notifier)
-                                                .deleteExpense(
-                                                  id: state.expenses[index].id,
-                                                );
-                                            ref.invalidate(expensesProvider);
-                                            if (context.mounted) {
+                            ],
+                          ),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            extentRatio: 0.2,
+                            children: [
+                              CustomSlidableAction(
+                                borderRadius: BorderRadius.circular(10),
+                                onPressed: (context) async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AppAlertDialog(
+                                        title: '¿Segura quiere eliminar este gasto?',
+                                        actions: [
+                                          ActionButtonWidget(
+                                            onPressed: () async {
                                               Navigator.pop(context);
-                                            }
-                                            if (context.mounted) {
-                                              AppSnackBar.show(
-                                                context,
-                                                'Gasto eliminado con éxito.',
-                                              );
-                                            }
-                                          },
-                                          text: 'Confirmar',
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                  barrierDismissible: false,
-                                  animationStyle: const AnimationStyle(
-                                    curve: Curves.easeInOut,
-                                    duration: Duration(milliseconds: 250),
-                                  ),
-                                );
-                              },
-                              backgroundColor: Colors.red,
-                              foregroundColor: Colors.white,
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    'Eliminar',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
+                                            },
+                                            text: 'Cancelar',
+                                          ),
+                                          ActionButtonWidget(
+                                            onPressed: () async {
+                                              await ref
+                                                  .read(
+                                                    expensesProvider.notifier,
+                                                  )
+                                                  .deleteExpense(
+                                                    id: state
+                                                        .expenses[index]
+                                                        .id,
+                                                  );
+                                              ref.invalidate(expensesProvider);
+                                              if (context.mounted) {
+                                                Navigator.pop(context);
+                                              }
+                                              if (context.mounted) {
+                                                AppSnackBar.show(
+                                                  context,
+                                                  'Gasto eliminado con éxito.',
+                                                );
+                                              }
+                                            },
+                                            text: 'Confirmar',
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    barrierDismissible: false,
+                                    animationStyle: const AnimationStyle(
+                                      curve: Curves.easeInOut,
+                                      duration: Duration(milliseconds: 250),
                                     ),
-                                  ),
-                                ],
+                                  );
+                                },
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.delete),
+                                    SizedBox(height: 4),
+                                    Text('Eliminar'),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        child: ExpenseInformationWidget(
-                          expenseName: state.expenses[index].name,
-                          amount: state.expenses[index].amount,
-                          bankName: state.expenses[index].bank,
-                          isFixed: state.expenses[index].isFixed,
-                          payMethod: state.expenses[index].payMethod,
-                          moneyPocketId: state.expenses[index].moneyPocketId,
-                          createdDate: state.expenses[index].createdDate,
+                            ],
+                          ),
+                          child: ExpenseInformationWidget(
+                            expenseName: state.expenses[index].name,
+                            amount: state.expenses[index].amount,
+                            bankName: state.expenses[index].bank,
+                            isFixed: state.expenses[index].isFixed,
+                            payMethod: state.expenses[index].payMethod,
+                            moneyPocketId: state.expenses[index].moneyPocketId,
+                            createdDate: state.expenses[index].createdDate,
+                          ),
                         ),
                       );
                     },
