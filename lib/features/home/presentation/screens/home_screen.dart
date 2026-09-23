@@ -30,17 +30,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 80),
+          preferredSize: const Size(double.infinity, 60),
           child: NavigationBar(
             shadowColor: Colors.black,
-            elevation: 6,
+            elevation: 2,
             selectedIndex: selectedIndex,
             onDestinationSelected: (value) =>
                 setState(() => selectedIndex = value),
-            indicatorColor: Theme.of(context).focusColor,
+            indicatorColor: Theme.of(context).primaryColor,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
             labelTextStyle: const WidgetStatePropertyAll(
-              TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
             destinations: const [
               // NavigationDestination(
@@ -54,41 +54,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               //   tooltip: 'Mi balance',
               // ),
               NavigationDestination(
-                icon: Icon(Icons.money_off_csred_outlined, size: 26),
+                icon: Icon(Icons.money_off_csred_outlined, size: 22),
                 selectedIcon: Icon(
                   Icons.money_off_csred,
-                  color: Colors.black,
-                  size: 30,
+                  color: Colors.white,
+                  size: 24,
                 ),
                 label: 'Gastos',
                 tooltip: 'Mis gastos',
               ),
               NavigationDestination(
-                icon: Icon(Icons.savings_outlined, size: 26),
+                icon: Icon(Icons.savings_outlined, size: 22),
                 selectedIcon: Icon(
                   Icons.savings,
-                  color: Colors.black,
-                  size: 30,
+                  color: Colors.white,
+                  size: 24,
                 ),
                 label: 'Bolsillos',
                 tooltip: 'Mis bolsillos',
               ),
               NavigationDestination(
-                icon: Icon(Icons.account_balance_outlined, size: 26),
+                icon: Icon(Icons.account_balance_outlined, size: 22),
                 selectedIcon: Icon(
                   Icons.account_balance,
-                  color: Colors.black,
-                  size: 30,
+                  color: Colors.white,
+                  size: 24,
                 ),
                 label: 'Plazos Fijos',
                 tooltip: 'Mis plazos fijos',
               ),
               NavigationDestination(
-                icon: Icon(Icons.credit_card_outlined, size: 26),
+                icon: Icon(Icons.credit_card_outlined, size: 22),
                 selectedIcon: Icon(
                   Icons.credit_card,
-                  color: Colors.black,
-                  size: 30,
+                  color: Colors.white,
+                  size: 24,
                 ),
                 label: 'Tarjetas',
                 tooltip: 'Mis tarjetas',
