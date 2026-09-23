@@ -185,6 +185,9 @@ class _ExpenseAlertDialogFormAddWidgetState
                                 value: moneyPocket.id,
                                 child: Text(
                                   '${moneyPocket.name.capitalize} (\$${moneyPocket.amount})',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),
