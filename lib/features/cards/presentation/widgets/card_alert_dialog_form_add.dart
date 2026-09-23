@@ -5,7 +5,7 @@ import 'package:expense_control_app/domain/enums/bank.dart';
 import 'package:expense_control_app/features/cards/domain/enums/credit_card_type.dart';
 import 'package:expense_control_app/features/cards/presentation/state/cards_notifier.dart';
 import 'package:expense_control_app/features/cards/presentation/utils/get_card_color.dart';
-import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
+import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_alert_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -29,25 +29,22 @@ class _CardAlertDialogFormAddState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      actionsPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: const Text(
-        'Registrar tarjeta',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
+      title: const Text('Registrar tarjeta'),
       content: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
         child: SingleChildScrollView(
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            height: MediaQuery.of(context).size.height * 0.70,
+            width: MediaQuery.of(context).size.width * 0.80,
+            height: MediaQuery.of(context).size.height * 0.75,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 256,
-                  width: 416,
-                  child: CreditCardWidget(
+                  width: 360,
+                  child: CreditCardAlertDialogWidget(
                     creditCardType: creditCardType,
                     bank: bank,
                     closeDate: DateTime.now(),
@@ -56,7 +53,7 @@ class _CardAlertDialogFormAddState
                   ),
                 ),
                 SizedBox(
-                  width: 480,
+                  width: 340,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
