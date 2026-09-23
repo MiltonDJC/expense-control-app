@@ -106,22 +106,10 @@ class AppTheme {
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: _onPrimaryLight,
-        ), // Texto de botones grande
-      ),
-
-      // Botones grandes y de fácil pulsación
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: _primaryLight,
-          foregroundColor: _onPrimaryLight,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          elevation: 3,
         ),
       ),
+
+      // Texto de botones grande
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: _primaryLight,
@@ -130,13 +118,36 @@ class AppTheme {
         ),
       ),
 
+      // Botones grandes y de fácil pulsación
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: _primaryLight,
+          foregroundColor: _onPrimaryLight,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          elevation: 3,
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: _primaryLight,
+        foregroundColor: _onPrimaryLight,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        extendedTextStyle: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+        elevation: 3,
+      ),
+
       // Campos de texto grandes y de alto contraste
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: 18,
+          vertical: 10,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
