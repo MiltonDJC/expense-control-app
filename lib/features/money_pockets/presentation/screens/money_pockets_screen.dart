@@ -42,6 +42,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                             extentRatio: 0.2,
                             children: [
                               CustomSlidableAction(
+                                borderRadius: BorderRadius.circular(10),
                                 onPressed: (context) async {
                                   await showDialog(
                                     context: context,
@@ -65,19 +66,9 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                 child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.edit,
-                                      color: Colors.white,
-                                      size: 28,
-                                    ),
+                                    Icon(Icons.edit),
                                     SizedBox(height: 4),
-                                    Text(
-                                      'Editar',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                    ),
+                                    Text('Editar'),
                                   ],
                                 ),
                               ),
@@ -88,6 +79,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                             extentRatio: 0.2,
                             children: [
                               CustomSlidableAction(
+                                borderRadius: BorderRadius.circular(10),
                                 onPressed: (context) async {
                                   await showDialog(
                                     context: context,
@@ -134,19 +126,9 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                                 child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.delete,
-                                      color: Colors.white,
-                                      size: 28,
-                                    ),
+                                    Icon(Icons.delete),
                                     SizedBox(height: 4),
-                                    Text(
-                                      'Eliminar',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                    ),
+                                    Text('Eliminar'),
                                   ],
                                 ),
                               ),
@@ -177,7 +159,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                   builder: (context) {
                     return const MoneyPocketAddForm();
                   },
-                  barrierDismissible: false,
+                  barrierDismissible: true,
                   animationStyle: const AnimationStyle(
                     curve: Curves.easeInOut,
                     duration: Duration(milliseconds: 250),
