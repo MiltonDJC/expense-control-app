@@ -63,11 +63,9 @@ class _ExpenseAlertDialogFormUpdateWidgetState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      actionsPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: const Text(
-        'Actualizar Gasto',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
+      title: const Text('Actualizar Gasto'),
       content: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
@@ -75,7 +73,6 @@ class _ExpenseAlertDialogFormUpdateWidgetState
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.85,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ExpenseAlertDialogFormSection(
@@ -161,13 +158,68 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                   children: [
                     Text(
                       '¿Es un gasto fijo?:',
-                      style: Theme.of(context).textTheme.headlineLarge,
+                      style: TextStyle(
+                        fontSize: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.fontSize,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     Checkbox(
                       value: isFixed ?? widget.isFixed,
                       onChanged: (value) {
                         setState(() => isFixed = value);
                       },
+                    ),
+                    Row(
+                      children: [
+                        ActionButtonWidget(
+                          onPressed: () => Navigator.pop(context),
+                          text: 'Cancelar',
+                        ),
+                        const SizedBox(width: 8),
+                        ActionButtonWidget(
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              await ref
+                                  .read(expensesProvider.notifier)
+                                  .updateExpense(
+                                    id: widget.id,
+                                    name: expenseNameController.text.isEmpty
+                                        ? widget.expenseName
+                                        : expenseNameController.text,
+                                    amount: expenseAmountController.text.isEmpty
+                                        ? widget.amount
+                                        : double.tryParse(
+                                            expenseAmountController.text,
+                                          ),
+                                    payMethod:
+                                        payMethodSelected ?? widget.payMethod,
+                                    bank:
+                                        ((payMethodSelected?.index ==
+                                                    PayMethod
+                                                        .mercadoPago
+                                                        .index ||
+                                                payMethodSelected?.index ==
+                                                    PayMethod.cash.index) &&
+                                            bankSelected == null)
+                                        ? bankSelected
+                                        : bankSelected ?? widget.bankName,
+                                    isFixed: isFixed ?? widget.isFixed,
+                                  );
+                              if (context.mounted) Navigator.pop(context);
+                              if (context.mounted) {
+                                AppSnackBar.show(
+                                  context,
+                                  'Gasto actualizado con éxito.',
+                                );
+                              }
+                            }
+                          },
+                          text: 'Confirmar',
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -176,46 +228,6 @@ class _ExpenseAlertDialogFormUpdateWidgetState
           ),
         ),
       ),
-      actions: [
-        ActionButtonWidget(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          text: 'Cancelar',
-        ),
-        ActionButtonWidget(
-          onPressed: () async {
-            if (formKey.currentState!.validate()) {
-              await ref
-                  .read(expensesProvider.notifier)
-                  .updateExpense(
-                    id: widget.id,
-                    name: expenseNameController.text.isEmpty
-                        ? widget.expenseName
-                        : expenseNameController.text,
-                    amount: expenseAmountController.text.isEmpty
-                        ? widget.amount
-                        : double.tryParse(expenseAmountController.text),
-                    payMethod: payMethodSelected ?? widget.payMethod,
-                    bank:
-                        ((payMethodSelected?.index ==
-                                    PayMethod.mercadoPago.index ||
-                                payMethodSelected?.index ==
-                                    PayMethod.cash.index) &&
-                            bankSelected == null)
-                        ? bankSelected
-                        : bankSelected ?? widget.bankName,
-                    isFixed: isFixed ?? widget.isFixed,
-                  );
-              if (context.mounted) Navigator.pop(context);
-              if (context.mounted) {
-                AppSnackBar.show(context, 'Gasto actualizado con éxito.');
-              }
-            }
-          },
-          text: 'Confirmar',
-        ),
-      ],
     );
   }
 }
