@@ -33,17 +33,19 @@ class ExpenseInformationWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       elevation: 4,
+      margin: const EdgeInsets.all(0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 28,
+          spacing: 14,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   expenseName.capitalize,
-                  style: const TextStyle(fontSize: 28, fontWeight: .w600),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 if (isFixed)
                   Container(
@@ -52,15 +54,15 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       color: Colors.red,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Gasto Fijo',
-                      style: TextStyle(fontSize: 24, color: Colors.white),
+                      style: Theme.of(context).primaryTextTheme.titleLarge,
                     ),
                   ),
               ],
             ),
             Column(
-              spacing: 16,
+              spacing: 8,
               children: [
                 Row(
                   children: [
@@ -68,10 +70,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.payments),
                     ),
-                    Text(
-                      'Monto pagado: \$$amount',
-                      style: const TextStyle(fontSize: 24),
-                    ),
+                    Text('Monto pagado: \$$amount'),
                   ],
                 ),
                 Row(
@@ -80,16 +79,10 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.paid),
                     ),
-                    const Text('Pagado con: ', style: TextStyle(fontSize: 24)),
-                    Text(
-                      getPayMethodName(payMethod.name),
-                      style: const TextStyle(fontSize: 24),
-                    ),
+                    const Text('Pagado con: '),
+                    Text(getPayMethodName(payMethod.name)),
                     if (bankName != null)
-                      Text(
-                        ' (${getBankName(bankName!.name)})',
-                        style: const TextStyle(fontSize: 24),
-                      ),
+                      Text(' (${getBankName(bankName!.name)})'),
                   ],
                 ),
                 Row(
@@ -98,14 +91,12 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.calendar_month),
                     ),
-                    Text(
-                      'Fecha realizado: ${formatDate(createdDate)}',
-                      style: const TextStyle(fontSize: 24),
-                    ),
+                    Text('Fecha realizado: ${formatDate(createdDate)}'),
                   ],
                 ),
                 Row(
                   children: [
+                    // Todo: Is necessary use FutureBuilder to get it's moneyPocket? Review it
                     FutureBuilder(
                       future: ref.read(getAllMoneyPocketsUseCaseProvider)(),
                       builder: (context, snapshot) {
@@ -137,7 +128,6 @@ class ExpenseInformationWidget extends ConsumerWidget {
                               ),
                               Text(
                                 'Bolsillo utilizado: ${moneyPocketName.capitalize}',
-                                style: const TextStyle(fontSize: 24),
                               ),
                             ],
                           );
