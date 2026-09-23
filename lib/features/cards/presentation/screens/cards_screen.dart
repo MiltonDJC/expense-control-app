@@ -6,7 +6,7 @@ import 'package:expense_control_app/features/cards/presentation/state/cards_noti
 import 'package:expense_control_app/features/cards/presentation/utils/get_card_color.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_add.dart';
 import 'package:expense_control_app/features/cards/presentation/widgets/card_alert_dialog_form_update.dart';
-import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_widget.dart';
+import 'package:expense_control_app/features/cards/presentation/widgets/credit_card_storaged_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,9 +22,7 @@ class CardsScreen extends ConsumerWidget {
         cards.when(
           data: (state) => state.cards.isEmpty
               ? const Center(
-                  child: Text(
-                    'No hay tarjetas registradas por el momento...',
-                  ),
+                  child: Text('No hay tarjetas registradas por el momento...'),
                 )
               : Padding(
                   padding: const EdgeInsets.only(bottom: 72, top: 18),
@@ -33,9 +31,9 @@ class CardsScreen extends ConsumerWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
-                            childAspectRatio: 1.6,
                             mainAxisSpacing: 18,
                             crossAxisSpacing: 12,
+                            childAspectRatio: 1.5,
                           ),
                       itemCount: state.cards.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -128,7 +126,7 @@ class CardsScreen extends ConsumerWidget {
                                   ],
                                 );
                               },
-                              child: CreditCardWidget(
+                              child: CreditCardStoragedWidget(
                                 creditCardType:
                                     state.cards[index].creditCardType,
                                 bank: state.cards[index].bank,
