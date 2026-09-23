@@ -54,7 +54,7 @@ class ExpensesScreen extends ConsumerWidget {
                                             state.expenses[index].payMethod,
                                       );
                                     },
-                                    barrierDismissible: false,
+                                    barrierDismissible: true,
                                     animationStyle: const AnimationStyle(
                                       curve: Curves.easeInOut,
                                       duration: Duration(milliseconds: 250),
@@ -170,7 +170,7 @@ class ExpensesScreen extends ConsumerWidget {
                   builder: (context) {
                     return const ExpenseAlertDialogFormAddWidget();
                   },
-                  barrierDismissible: false,
+                  barrierDismissible: true,
                   animationStyle: const AnimationStyle(
                     curve: Curves.easeInOut,
                     duration: Duration(milliseconds: 250),
