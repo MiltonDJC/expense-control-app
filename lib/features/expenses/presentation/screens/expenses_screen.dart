@@ -23,10 +23,7 @@ class ExpensesScreen extends ConsumerWidget {
         expenses.when(
           data: (state) => state.expenses.isEmpty
               ? const Center(
-                  child: Text(
-                    'No hay gastos registrados por el momento...',
-                    style: TextStyle(fontSize: 26),
-                  ),
+                  child: Text('No hay gastos registrados por el momento...'),
                 )
               : Padding(
                   padding: const EdgeInsets.only(bottom: 72),
