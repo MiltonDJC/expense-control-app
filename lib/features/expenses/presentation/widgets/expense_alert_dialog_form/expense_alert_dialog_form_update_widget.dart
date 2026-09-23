@@ -172,54 +172,53 @@ class _ExpenseAlertDialogFormUpdateWidgetState
                         setState(() => isFixed = value);
                       },
                     ),
-                    Row(
-                      children: [
-                        ActionButtonWidget(
-                          onPressed: () => Navigator.pop(context),
-                          text: 'Cancelar',
-                        ),
-                        const SizedBox(width: 8),
-                        ActionButtonWidget(
-                          onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              await ref
-                                  .read(expensesProvider.notifier)
-                                  .updateExpense(
-                                    id: widget.id,
-                                    name: expenseNameController.text.isEmpty
-                                        ? widget.expenseName
-                                        : expenseNameController.text,
-                                    amount: expenseAmountController.text.isEmpty
-                                        ? widget.amount
-                                        : double.tryParse(
-                                            expenseAmountController.text,
-                                          ),
-                                    payMethod:
-                                        payMethodSelected ?? widget.payMethod,
-                                    bank:
-                                        ((payMethodSelected?.index ==
-                                                    PayMethod
-                                                        .mercadoPago
-                                                        .index ||
-                                                payMethodSelected?.index ==
-                                                    PayMethod.cash.index) &&
-                                            bankSelected == null)
-                                        ? bankSelected
-                                        : bankSelected ?? widget.bankName,
-                                    isFixed: isFixed ?? widget.isFixed,
-                                  );
-                              if (context.mounted) Navigator.pop(context);
-                              if (context.mounted) {
-                                AppSnackBar.show(
-                                  context,
-                                  'Gasto actualizado con éxito.',
-                                );
-                              }
-                            }
-                          },
-                          text: 'Confirmar',
-                        ),
-                      ],
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ActionButtonWidget(
+                      onPressed: () => Navigator.pop(context),
+                      text: 'Cancelar',
+                    ),
+                    const SizedBox(width: 8),
+                    ActionButtonWidget(
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          await ref
+                              .read(expensesProvider.notifier)
+                              .updateExpense(
+                                id: widget.id,
+                                name: expenseNameController.text.isEmpty
+                                    ? widget.expenseName
+                                    : expenseNameController.text,
+                                amount: expenseAmountController.text.isEmpty
+                                    ? widget.amount
+                                    : double.tryParse(
+                                        expenseAmountController.text,
+                                      ),
+                                payMethod:
+                                    payMethodSelected ?? widget.payMethod,
+                                bank:
+                                    ((payMethodSelected?.index ==
+                                                PayMethod.mercadoPago.index ||
+                                            payMethodSelected?.index ==
+                                                PayMethod.cash.index) &&
+                                        bankSelected == null)
+                                    ? bankSelected
+                                    : bankSelected ?? widget.bankName,
+                                isFixed: isFixed ?? widget.isFixed,
+                              );
+                          if (context.mounted) Navigator.pop(context);
+                          if (context.mounted) {
+                            AppSnackBar.show(
+                              context,
+                              'Gasto actualizado con éxito.',
+                            );
+                          }
+                        }
+                      },
+                      text: 'Confirmar',
                     ),
                   ],
                 ),
