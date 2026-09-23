@@ -126,8 +126,9 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           elevation: 3,
+          padding: const EdgeInsets.all(12),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
