@@ -55,11 +55,9 @@ class _ExpenseAlertDialogFormAddWidgetState
 
     return moneyPockets.when(
       data: (state) => AlertDialog(
+        actionsPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'Registrar Gasto',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Registrar Gasto'),
         content: Form(
           key: formKey,
           autovalidateMode: AutovalidateMode.onUserInteractionIfError,
@@ -67,7 +65,6 @@ class _ExpenseAlertDialogFormAddWidgetState
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.85,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ExpenseAlertDialogFormSection(
@@ -178,7 +175,10 @@ class _ExpenseAlertDialogFormAddWidgetState
                           items: [
                             const DropdownMenuItem(
                               value: null,
-                              child: Text('Ninguno'),
+                              child: Text(
+                                'Ninguno',
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
                             ),
                             ...state.moneyPockets.map(
                               (moneyPocket) => DropdownMenuItem(
@@ -213,7 +213,13 @@ class _ExpenseAlertDialogFormAddWidgetState
                     children: [
                       Text(
                         '¿Es un gasto fijo?:',
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        style: TextStyle(
+                          fontSize: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.fontSize,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Checkbox(
                         value: isFixed,
@@ -223,44 +229,54 @@ class _ExpenseAlertDialogFormAddWidgetState
                       ),
                     ],
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ActionButtonWidget(
+                        onPressed: () => Navigator.pop(context),
+                        text: 'Cancelar',
+                      ),
+                      const SizedBox(width: 8),
+                      ActionButtonWidget(
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            await ref
+                                .read(expensesProvider.notifier)
+                                .addExpense(
+                                  name: expenseNameController.text,
+                                  amount: double.tryParse(
+                                    expenseAmountController.text,
+                                  )!,
+                                  payMethod: payMethodSelected!,
+                                  bank:
+                                      payMethodSelected!.index !=
+                                              PayMethod.mercadoPago.index &&
+                                          payMethodSelected!.index !=
+                                              PayMethod.cash.index
+                                      ? bankSelected
+                                      : null,
+                                  isFixed: isFixed,
+                                  moneyPocketId: moneyPocketSelected,
+                                  createdDate: datePicked ?? DateTime.now(),
+                                );
+                            if (context.mounted) Navigator.pop(context);
+                            if (context.mounted) {
+                              AppSnackBar.show(
+                                context,
+                                'Gasto agregado con éxito.',
+                              );
+                            }
+                          }
+                        },
+                        text: 'Confirmar',
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
         ),
-        actions: [
-          ActionButtonWidget(
-            onPressed: () => Navigator.pop(context),
-            text: 'Cancelar',
-          ),
-          ActionButtonWidget(
-            onPressed: () async {
-              if (formKey.currentState!.validate()) {
-                await ref
-                    .read(expensesProvider.notifier)
-                    .addExpense(
-                      name: expenseNameController.text,
-                      amount: double.tryParse(expenseAmountController.text)!,
-                      payMethod: payMethodSelected!,
-                      bank:
-                          payMethodSelected!.index !=
-                                  PayMethod.mercadoPago.index &&
-                              payMethodSelected!.index != PayMethod.cash.index
-                          ? bankSelected
-                          : null,
-                      isFixed: isFixed,
-                      moneyPocketId: moneyPocketSelected,
-                      createdDate: datePicked ?? DateTime.now(),
-                    );
-                if (context.mounted) Navigator.pop(context);
-                if (context.mounted) {
-                  AppSnackBar.show(context, 'Gasto agregado con éxito.');
-                }
-              }
-            },
-            text: 'Confirmar',
-          ),
-        ],
       ),
       error: (error, stackTrace) =>
           Center(child: Text('Ocurrió un error: ${error.toString()}')),
