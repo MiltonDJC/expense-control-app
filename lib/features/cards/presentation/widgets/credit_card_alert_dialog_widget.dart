@@ -4,8 +4,8 @@ import 'package:expense_control_app/features/cards/domain/enums/credit_card_type
 import 'package:expense_control_app/features/expenses/presentation/utils/bank_utils.dart';
 import 'package:flutter/material.dart';
 
-class CreditCardWidget extends StatelessWidget {
-  const CreditCardWidget({
+class CreditCardAlertDialogWidget extends StatelessWidget {
+  const CreditCardAlertDialogWidget({
     super.key,
     required this.creditCardType,
     required this.bank,
