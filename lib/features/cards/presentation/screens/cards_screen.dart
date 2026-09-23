@@ -24,7 +24,6 @@ class CardsScreen extends ConsumerWidget {
               ? const Center(
                   child: Text(
                     'No hay tarjetas registradas por el momento...',
-                    style: TextStyle(fontSize: 26),
                   ),
                 )
               : Padding(
