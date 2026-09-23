@@ -15,11 +15,7 @@ class ActionButtonWidget extends StatelessWidget {
             : Theme.of(context).colorScheme.errorContainer,
       ),
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: Theme.of(context).primaryTextTheme.headlineSmall
-            ?.copyWith(fontWeight: FontWeight.bold),
-      ),
+      child: Text(text),
     );
   }
 }
