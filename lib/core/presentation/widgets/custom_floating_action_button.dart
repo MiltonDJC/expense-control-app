@@ -18,8 +18,9 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: 44,
       child: FloatingActionButton.extended(
-        icon: Icon(icon, size: 22, fontWeight: FontWeight.w600),
+        icon: Icon(icon),
         onPressed: onPressed,
         label: Text(title),
         tooltip: tooltip,
