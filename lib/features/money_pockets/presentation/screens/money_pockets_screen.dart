@@ -27,10 +27,7 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
         moneyPockets.when(
           data: (state) => state.moneyPockets.isEmpty
               ? const Center(
-                  child: Text(
-                    'No hay bolsillos registrados por el momento...',
-                    style: TextStyle(fontSize: 26),
-                  ),
+                  child: Text('No hay bolsillos registrados por el momento...'),
                 )
               : Padding(
                   padding: const EdgeInsets.only(bottom: 72),
