@@ -35,6 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             shadowColor: Colors.black,
             elevation: 2,
             selectedIndex: selectedIndex,
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
             onDestinationSelected: (value) =>
                 setState(() => selectedIndex = value),
             indicatorColor: Theme.of(context).primaryColor,
