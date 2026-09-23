@@ -34,11 +34,9 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      actionsPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: Text(
-        'Registrar Bolsillo',
-        style: Theme.of(context).textTheme.headlineLarge,
-      ),
+      title: const Text('Registrar Bolsillo'),
       content: Form(
         key: _formKey,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
@@ -46,7 +44,6 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.85,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MoneyPocketFormSection(
@@ -62,7 +59,6 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                 ),
-                const SizedBox(height: 16),
                 MoneyPocketFormSection(
                   title: 'Monto',
                   validator: (value) {
@@ -86,34 +82,39 @@ class _MoneyPocketAddFormState extends ConsumerState<MoneyPocketAddForm> {
                   ),
                   textInputAction: TextInputAction.done,
                 ),
-                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ActionButtonWidget(
+                      onPressed: () => Navigator.pop(context),
+                      text: 'Cancelar',
+                    ),
+                    const SizedBox(width: 8),
+                    ActionButtonWidget(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await ref
+                              .read(moneyPocketsProvider.notifier)
+                              .addMoneyPocket(
+                                name: _moneyPocketNameController.text,
+                                amount: double.tryParse(
+                                  _moneyPocketAmountController.text,
+                                )!,
+                              );
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                          }
+                        }
+                      },
+                      text: 'Confirmar',
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ),
       ),
-      actions: [
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
-        ),
-        ActionButtonWidget(
-          onPressed: () async {
-            if (_formKey.currentState!.validate()) {
-              await ref
-                  .read(moneyPocketsProvider.notifier)
-                  .addMoneyPocket(
-                    name: _moneyPocketNameController.text,
-                    amount: double.tryParse(_moneyPocketAmountController.text)!,
-                  );
-              if (context.mounted) {
-                Navigator.pop(context);
-              }
-            }
-          },
-          text: 'Confirmar',
-        ),
-      ],
     );
   }
 }

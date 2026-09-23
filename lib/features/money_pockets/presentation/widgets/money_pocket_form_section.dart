@@ -36,6 +36,7 @@ class MoneyPocketFormSection extends StatelessWidget {
             textInputAction: textInputAction,
             autofocus: true,
           ),
+          const SizedBox(height: 16),
         ],
       ),
     );
