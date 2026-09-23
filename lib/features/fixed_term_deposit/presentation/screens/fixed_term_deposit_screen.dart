@@ -24,7 +24,6 @@ class FixedTermDepositScreen extends ConsumerWidget {
               ? const Center(
                   child: Text(
                     'No hay plazos fijos registrados por el momento...',
-                    style: TextStyle(fontSize: 26),
                   ),
                 )
               : Padding(
