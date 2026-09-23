@@ -70,7 +70,10 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.payments),
                     ),
-                    Text('Monto pagado: \$$amount'),
+                    Text(
+                      'Monto pagado: \$$amount',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                   ],
                 ),
                 Row(
@@ -79,10 +82,19 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.paid),
                     ),
-                    const Text('Pagado con: '),
-                    Text(getPayMethodName(payMethod.name)),
+                    Text(
+                      'Pagado con: ',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(
+                      getPayMethodName(payMethod.name),
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     if (bankName != null)
-                      Text(' (${getBankName(bankName!.name)})'),
+                      Text(
+                        ' (${getBankName(bankName!.name)})',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
                   ],
                 ),
                 Row(
@@ -91,7 +103,10 @@ class ExpenseInformationWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.calendar_month),
                     ),
-                    Text('Fecha realizado: ${formatDate(createdDate)}'),
+                    Text(
+                      'Fecha realizado: ${formatDate(createdDate)}',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                   ],
                 ),
                 Row(
@@ -128,6 +143,7 @@ class ExpenseInformationWidget extends ConsumerWidget {
                               ),
                               Text(
                                 'Bolsillo utilizado: ${moneyPocketName.capitalize}',
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
                           );
