@@ -16,11 +16,15 @@ class AppAlertDialog extends StatelessWidget {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: Theme.of(context).textTheme.displaySmall?.fontSize,
+              fontWeight: Theme.of(context).textTheme.displaySmall?.fontWeight,
+            ),
           ),
         ),
       ),
       actions: actions,
+      actionsAlignment: MainAxisAlignment.center,
     );
   }
 }
