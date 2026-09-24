@@ -30,7 +30,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 60),
+          preferredSize: const Size(double.infinity, 70),
           child: NavigationBar(
             shadowColor: Colors.black,
             elevation: 2,
