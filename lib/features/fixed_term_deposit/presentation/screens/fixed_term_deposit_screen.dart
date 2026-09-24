@@ -27,7 +27,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
+                  padding: const EdgeInsets.only(bottom: 72, top: 18),
                   child: ListView.builder(
                     itemCount: state.fixedTermDeposits.length,
                     itemBuilder: (BuildContext context, int index) {

@@ -26,7 +26,7 @@ class ExpensesScreen extends ConsumerWidget {
                   child: Text('No hay gastos registrados por el momento...'),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
+                  padding: const EdgeInsets.only(bottom: 72, top: 18),
                   child: ListView.builder(
                     itemCount: state.expenses.length,
                     itemBuilder: (context, index) {

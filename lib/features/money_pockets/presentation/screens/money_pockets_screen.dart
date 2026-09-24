@@ -30,12 +30,12 @@ class _MoneyPocketsScreenState extends ConsumerState<MoneyPocketsScreen> {
                   child: Text('No hay bolsillos registrados por el momento...'),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(bottom: 72),
+                  padding: const EdgeInsets.only(bottom: 72, top: 18),
                   child: ListView.builder(
                     itemCount: state.moneyPockets.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 16, top: 8),
+                        padding: const EdgeInsets.only(bottom: 16),
                         child: Slidable(
                           startActionPane: ActionPane(
                             motion: const ScrollMotion(),
