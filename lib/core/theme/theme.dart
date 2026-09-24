@@ -172,7 +172,7 @@ class AppTheme {
           color: Color(0xFF333333),
         ),
         hintStyle: const TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           color: Color(0xFF757575),
           fontWeight: FontWeight.w600,
         ),
