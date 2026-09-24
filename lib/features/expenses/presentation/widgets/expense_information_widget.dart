@@ -34,7 +34,6 @@ class ExpenseInformationWidget extends ConsumerWidget {
     return Card(
       elevation: 4,
       margin: const EdgeInsets.all(0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
