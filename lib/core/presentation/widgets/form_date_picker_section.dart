@@ -73,6 +73,11 @@ class _FormDatePickerSectionState extends State<FormDatePickerSection> {
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           decoration: InputDecoration(
             hintText: widget.hintText,
+            hintStyle: TextStyle(
+              fontSize: 18,
+              color: Theme.of(context).hintColor,
+              fontWeight: FontWeight.w600,
+            ),
             prefixIcon: const Icon(Icons.calendar_today),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           ),
