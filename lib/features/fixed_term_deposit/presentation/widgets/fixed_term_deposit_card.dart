@@ -27,6 +27,7 @@ class FixedTermDepositCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
+      margin: const EdgeInsets.all(0),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
