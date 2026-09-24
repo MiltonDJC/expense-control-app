@@ -81,7 +81,7 @@ class CreditCardAlertDialogWidget extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 50),
                 child: Text(
-                  '**** **** **** 3892',
+                  '**** **** **** ****',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

@@ -82,7 +82,7 @@ class CreditCardStoragedWidget extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 20),
                 child: Text(
-                  '**** **** **** 3892',
+                  '**** **** **** ****',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
