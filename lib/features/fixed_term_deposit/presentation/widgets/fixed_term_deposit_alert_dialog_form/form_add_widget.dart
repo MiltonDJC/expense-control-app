@@ -100,7 +100,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   ),
                   controller: depositAmountController,
                   title: 'Monto a depositar',
-                  hintText: '0.00',
+                  hintText: '\$ 0.00',
                   textInputAction: TextInputAction.next,
                 ),
                 FormSection(
@@ -118,7 +118,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   ),
                   controller: depositAmountReceivedController,
                   title: 'Monto a recibir',
-                  hintText: '0.00',
+                  hintText: '\$ 0.00',
                   textInputAction: TextInputAction.next,
                 ),
                 FormSection(
@@ -136,7 +136,7 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   ),
                   controller: dolarPriceController,
                   title: 'Precio del dólar',
-                  hintText: '0.00',
+                  hintText: '\$ 0.00',
                   textInputAction: TextInputAction.done,
                 ),
                 FormDatePickerSection(
@@ -164,50 +164,60 @@ class _FormAddWidgetState extends ConsumerState<FormAddWidget> {
                   },
                   hintText: 'Seleccione una fecha',
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ActionButtonWidget(
+                      onPressed: () => Navigator.pop(context),
+                      text: 'Cancelar',
+                    ),
+                    const SizedBox(width: 8),
+                    ActionButtonWidget(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await ref
+                              .read(fixedTermDepositProvider.notifier)
+                              .addFixedTermDeposit(
+                                depositAmount: double.tryParse(
+                                  depositAmountController.text,
+                                )!,
+                                depositAmountReceived: double.tryParse(
+                                  depositAmountReceivedController.text,
+                                )!,
+                                depositDate: DateTime(
+                                  _depositDateSelected!.year,
+                                  _depositDateSelected!.month,
+                                  _depositDateSelected!.day,
+                                ),
+                                depositDueDate: DateTime(
+                                  _depositDueDateSelected!.year,
+                                  _depositDueDateSelected!.month,
+                                  _depositDueDateSelected!.day,
+                                ),
+                                dolarPrice: double.tryParse(
+                                  dolarPriceController.text,
+                                )!,
+                                name: fixedTermDepositNameController.text,
+                              );
+                          if (context.mounted) Navigator.pop(context);
+                          if (context.mounted) {
+                            AppSnackBar.show(
+                              context,
+                              'Plazo fijo agregado con éxito.',
+                            );
+                          }
+                        }
+                      },
+                      text: 'Confirmar',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
               ],
             ),
           ),
         ),
       ),
-      actions: [
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
-        ),
-        ActionButtonWidget(
-          onPressed: () async {
-            if (_formKey.currentState!.validate()) {
-              await ref
-                  .read(fixedTermDepositProvider.notifier)
-                  .addFixedTermDeposit(
-                    depositAmount: double.tryParse(
-                      depositAmountController.text,
-                    )!,
-                    depositAmountReceived: double.tryParse(
-                      depositAmountReceivedController.text,
-                    )!,
-                    depositDate: DateTime(
-                      _depositDateSelected!.year,
-                      _depositDateSelected!.month,
-                      _depositDateSelected!.day,
-                    ),
-                    depositDueDate: DateTime(
-                      _depositDueDateSelected!.year,
-                      _depositDueDateSelected!.month,
-                      _depositDueDateSelected!.day,
-                    ),
-                    dolarPrice: double.tryParse(dolarPriceController.text)!,
-                    name: fixedTermDepositNameController.text,
-                  );
-              if (context.mounted) Navigator.pop(context);
-              if (context.mounted) {
-                AppSnackBar.show(context, 'Plazo fijo agregado con éxito.');
-              }
-            }
-          },
-          text: 'Confirmar',
-        ),
-      ],
     );
   }
 }
