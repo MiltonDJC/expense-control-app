@@ -63,7 +63,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                                           state.fixedTermDeposits[index].name,
                                     );
                                   },
-                                  barrierDismissible: false,
+                                  barrierDismissible: true,
                                   animationStyle: const AnimationStyle(
                                     curve: Curves.easeInOut,
                                     duration: Duration(milliseconds: 250),
@@ -165,7 +165,7 @@ class FixedTermDepositScreen extends ConsumerWidget {
                   builder: (context) {
                     return const FormAddWidget();
                   },
-                  barrierDismissible: false,
+                  barrierDismissible: true,
                   animationStyle: const AnimationStyle(
                     curve: Curves.easeInOut,
                     duration: Duration(milliseconds: 250),
