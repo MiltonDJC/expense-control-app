@@ -29,7 +29,6 @@ class _CardAlertDialogFormAddState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      actionsPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: const Text('Registrar tarjeta'),
       content: Form(
@@ -38,155 +37,169 @@ class _CardAlertDialogFormAddState
         child: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.80,
-            height: MediaQuery.of(context).size.height * 0.75,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            height: MediaQuery.of(context).size.height * 0.80,
+            child: Column(
               children: [
-                SizedBox(
-                  width: 360,
-                  child: CreditCardAlertDialogWidget(
-                    creditCardType: creditCardType,
-                    bank: bank,
-                    closeDate: DateTime.now(),
-                    dueDate: DateTime.now(),
-                    cardColor: getCardColor(bank),
-                  ),
-                ),
-                SizedBox(
-                  width: 340,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Tipo de tarjeta',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      DropdownButtonFormField<CreditCardType>(
-                        initialValue: creditCardType,
-                        hint: const Text('Seleccione el tipo de tarjeta'),
-                        items: const [
-                          DropdownMenuItem(
-                            value: CreditCardType.mastercard,
-                            child: Text('Mastercard'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 340,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Tipo de tarjeta',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                          DropdownMenuItem(
-                            value: CreditCardType.visa,
-                            child: Text('Visa'),
+                          const SizedBox(height: 8),
+                          DropdownButtonFormField<CreditCardType>(
+                            hint: const Text('Seleccione el tipo de tarjeta'),
+                            items: const [
+                              DropdownMenuItem(
+                                value: CreditCardType.mastercard,
+                                child: Text('Mastercard'),
+                              ),
+                              DropdownMenuItem(
+                                value: CreditCardType.visa,
+                                child: Text('Visa'),
+                              ),
+                            ],
+                            onChanged: (value) =>
+                                setState(() => creditCardType = value!),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Banco',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          DropdownButtonFormField<Bank>(
+                            hint: const Text('Seleccione el banco emisor'),
+                            items: const [
+                              DropdownMenuItem(
+                                value: Bank.bancoMacro,
+                                child: Text('Banco Macro'),
+                              ),
+                              DropdownMenuItem(
+                                value: Bank.bancoProvincia,
+                                child: Text('Banco Provincia'),
+                              ),
+                              DropdownMenuItem(
+                                value: Bank.bancoComafi,
+                                child: Text('Banco Comafi'),
+                              ),
+                              DropdownMenuItem(
+                                value: Bank.bancoNacion,
+                                child: Text('Banco Nación'),
+                              ),
+                            ],
+                            onChanged: (value) => setState(() => bank = value!),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          FormDatePickerSection(
+                            title: 'Fecha de cierre',
+                            hintText: 'Seleccione una fecha',
+                            datePicked: (dateSelected) {
+                              setState(() {
+                                closeDate = dateSelected!;
+                              });
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Debe elegir una fecha válida';
+                              }
+                              return null;
+                            },
+                          ),
+                          FormDatePickerSection(
+                            title: 'Fecha de vencimiento',
+                            hintText: 'Seleccione una fecha',
+                            datePicked: (dateSelected) {
+                              setState(() {
+                                dueDate = dateSelected!;
+                              });
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Debe elegir una fecha válida';
+                              }
+                              return null;
+                            },
                           ),
                         ],
-                        onChanged: (value) =>
-                            setState(() => creditCardType = value!),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                        ),
                       ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Banco',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      DropdownButtonFormField<Bank>(
-                        initialValue: bank,
-                        hint: const Text('Seleccione el banco emisor'),
-                        items: const [
-                          DropdownMenuItem(
-                            value: Bank.bancoMacro,
-                            child: Text('Banco Macro'),
+                    ),
+                    SizedBox(
+                      width: 360,
+                      child: Column(
+                        children: [
+                          CreditCardAlertDialogWidget(
+                            creditCardType: creditCardType,
+                            bank: bank,
+                            closeDate: DateTime.now(),
+                            dueDate: DateTime.now(),
+                            cardColor: getCardColor(bank),
                           ),
-                          DropdownMenuItem(
-                            value: Bank.bancoProvincia,
-                            child: Text('Banco Provincia'),
-                          ),
-                          DropdownMenuItem(
-                            value: Bank.bancoComafi,
-                            child: Text('Banco Comafi'),
-                          ),
-                          DropdownMenuItem(
-                            value: Bank.bancoNacion,
-                            child: Text('Banco Nación'),
+                          const SizedBox(height: 24),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ActionButtonWidget(
+                                onPressed: () => Navigator.pop(context),
+                                text: 'Cancelar',
+                              ),
+                              const SizedBox(width: 8),
+                              ActionButtonWidget(
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    await ref
+                                        .read(cardsProvider.notifier)
+                                        .addCreditCard(
+                                          creditCardType: creditCardType,
+                                          bank: bank,
+                                          dueDate: dueDate!,
+                                          closeDate: closeDate!,
+                                        );
+                                    if (context.mounted) Navigator.pop(context);
+                                    if (context.mounted) {
+                                      AppSnackBar.show(
+                                        context,
+                                        'Tarjeta añadida con éxito.',
+                                      );
+                                    }
+                                  }
+                                },
+                                text: 'Confirmar',
+                              ),
+                            ],
                           ),
                         ],
-                        onChanged: (value) => setState(() => bank = value!),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                        ),
                       ),
-                      const SizedBox(height: 16),
-                      FormDatePickerSection(
-                        title: 'Fecha de cierre',
-                        hintText: 'Seleccione una fecha',
-                        datePicked: (dateSelected) {
-                          setState(() {
-                            closeDate = dateSelected!;
-                          });
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Debe elegir una fecha válida';
-                          }
-                          return null;
-                        },
-                      ),
-                      FormDatePickerSection(
-                        title: 'Fecha de vencimiento',
-                        hintText: 'Seleccione una fecha',
-                        datePicked: (dateSelected) {
-                          setState(() {
-                            dueDate = dateSelected!;
-                          });
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Debe elegir una fecha válida';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
       ),
-      actions: [
-        ActionButtonWidget(
-          onPressed: () => Navigator.pop(context),
-          text: 'Cancelar',
-        ),
-        ActionButtonWidget(
-          onPressed: () async {
-            if (formKey.currentState!.validate()) {
-              await ref
-                  .read(cardsProvider.notifier)
-                  .addCreditCard(
-                    creditCardType: creditCardType,
-                    bank: bank,
-                    dueDate: dueDate!,
-                    closeDate: closeDate!,
-                  );
-              if (context.mounted) Navigator.pop(context);
-              if (context.mounted) {
-                AppSnackBar.show(context, 'Tarjeta añadida con éxito.');
-              }
-            }
-          },
-          text: 'Confirmar',
-        ),
-      ],
     );
   }
 }

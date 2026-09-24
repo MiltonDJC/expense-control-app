@@ -110,7 +110,7 @@ class _ExpenseAlertDialogFormAddWidgetState
                     expenseSectionType: ExpenseSectionType.amount,
                     controller: expenseAmountController,
                     title: 'Monto',
-                    hintText: '0.00',
+                    hintText: '\$ 0.00',
                     textInputAction: TextInputAction.done,
                   ),
                   ExpenseAlertDialogFormDropdownSection(
