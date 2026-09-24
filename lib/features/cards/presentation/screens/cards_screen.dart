@@ -16,6 +16,7 @@ class CardsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cards = ref.watch(cardsProvider);
+    final orientation = MediaQuery.of(context).orientation.name;
 
     return Stack(
       children: [
@@ -28,13 +29,12 @@ class CardsScreen extends ConsumerWidget {
                   padding: const EdgeInsets.only(bottom: 72, top: 18),
                   child: Center(
                     child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 18,
-                            crossAxisSpacing: 12,
-                            childAspectRatio: 1.5,
-                          ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: orientation != 'portrait' ? 3 : 1,
+                        mainAxisSpacing: 18,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: orientation != 'portrait' ? 1.5 : 2.4,
+                      ),
                       itemCount: state.cards.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Builder(
