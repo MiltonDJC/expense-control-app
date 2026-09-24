@@ -30,14 +30,14 @@ class FixedTermDepositCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          spacing: 28,
+          spacing: 14,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   fixedTermDepositName.capitalize,
-                  style: const TextStyle(fontSize: 30, fontWeight: .w600),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 Row(
                   children: [
@@ -63,7 +63,7 @@ class FixedTermDepositCard extends StatelessWidget {
                         const Icon(Icons.calendar_month),
                         Text(
                           'Fecha de depósito: ${formatDate(depositDate)}',
-                          style: const TextStyle(fontSize: 24),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),
@@ -73,7 +73,7 @@ class FixedTermDepositCard extends StatelessWidget {
                         const Icon(Icons.calendar_month),
                         Text(
                           'Fecha de vencimiento: ${formatDate(depositDueDate)}',
-                          style: const TextStyle(fontSize: 24),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),
@@ -83,7 +83,7 @@ class FixedTermDepositCard extends StatelessWidget {
                         const Icon(Icons.lock),
                         Text(
                           'Monto depositado: \$$depositAmount',
-                          style: const TextStyle(fontSize: 24),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),
@@ -93,7 +93,7 @@ class FixedTermDepositCard extends StatelessWidget {
                         const Icon(Icons.savings),
                         Text(
                           'Monto a recibir: \$$depositAmountReceived',
-                          style: const TextStyle(fontSize: 24),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),
@@ -103,7 +103,7 @@ class FixedTermDepositCard extends StatelessWidget {
                         const Icon(Icons.attach_money),
                         Text(
                           'Precio del dólar: \$$dolarPrice',
-                          style: const TextStyle(fontSize: 24),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
                     ),

@@ -14,7 +14,7 @@ class DueDateInformationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         color: getDueDateColor(depositDueDate.difference(depositDate).inDays),
@@ -23,11 +23,7 @@ class DueDateInformationWidget extends StatelessWidget {
         depositDueDate.difference(depositDate).inDays > 0
             ? 'Vence en: ${getDueDateMessage(depositDueDate.difference(depositDate).inDays)}'
             : 'Venció',
-        style: const TextStyle(
-          fontSize: 24,
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: Theme.of(context).primaryTextTheme.titleLarge,
       ),
     );
   }
