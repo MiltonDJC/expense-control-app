@@ -37,7 +37,8 @@ class FixedTermDepositScreen extends ConsumerWidget {
                           motion: const ScrollMotion(),
                           extentRatio: 0.2,
                           children: [
-                            SlidableAction(
+                            CustomSlidableAction(
+                              borderRadius: BorderRadius.circular(10),
                               onPressed: (context) async {
                                 await showDialog(
                                   context: context,
@@ -72,8 +73,14 @@ class FixedTermDepositScreen extends ConsumerWidget {
                               },
                               backgroundColor: Colors.blue,
                               foregroundColor: Colors.white,
-                              icon: Icons.edit,
-                              label: 'Editar',
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.edit),
+                                  SizedBox(height: 4),
+                                  Text('Editar'),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -81,7 +88,8 @@ class FixedTermDepositScreen extends ConsumerWidget {
                           motion: const ScrollMotion(),
                           extentRatio: 0.2,
                           children: [
-                            SlidableAction(
+                            CustomSlidableAction(
+                              borderRadius: BorderRadius.circular(10),
                               onPressed: (context) async {
                                 await showDialog(
                                   context: context,
@@ -125,8 +133,14 @@ class FixedTermDepositScreen extends ConsumerWidget {
                               },
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: 'Eliminar',
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.delete),
+                                  SizedBox(height: 4),
+                                  Text('Eliminar'),
+                                ],
+                              ),
                             ),
                           ],
                         ),
